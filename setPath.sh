@@ -1,4 +1,4 @@
-#!/binbash
+#!/bin/bash
 
 # set PATH and modify ~/.bashrc 
 export PATH=$PATH:~/bin
