@@ -7,6 +7,6 @@ fi
 WHO=$(who am i | awk '{print $1}')
 UGROUPS=$(groups $WHO | grep sudo)
 
-[ ! -n "$UGROUPS" ] && $(which usermod) -aG "sudo" $USER
+[ ! -n "$UGROUPS" ] && $(which usermod) -aG "sudo" $WHO
 
 

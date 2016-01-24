@@ -2,8 +2,6 @@
 
 [ "$UID" -ne "0" ] && echo "[+] you need to be r00t." >&2 && exit 1
 
-APT=$(which apt-get)
-
 if [[ ! $(which tmux) ]] ; then
     $APT "install" tmux &>/dev/null && echo "[+] tmux installed."
 fi
@@ -14,7 +12,7 @@ if [[ ! $(which ruby) ]] ; then
 fi
 
 if [[ ! $(which tmuxinator) ]] ; then
-    $(which gem) install tmuxinator 
+    $(which gem) install tmuxinator && echo "[+] tmuxinator."  
 fi
 
 
