@@ -8,9 +8,10 @@ else
     echo "[+] Ansible already installed."
 fi
 
-echo "[+] creating ~/.boto .."
-touch ~/.boto
-echo "[+] ~/.boto created."
-
+if [ ! -f ~/.boto ]; then
+    echo "[+] creating ~/.boto .."
+    touch ~/.boto
+    echo "[+] ~/.boto created."
+fi
 
 exit 0

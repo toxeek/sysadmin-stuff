@@ -1,10 +1,8 @@
 #/bin/bash
 
 
-[ "$UID" -ne "0" ] && echo "[+] you need to br r00t." >&2 && exit 1
-
-APT=$(which apt-get)
-ROOT_DIR=$(pwd)
+export APT=$(which apt-get)
+export ROOT_DIR=$(pwd)
 
 for m in $(find . -name ".sh"); do
     chmod +x $m
@@ -44,6 +42,8 @@ for m in ${ROOT_DIR}/ansible/playbooks/*yml; do
 done
 
 
+###
+chmod +x $HOME/bin/*
 
 
 
