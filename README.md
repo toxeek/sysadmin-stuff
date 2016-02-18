@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Project Name
 
 This projet aims with configuring my desktop at work with handy stuff
@@ -34,4 +33,3 @@ TODO: Write license
 =======
 # sysadmin-stuff
 sysadmin help to kick off a system with some goodies
->>>>>>> ae8b32ae5d8c2643ac8d55e6a1f1c81ecb2dba6e
