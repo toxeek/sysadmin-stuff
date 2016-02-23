@@ -32,4 +32,4 @@ TODO: Write credits
 TODO: Write license
 =======
 # sysadmin-stuff
-sysadmin help to kick off a system with some goodies
+sysadmin help to kick off an Ubuntu system with some goodies
