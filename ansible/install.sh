@@ -11,7 +11,7 @@ fi
 
 if [ ! -f ~/.boto ]; then
     echo "[+] creating ~/.boto .."
-    touch ~/.boto
+    touch ~/.boto || echo "ansible error: unable to create ~/.boto" >&2
     echo "[+] ~/.boto created."
 fi
 
