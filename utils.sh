@@ -19,13 +19,10 @@ parsecfg() {
     local val="$($GREP $task $cfg_file | $AWK -F"=" '{print $2}')"
     [ "$val" -eq "1" ] && echo 1 || echo 0      
 }
-
 ################
 addUsertoGroup() {
     local WHO=$(who am i | awk '{print $1}')
-    echo "[+] $WHO"
     local UGROUPS=$(groups $WHO | grep $1)
-    echo "[+] UGROUPS: $UGROUPS"
     [ ! -n "$UGROUPS" ] && $(which usermod) -aG "$1" $WHO
 
     return $?
