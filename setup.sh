@@ -29,7 +29,12 @@ addUsertoGroup sudo
 #########
 
 ## install ansible
-$ROOT_DIR/ansible/install.sh 2>>$ROOT_DIR/error.log
+is_ansible="$(parsecfg 'ansible')"
+
+
+if [ "$is_ansible" -eq "1" ]; then
+    $ROOT_DIR/ansible/install.sh 2>>$ROOT_DIR/error.log
+fi
 
 ## install 
 
