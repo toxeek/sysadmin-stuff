@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. ../utils.sh
 
 if [[ ! $(which ansible) ]] ; then
     ${APT} install ansible &>/dev/null

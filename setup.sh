@@ -1,8 +1,9 @@
 #/bin/bash
 
 
-export APT=$(which apt-get)
-export ROOT_DIR=$(pwd)
+## source utils.sh
+UTILS_FILE="${ROOT_DIR}/utils.sh"
+
 
 for m in $(find . -name ".sh"); do
     chmod +x $m
@@ -11,9 +12,6 @@ done
 ## set PATH and modify ~/.bashrc 
 CURRENT_PATH=$PATH
 [[ ! $(grep "PATH=.*~/bin" ~/.bashrc) ]] && echo "export PATH=${PATH}:~/bin" >>~/.bashrc
-
-## source utils.sh
-UTILS_FILE="${ROOT_DIR}/utils.sh"
 
 [ -e "${UTILS_FILE}" ] && . $UTILS_FILE || {
 echo "[+] no utils file found." >&2 && exit 125
