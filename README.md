@@ -30,7 +30,7 @@ TODO: Write credits
 ## License
 
 iSysadm, just kicks off a desktop at work with some sys admin goodies.
-   Copyright (C) 2016 toxek.
+   Copyright (C) 2016 toxeek.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
