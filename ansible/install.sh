@@ -3,6 +3,9 @@
 . ../utils.sh
 
 if [[ ! $(which ansible) ]] ; then
+    ${APT} install software-properties-common &>/dev/null
+    $(which apt-add-repository) ppa:ansible/ansible &>/dev/null
+    ${APT} update
     ${APT} install ansible &>/dev/null
     echo "[+] Ansible installed."
 else
