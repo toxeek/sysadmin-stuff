@@ -1,0 +1,9 @@
+---
+ - name: provisions localhost
+   hosts: localhost
+   become: yes
+   gather_facts: false
+   pre_tasks:
+     - include_vars: user_vars/system_user.yml
+   roles:
+     - install_docker

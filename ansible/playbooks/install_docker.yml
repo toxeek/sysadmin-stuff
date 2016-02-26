@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  tasks:
-    - name: Installs docker
-      apt: pkg=docker state=installed update_cache=true
-      sudo: true
