@@ -20,7 +20,7 @@
 
   - name: Installs docker
     tags: docker
-    apt: pkg=docker-engine state=installed update_cache=true
+    apt: pkg=docker-engine state=installed update_cache=false
 
   - name: Adds docker group
     tags: docker
