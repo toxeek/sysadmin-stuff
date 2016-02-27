@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ../utils.sh
+. ../chk_root.sh
 
 if [[ ! $(which ansible) ]] ; then
     ${APT} install software-properties-common &>/dev/null
