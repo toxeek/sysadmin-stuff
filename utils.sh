@@ -1,16 +1,12 @@
-[ "$UID" -ne "0" ] && echo "[+] you need to be r00t." >&2 && exit 1
-
 
 APT="$(which apt-get)"
 GREP="$(which grep)"
 AWK="$(which awk)"
 
-export __HEAD__ = "master"
 export CWD=$(pwd)
 export ROOT_DIR=$(dirname $CWD)
 cfg_file="${ROOT_DIR}/sysadmin.cfg"
-
-[ ! -f "$cfg_file" ] && echo "[+] sysadmin.cfg not found." >&2 && exit 1
+ansible_err_file="$ROOT_DIR/ansible/error.log"
 
 
 ###############
