@@ -26,6 +26,6 @@
     tags: docker
     group: name=docker state=present
 
-  - name: Adds system to docker group
+  - name: Adds system user to docker group
     tags: docker
     user: name="{{system_user}}" shell=/bin/bash groups=sudo,docker append=yes
