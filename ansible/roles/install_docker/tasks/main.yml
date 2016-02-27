@@ -28,4 +28,4 @@
 
   - name: Adds system user to docker group
     tags: docker
-    user: name="{{system_user}}" shell=/bin/bash groups=sudo,docker append=yes
+    user: name="{{system_user}}" shell=/bin/bash groups=docker append=yes
