@@ -6,4 +6,4 @@
    pre_tasks:
      - include_vars: user_vars/system_user.yml
    roles:
-     - install_docker
+     - toxeek.docker
