@@ -29,6 +29,15 @@ echo
 ##########
 addUsertoGroup sudo
 #########
+## install sys goodies
+#########
+install_sys_utils
+#########
+## add user to fuse group for sshfs
+#########
+addUsertoGroup fuse
+#########
+
 
 ## install ansible if enabled in cfg file
 is_ansible="$(parsecfg 'ansible')"
