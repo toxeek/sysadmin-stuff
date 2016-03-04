@@ -51,8 +51,6 @@ else
 
 fi
 
-
-
 ###
 chmod +x $HOME/bin/*
 
