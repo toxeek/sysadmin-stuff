@@ -11,7 +11,7 @@ echo "[+] no utils file found." >&2 && exit 125
 }
 
 ## we chmod +x all shell scripts
-for m in $(find . -name ".sh"); do
+for m in $(find . -name "*.sh"); do
     chmod +x $m
 done
 
