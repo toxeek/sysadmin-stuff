@@ -7,7 +7,7 @@ export CWD=$(pwd)
 export ROOT_DIR=$(dirname $CWD)
 cfg_file="${ROOT_DIR}/sysadmin.cfg"
 ansible_err_file="$ROOT_DIR/ansible/error.log"
-system_utils="(sublime-text sshfs tree tcpdump tshark python python-boto mysql-client mysql-server python-mysqldb python-mysql.connector)"
+system_utils="(sublime-text sshfs tree tcpdump tshark python python-boto mysql-client mysql-server python-mysqldb python-mysql.connector tfenv)"
 ansible_roles="(toxeek.docker)"
 
 
@@ -34,9 +34,16 @@ install_ansible_roles() {
 ################
 install_sys_utils() {
     for util in ${system_utils[*]}; do
-        ${APT} install -y ${util} 
-    done  
+        if [ "$util" == "tfenv" ] ; then
+           mkdir -p /usr/local/bin 2>&1
+           git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+           ln -s ~/.tfenv/bin/* /usr/local/bin
+        else
+            ${APT} install -y ${util}
+        fi 
+    done 
 }
 ################
+
 
 
