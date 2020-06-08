@@ -1,6 +1,7 @@
 
 export CWD=$(pwd)
 export ROOT_DIR=$(dirname $CWD)
+echo "[+] root dir: $ROOT_DIR"
 cfg_file="${ROOT_DIR}/sysadmin.cfg"
 ansible_err_file="$ROOT_DIR/ansible/error.log"
 system_utils="(sublime-text curl sshfs tree tcpdump tshark python python-boto mysql-client mysql-server python-mysqldb python-mysql.connector tfenv docker)"
@@ -49,7 +50,7 @@ install_sys_utils() {
             systemctl enable docker
             systemctl daemo-reload docker
             systemctl start docker
-        fi
+        fiS
     done 
 }
 ################
