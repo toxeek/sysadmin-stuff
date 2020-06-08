@@ -50,7 +50,7 @@ install_sys_utils() {
             systemctl enable docker
             systemctl daemo-reload docker
             systemctl start docker
-        fiS
+        fi
     done 
 }
 ################
