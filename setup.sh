@@ -1,7 +1,8 @@
-#/bin/bash
+#/bin/bash -x
 
 . chk_root.sh
 
+ROOT_DIR=$(pwd)
 ## source utils.sh
 UTILS_FILE="${ROOT_DIR}/utils.sh"
 

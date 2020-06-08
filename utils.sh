@@ -4,13 +4,17 @@ export ROOT_DIR=$(dirname $CWD)
 echo "[+] root dir: $ROOT_DIR"
 cfg_file="${ROOT_DIR}/sysadmin.cfg"
 ansible_err_file="$ROOT_DIR/ansible/error.log"
-system_utils="(sublime-text curl sshfs tree tcpdump tshark python python-boto mysql-client mysql-server python-mysqldb python-mysql.connector tfenv docker)"
+system_utils="(sublime-text curl sshfs tree tcpdump strace tshark python3 software-properties-common tfenv docker)"
 ansible_roles="(toxeek.docker)"
 #####################
 APT="$(which apt-get)"
 GREP="$(which grep)"
 AWK="$(which awk)"
 CURL="$(which curl)"
+#### pip3 ###########
+apt-add-repository universe
+${APT} update
+${APT} install python3-pip
 ################
 parsecfg() {
     local task="$1"
