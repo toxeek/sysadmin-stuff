@@ -15,7 +15,7 @@ CURL="$(which curl)"
 parsecfg() {
     local task="$1"
     local val="$($GREP $task $cfg_file | $AWK -F"=" '{print $2}')"
-    (("$val" == "1")) && echo 1 || echo 0      
+    [[ "$val" -eq 1 ]] && echo 1 || echo 0      
 }
 ################
 addUsertoGroup() {
