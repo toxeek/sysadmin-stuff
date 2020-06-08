@@ -1,6 +1,5 @@
 #/bin/bash
 
-
 . chk_root.sh
 
 ## source utils.sh
