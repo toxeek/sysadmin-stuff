@@ -26,9 +26,13 @@ install_ansible_roles() {
     done         
 }
 ################
+install_aws_cli() {
+    $(which pip3) install awscli
+}
+################
 install_sys_utils() {
     typeset -a system_utils
-    system_utils=(build-essential unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree tcpdump python3 python3-pip strace tshark python3 tfenv docker docker.compose)
+    system_utils=(build-essential unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree tcpdump python3 python3-pip strace tshark python3 tfenv awslci docker docker-compose)
     for util in ${system_utils[*]}; do
         if [ "$util" == "tfenv" ] ; then
            mkdir -p /usr/local/bin 2>&1
@@ -50,6 +54,12 @@ install_sys_utils() {
             echo "[+] installing Visual Code Studio .."
             echo
             ${SNAP} install --classic code
+        elif [ "$util" == "awscli" ] ; then
+            echo
+            echo "[+] installing awscli .."
+            echo
+            $(which pip3) uninstall -y awscli &>/dev/null
+            $(which pip3) install awscli 
         elif [ "$util" == "docker" ] ; then 
             echo
             if [[ ! $(which docker ) ]] ; then
@@ -58,8 +68,6 @@ install_sys_utils() {
                 echo "[+] enabling and starting Docker via systemctl .."
                 echo
             fi
-        elif [ "$util" == "docker.compose" ] ; then
-            ${SNAP} install docker.compose
         else
             ${APT} install -y ${util}
         fi
