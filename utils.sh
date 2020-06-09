@@ -13,6 +13,13 @@ addUsertoGroup() {
     return $?
 }
 ################
+install_vritualenvwrapper)() {
+    if [[ ! $(which pip3) ]] ; then
+        exit "[+] pip3 not installed? Exiting." && exit 125
+    fi
+    pip3 install virtualenvwrapper
+}
+################
 install_ansible_roles() {
     for role in ${ansible_roles[*]}; do
         $(which ansible-galaxy) install ${role} 
