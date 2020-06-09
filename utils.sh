@@ -32,7 +32,7 @@ install_aws_cli() {
 ################
 install_sys_utils() {
     typeset -a system_utils
-    system_utils=(build-essential unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree tcpdump python3 python3-pip strace tshark python3 tfenv awslci docker docker-compose)
+    system_utils=(build-essential unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree tcpdump python3 python3-pip strace tshark tfenv awslci docker docker-compose)
     for util in ${system_utils[*]}; do
         if [ "$util" == "tfenv" ] ; then
            mkdir -p /usr/local/bin 2>&1
