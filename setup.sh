@@ -38,13 +38,12 @@ install_sys_utils
 #########
 # addUsertoGroup fuse ## not anymore for 20.04
 #########
-
-
-## install ansible if enabled in cfg file
 is_ansible="$(parsecfg 'ansible')"
 if [ "$is_ansible" -eq "1" ]; then
+## install ansible if enabled in cfg file
     echo "[+] dest dir: $ROOT_DIR/$REPO_DIR"
-    touch ${ROOT_DIR}/${REPO_DIR}/ansible/error.log
+    mkdir -p "${ROOT_DIR}/${REPO_DIR}/ansible"
+    touch "${ROOT_DIR}/${REPO_DIR}/ansible/error.log"
     $ROOT_DIR/${REPO_DIR}/ansible/install.sh 2>>$ansible_err_file
     ## execute ansible provision-localhost playbook
     $(which ansible-playbook) ${ROOT_DIR}/${REPO_DIR}/ansible/playbooks/provision-localhost.yml
