@@ -70,6 +70,7 @@ install_sys_utils() {
     install_vritualenvwrapper
     echo
     echo "[~] all gooddies installed."
+    echo
 
     return 0
 }
