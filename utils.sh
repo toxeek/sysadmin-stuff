@@ -49,16 +49,11 @@ install_sys_utils() {
             echo
             echo "[+] installing Visual Code Studio .."
             echo
-            $(which snap) install --classic code
+            ${SNAP} install --classic code
         elif [ "$util" == "docker" ] ; then 
             echo
-            echo "[+] installing docker community edition .."
-            echo
-            ${CURL} -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            $(which add-apt-repository) "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-            ${APT} update
             if [[ ! $(which docker ) ]] ; then
-                ${APT} install docker
+                ${SNAP} install docker
                 echo
                 echo "[+] enabling and starting Docker via systemctl .."
                 echo

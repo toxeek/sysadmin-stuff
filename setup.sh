@@ -17,6 +17,7 @@ ansible_err_file="${REPO_ROOT_DIR}/ansible/error.log"
 ansible_roles="(toxeek.docker)"
 #####################
 APT="$(which apt-get)"
+SNAP="$(which snap)"
 GREP="$(which grep)"
 AWK="$(which awk)"
 CURL="$(which curl)"
