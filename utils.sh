@@ -40,30 +40,40 @@ install_sys_utils() {
            if [[ ! $(which tfenv) ]] ; then
                echo "[+] tfenv installation problems. exiting" && exit 125
             fi
+           echo
            echo "[+] switching to latest terraform version ..."
            echo
            $(which tfenv) use latest 2>/dev/null
            $(which tfenv) list 
         elif [ "$util" == "vscode" ] ; then 
+            echo
             echo "[+] installing Visual Code Studio .."
             echo
             $(which snap) install --classic code
         elif [ "$util" == "docker" ] ; then 
+            echo
             echo "[+] installing docker community edition .."
             echo
             ${CURL} -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
             $(which add-apt-repository) "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
             ${APT} update
-            ${APT} install docker
-            echo "[+] enabling and starting Docker via systemctl .."
-            systemctl enable docker
-            systemctl daemo-reload docker
-            systemctl start docker
+            if [[ ! $(which docker ) ]] ; then
+                ${APT} install docker
+                echo
+                echo "[+] enabling and starting Docker via systemctl .."
+                echo
+                systemctl enable docker
+                systemctl daemon-reload docker
+                systemctl start docker
+            fi
+
         else
             ${APT} install -y ${util}
         fi
     done 
+    echo
     echo "[+] installing virtualenvwrapper .."
+    echo
     install_vritualenvwrapper
 }
 ################
