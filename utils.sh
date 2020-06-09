@@ -42,7 +42,7 @@ install_sys_utils() {
             fi
            echo "[+] switching to latest terraform version ..."
            echo
-           $(which tfenv) use latest || echo "[+] can not use latest terraform version." && exit 125
+           $(which tfenv) use latest 2>/dev/null
            $(which tfenv) list 
         elif [ "$util" == "vscode" ] ; then 
             echo "[+] installing Visual Code Studio .."
