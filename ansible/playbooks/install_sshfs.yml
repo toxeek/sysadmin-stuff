@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  tasks:
-    - name: Installs sshfs
-      apt: pkg=sshfs state=installed update_cache=true
-      sudo: true

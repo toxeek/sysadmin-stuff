@@ -1,7 +1,0 @@
----
- - name: provisions localhost
-   hosts: localhost
-   become: yes
-   gather_facts: false
-   roles:
-     - { role: toxeek.docker, system_user: "tricky" }

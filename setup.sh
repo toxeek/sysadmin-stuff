@@ -44,9 +44,10 @@ if [ "$is_ansible" -eq "1" ]; then
     echo "[+] dest dir: $ROOT_DIR/$REPO_DIR"
     mkdir -p "${ROOT_DIR}/${REPO_DIR}/ansible"
     touch "${ROOT_DIR}/${REPO_DIR}/ansible/error.log"
-    $ROOT_DIR/${REPO_DIR}/ansible/install.sh 2>>$ansible_err_file
+    ansible_err_file="${ROOT_DIR}/${REPO_DIR}/ansible/error.log"
+    ${APT} install -y ansible 2>> $ansible_err_file
     ## execute ansible provision-localhost playbook
-    $(which ansible-playbook) ${ROOT_DIR}/${REPO_DIR}/ansible/playbooks/provision-localhost.yml
+    ## $(which ansible-playbook) ${ROOT_DIR}/${REPO_DIR}/ansible/playbooks/provision-localhost.yml
 else 
 	## we just install custom binaries
 	:
@@ -54,7 +55,7 @@ else
 fi
 
 ###
-chmod +x /home/$SUDO_USER/bin/*
+$(which find) /home/${SUDO_USER} -name ".*sh" -exec chmod +x '{}' \;
 
 
 

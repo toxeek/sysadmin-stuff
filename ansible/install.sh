@@ -1,13 +1,14 @@
 #!/bin/bash
 
-. ../chk_root.sh
+#. ../chk_root.sh
 
 if [[ ! $(which ansible) ]] ; then
-    ${APT} install software-properties-common &>/dev/null
-    $(which apt-add-repository) ppa:ansible/ansible &>/dev/null
-    ${APT} update
-    ${APT} install ansible &>/dev/null
-    echo "[+] Ansible installed."
+    ${APT} install ansible
+    if [ $? == 0 ] ; then 
+        echo "[+] Ansible installed."
+    else
+        echo "[+] ansible not installed"
+    fi
 else
     echo "[+] Ansible already installed."
 fi

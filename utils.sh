@@ -5,7 +5,7 @@ echo "[+] root dir: $ROOT_DIR"
 cfg_file="${ROOT_DIR}/sysadmin-stuff/sysadmin.cfg"
 ansible_err_file="$ROOT_DIR/ansible/error.log"
 typeset -a system_utils
-system_utils=(apt-transport-https software-properties-common vscode wget curl sshfs tree tcpdump strace tshark python3 tfenv docker)
+system_utils=(build-essential apt-transport-https software-properties-common vscode wget curl sshfs tree tcpdump strace tshark python3 tfenv docker)
 ansible_roles="(toxeek.docker)"
 #####################
 APT="$(which apt-get)"
