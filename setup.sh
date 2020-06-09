@@ -2,9 +2,9 @@
 
 . chk_root.sh
 
-REPO_DIR="sysadmin-stuff"
 ROOT_DIR="$(pwd)"
 ## source utils.sh
+REPO_DIR="sysadmin-stuff"
 UTILS_FILE="${ROOT_DIR}/utils.sh"
 
 [ -e "${UTILS_FILE}" ] && . $UTILS_FILE || {
