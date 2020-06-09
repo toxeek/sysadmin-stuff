@@ -2,9 +2,9 @@
 
 . chk_root.sh
 
-ROOT_DIR="$(pwd)"
+export ROOT_DIR="$(pwd)"
 ## source utils.sh
-REPO_DIR="sysadmin-stuff"
+export REPO_DIR="sysadmin-stuff"
 UTILS_FILE="${ROOT_DIR}/utils.sh"
 
 [ -e "${UTILS_FILE}" ] && . $UTILS_FILE || {
@@ -43,6 +43,7 @@ install_sys_utils
 ## install ansible if enabled in cfg file
 is_ansible="$(parsecfg 'ansible')"
 if [ "$is_ansible" -eq "1" ]; then
+    echo "[+] dest dir: $ROOT_DIR/$REPO_DIR"
     touch ${ROOT_DIR}/${REPO_DIR}/ansible/error.log
     $ROOT_DIR/${REPO_DIR}/ansible/install.sh 2>>$ansible_err_file
     ## execute ansible provision-localhost playbook
