@@ -75,6 +75,10 @@ install_sys_utils() {
     echo "[+] installing virtualenvwrapper .."
     echo
     install_vritualenvwrapper
+    echo
+    echo "[~] all gooddies installed."
+
+    return 0
 }
 ################
 
