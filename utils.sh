@@ -1,10 +1,11 @@
-
+export REPO_NAME="sysadmin-stuff"
 export CWD=$(pwd)
 export ROOT_DIR=$(dirname $CWD)
 echo "[+] root dir: $ROOT_DIR"
-cfg_file="${ROOT_DIR}/sysadmin.cfg"
+cfg_file="${ROOT_DIR}/sysadmin-stuff/sysadmin.cfg"
 ansible_err_file="$ROOT_DIR/ansible/error.log"
-system_utils="(sublime-text curl sshfs tree tcpdump strace tshark python3 software-properties-common tfenv docker)"
+typeset -a system_utils
+system_utils="(apt-transport-https software-properties-common vscode wget curl sshfs tree tcpdump strace tshark python3 tfenv docker)"
 ansible_roles="(toxeek.docker)"
 #####################
 APT="$(which apt-get)"
@@ -40,12 +41,12 @@ install_sys_utils() {
     for util in ${system_utils[*]}; do
         if [ "$util" == "tfenv" ] ; then
            mkdir -p /usr/local/bin 2>&1
-           git clone https://github.com/tfutils/tfenv.git ~/.tfenv
-           ln -s ~/.tfenv/bin/* /usr/local/bin
-        else
-            ${APT} install -y ${util}
-        fi 
-        if [ "$util" == "docker" ] ; then 
+           rm -rf ${ROOT_DIR}/.tfenv
+           git clone https://github.com/tfutils/tfenv.git ${ROOT_DIR}/.tfenv
+           ln -sf ~/.tfenv/bin/* /usr/local/bin
+        elif [ "$util" == "vscode" ] ; then 
+            $(which snap) install --classic code
+        elif [ "$util" == "docker-ce" ] ; then 
             ${APT} install apt-transport-https ca-certificates curl software-properties-common
             ${CURL} -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
             $(which add-apt-repository) "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
@@ -54,7 +55,9 @@ install_sys_utils() {
             systemctl enable docker
             systemctl daemo-reload docker
             systemctl start docker
-        fi
+        else
+            ${APT} install -y ${util}
+        fi 
     done 
 }
 ################

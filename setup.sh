@@ -2,7 +2,8 @@
 
 . chk_root.sh
 
-ROOT_DIR=$(pwd)
+REPO_DIR="sysadmin-stuff"
+ROOT_DIR="$(pwd)"
 ## source utils.sh
 UTILS_FILE="${ROOT_DIR}/utils.sh"
 
@@ -35,16 +36,17 @@ install_sys_utils
 #########
 ## add user to fuse group for sshfs
 #########
-addUsertoGroup fuse
+# addUsertoGroup fuse ## not anymore for 20.04
 #########
 
 
 ## install ansible if enabled in cfg file
 is_ansible="$(parsecfg 'ansible')"
 if [ "$is_ansible" -eq "1" ]; then
-    $ROOT_DIR/ansible/install.sh 2>>$ansible_err_file
+    touch ${ROOT_DIR}/${REPO_DIR}/ansible/error.log
+    $ROOT_DIR/${REPO_DIR}/ansible/install.sh 2>>$ansible_err_file
     ## execute ansible provision-localhost playbook
-    $(which ansible-playbook) ${ROOT_DIR}/ansible/playbooks/provision-localhost.yml
+    $(which ansible-playbook) ${ROOT_DIR}/${REPO_DIR}/ansible/playbooks/provision-localhost.yml
 else 
 	## we just install custom binaries
 	:
@@ -52,7 +54,7 @@ else
 fi
 
 ###
-chmod +x $HOME/bin/*
+chmod +x /home/$SUDO_USER/bin/*
 
 
 
