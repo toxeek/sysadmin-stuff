@@ -2,23 +2,29 @@
 
 . chk_root.sh
 
-export ROOT_DIR="$(pwd)"
-## source utils.sh
-export REPO_DIR="sysadmin-stuff"
-UTILS_FILE="${ROOT_DIR}/utils.sh"
+export REPO_NAME="sysadmin-stuff"
+export CWD=$(pwd)
+export REPO_ROOT_DIR=$(dirname $CWD)/${REPO_NAME}
+export HOME_DIR="$HOME"
+export UTILS_FILE="${REPO_ROOT_DIR}/utils.sh"
 
-[ -e "${UTILS_FILE}" ] && . $UTILS_FILE || {
-echo "[+] no utils file found." >&2 && exit 125
-}
+echo "[+] utils.sh path: $UTILS_FILE"
+echo "[+] repo root dir: $REPO_ROOT_DIR"
+echo "[+] home dir: $HOME_DIR"
 
-## we chmod +x all shell scripts
-for m in $(find . -name "*.sh"); do
-    chmod +x $m
-done
+cfg_file="${REPO_ROOT_DIR}/sysadmin-stuff/sysadmin.cfg"
+ansible_err_file="${REPO_ROOT_DIR}/ansible/error.log"
+ansible_roles="(toxeek.docker)"
+#####################
+APT="$(which apt-get)"
+GREP="$(which grep)"
+AWK="$(which awk)"
+CURL="$(which curl)"
+#### pip3 ###########
+apt-add-repository universe
+${APT} update
 
-## set PATH and modify ~/.bashrc 
-CURRENT_PATH=$PATH
-[[ ! $(grep "PATH=.*~/bin" ~/.bashrc) ]] && echo "export PATH=${PATH}:~/bin" >>~/.bashrc
+[ ! -f "${UTILS_FILE}" ] && echo "[+] no utils file found." >&2 && exit 125
 
 ## update apt-get
 echo "[+] updating apt-get .."
@@ -26,6 +32,8 @@ $APT "update" &>/dev/null
 echo "[+] apt-get updated."
 echo
 
+$(which find) ${REPO_DIR} -name ".*sh" -exec chmod +x '{}' \;
+. ${UTILS_FILE}
 ## add user to sudo group
 ##########
 addUsertoGroup sudo
@@ -38,24 +46,7 @@ install_sys_utils
 #########
 # addUsertoGroup fuse ## not anymore for 20.04
 #########
-is_ansible="$(parsecfg 'ansible')"
-if [ "$is_ansible" -eq "1" ]; then
-## install ansible if enabled in cfg file
-    echo "[+] dest dir: $ROOT_DIR/$REPO_DIR"
-    mkdir -p "${ROOT_DIR}/${REPO_DIR}/ansible"
-    touch "${ROOT_DIR}/${REPO_DIR}/ansible/error.log"
-    ansible_err_file="${ROOT_DIR}/${REPO_DIR}/ansible/error.log"
-    ${APT} install -y ansible 2>> $ansible_err_file
-    ## execute ansible provision-localhost playbook
-    ## $(which ansible-playbook) ${ROOT_DIR}/${REPO_DIR}/ansible/playbooks/provision-localhost.yml
-else 
-	## we just install custom binaries
-	:
 
-fi
-
-###
-$(which find) /home/${SUDO_USER} -name ".*sh" -exec chmod +x '{}' \;
 
 
 
