@@ -21,7 +21,7 @@ install_ansible_roles() {
 ################
 install_sys_utils() {
     typeset -a system_utils
-    system_utils=(build-essential unzip apt-transport-https software-properties-common vscode wget curl sshfs tree tcpdump python3 strace tshark python3 tfenv docker)
+    system_utils=(build-essential unzip apt-transport-https software-properties-common vscode wget curl sshfs tree tcpdump python3 python3-pip strace tshark python3 tfenv docker)
     for util in ${system_utils[*]}; do
         if [ "$util" == "tfenv" ] ; then
            mkdir -p /usr/local/bin 2>&1
