@@ -51,7 +51,6 @@ install_sys_utils() {
         elif [ "$util" == "docker" ] ; then 
             echo "[+] installing docker community edition .."
             echo
-            ${APT} install apt-transport-https ca-certificates curl software-properties-common
             ${CURL} -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
             $(which add-apt-repository) "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
             ${APT} update
