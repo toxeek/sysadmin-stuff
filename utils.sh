@@ -14,16 +14,22 @@ addUsertoGroup() {
 }
 ################
 install_vritualenvwrapper() {
+    echo "[+] installing virtualenvwrapper .."
+    echo
     if [[ ! $(which pip3) ]] ; then
         exit "[+] pip3 not installed? Exiting." && exit 125
     fi
     $(which pip3) install virtualenvwrapper
+
+    return 0
 }
 ################
 install_ansible_roles() {
     for role in ${ansible_roles[*]}; do
         $(which ansible-galaxy) install ${role} 
-    done         
+    done    
+
+    return 0     
 }
 ################
 install_aws_cli() {
@@ -45,6 +51,8 @@ install_tfenv() {
     echo
     $(which tfenv) use latest 2>/dev/null
     $(which tfenv) list 
+
+    return 0
 }
 ################
 install_vscode() {
@@ -52,6 +60,8 @@ install_vscode() {
     echo "[+] installing Visual Code Studio .."
     echo
     ${SNAP} install --classic code
+
+    return 0
 }
 ################
 install_portainer() {
@@ -93,39 +103,53 @@ install_portainer() {
     
     return 0
 }
+################
+install_awscli() {
+    echo
+    echo "[+] installing awscli .."
+    echo
+    $(which pip3) uninstall -y awscli &>/dev/null
+    $(which pip3) install awscli 
+
+    return 0
+}
+################
+install_docker() {
+    echo
+    if [[ ! $(which docker ) ]] ; then
+        ${SNAP} install docker
+        echo
+        echo "[+] enabling and starting Docker via systemctl .."
+        echo
+    fi
+
+    return 0
+}
+################
 
 install_sys_utils() {
     typeset -a system_utils
-    system_utils=(build-essential tmux unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree nginx tcpdump python3 python3-pip strace tshark tfenv awscli docker docker-compose portainer)
+    system_utils=(build-essential tmux unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree nginx tcpdump python3 python3-pip strace tshark tfenv awscli virtualenvwrapper docker docker-compose portainer)
     for util in ${system_utils[*]}; do
         if [ "$util" == "tfenv" ] ; then
             install_tfenv
         elif [ "$util" == "vscode" ] ; then 
             install_vscode
         elif [ "$util" == "awscli" ] ; then
-            echo
-            echo "[+] installing awscli .."
-            echo
-            $(which pip3) uninstall -y awscli &>/dev/null
-            $(which pip3) install awscli 
+            install_awscli
         elif [ "$util" == "docker" ] ; then 
-            echo
-            if [[ ! $(which docker ) ]] ; then
-                ${SNAP} install docker
-                echo
-                echo "[+] enabling and starting Docker via systemctl .."
-                echo
-            fi
+            install_docker
         elif [ "$util" == "portainer" ]; then
-            install_portainer              
-        else
-            ${APT} install -y ${util}
+            install_portainer
+        elif [ "$util" == "virtualenvwrapper" ]; then
+            install_virtualenvwrapper
+        else 
+            echo 
+            echo "[+] installing ${util} .."
+            ${APT} -y install ${util}
         fi
     done
     echo
-    echo "[+] installing virtualenvwrapper .."
-    echo
-    install_vritualenvwrapper
     echo
     echo "[~] all gooddies installed."
     echo
@@ -133,6 +157,7 @@ install_sys_utils() {
     return 0
 }
 ################
+
 
 
 
