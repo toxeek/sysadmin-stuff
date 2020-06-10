@@ -7,9 +7,20 @@ iSysadm - UNDER CONSTRUCTION !
 To install first clone the project
 
 ## Usage
-
+#### syadmin.cfg still to be used properly *under construnction*
 When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the stuff that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation make the value to =0 instead.
-It first kicks off some basic stuff with the script setup.sh, then it installs Ansible (if it is set in the cfg file as =1) and uses it to install stuff on localhost. This means that if you add hosts to the ansible host file, this could be installed in a remote Ubuntu machine too. 
+
+As said abve, sysadmin.cfg still to be used porperly
+### so instead actually these are the steps to install the "goodies"
+```bash
+$ mkdir -p ~/code/git && cd ~/code/git
+$ git clone https://github.com/toxeek/sysadmin-stuff.git
+$ sudo -s 
+> (input sudo pass)
+# ./innstall.sh
+```
+
+### check the array in utils.sh, as those will be installed (until I cross reference the cfg file)
 
 ## Contributing
 
