@@ -54,6 +54,45 @@ install_vscode() {
     ${SNAP} install --classic code
 }
 ################
+install_portainer() {
+    echo "[+] do you want Portainer installed, make sure you can (xinit, etc.) [y/n]"
+    read portainer
+    if [[ "$portainer" == *y ]] ; then	
+        is_port_installed="$($(which docker) images | grep portainer)"
+        if [ -n "$is_port_installed" ] ; then 
+            echo "[+] Portainer seems to be running. passing.."  && return 1
+        fi
+        term_type="$(tty)"
+        if echo "$term_type" | grep -q "pts"; then
+            echo "[+] we are may be on a ssh terminal, exiting."  && return 1
+        else
+            ${APT} install xinit
+            export DISPLAY=:0
+        fi
+            
+        if [[ $(which docker) ]] ; then
+            $(which docker) volume create portainer_data 2>/dev/null
+            $(which docker) run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer 2>/dev/null
+            # I do not have any royalties with FF!
+            ${APT} install firefox &>/dev/nul
+            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
+            apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu focal main"
+            ${APT} update
+            echo "[+] to run portainer just do: firefox 127.0.0.1:9000"
+            echo "[+] or form your web browser: http://127.0.0.1:9000"
+            echo
+        fi
+        echo "[+] do you want to run portainer now? [Y/N]"
+        read runport
+        if [[ "$runport" == *y ]] ; then
+            $(which firefox) http://127.0.0.1:9000
+        fi  
+    else
+        :
+    fi
+    
+    return 0
+}
 
 install_sys_utils() {
     typeset -a system_utils
@@ -78,34 +117,7 @@ install_sys_utils() {
                 echo
             fi
         elif [ "$util" == "portainer" ]; then
-            echo "[+] do you want Portainer installed, make sure you can (xinit, etc.) [y/n]"
-            read portainer
-            if [[ "$portainer" == *y ]] ; then
-	        if echo 	
-                ${APT} install xinit
-                export DISPLAY=:0
-            fi
-            if [[ ! $(which startx) ]]; then
-                    echo "[+] NO DISPLAY?" && exit 1
-            else
-                if [[ $(which docker) ]] ; then
-                    $(which docker) volume create portainer_data
-                    $(which docker) run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-                     # I do not have any royalties with FF!
-                     ${APT} install firefox &>/dev/nul
-                     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
-                    apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu focal main"
-                    ${APT} update
-                    echo "[+] to run portainer just do: firefox 127.0.0.1:9000"
-                    echo "[+] or form your web browser: http://127.0.0.1:9000"
-                    echo
-                fi
-                echo "[+] do you want to run portainer now? [Y/N]"
-                read runport
-                if [[ "$runport" == *y ]] ; then
-                    firefox http://127.0.0.1:9000
-            fi      
-        fi              
+            install_portainer              
         else
             ${APT} install -y ${util}
         fi
