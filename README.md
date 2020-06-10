@@ -15,6 +15,8 @@ As said abve, sysadmin.cfg still to be used porperly
 ```bash
 $ mkdir -p ~/code/git && cd ~/code/git
 $ git clone https://github.com/toxeek/sysadmin-stuff.git
+$ tricky@trickylocalhost:~/code/git/sysadmin-stuff$ ls
+LICENSE  README.md  ansible  chk_root.sh  install.sh  mysql_tunner  setup.sh  sysadmin.cfg  tmux  utils.sh
 $ sudo -s 
 > (input sudo pass)
 # ./innstall.sh
