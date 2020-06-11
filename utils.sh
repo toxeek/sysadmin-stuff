@@ -36,6 +36,18 @@ install_aws_cli() {
     $(which pip3) install awscli
 }
 ################
+install_ansible() {
+    echo "[+] install ansible? [y/n]"
+    read ansible
+    if [[ "$ansible" == *y* ]]; then
+        ${APT} install -y ansible
+    else :
+    fi
+
+    return 0
+}
+################
+
 install_tfenv() {
     mkdir -p /usr/local/bin 2>&1
     rm -rf ${HOME_DIR}/.tfenv
@@ -129,7 +141,7 @@ install_docker() {
 
 install_sys_utils() {
     typeset -a system_utils
-    system_utils=(build-essential tmux unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree nginx tcpdump python3 python3-pip strace tshark tfenv awscli virtualenvwrapper docker docker-compose portainer)
+    system_utils=(build-essential tmux unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree nginx tcpdump python3 python3-pip strace tshark tfenv ansible awscli virtualenvwrapper docker docker-compose portainer)
     for util in ${system_utils[*]}; do
         if [ "$util" == "tfenv" ] ; then
             install_tfenv
@@ -139,6 +151,8 @@ install_sys_utils() {
             install_awscli
         elif [ "$util" == "docker" ] ; then 
             install_docker
+        elif [ "$util" == "ansible" ]; then
+            install_ansible
         elif [ "$util" == "portainer" ]; then
             install_portainer
         elif [ "$util" == "virtualenvwrapper" ]; then
