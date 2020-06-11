@@ -31,7 +31,7 @@ When you first clone it, cd into the sysadmin-stuff folder. There you will see a
 $ mkdir -p ~/code/git && cd ~/code/git
 $ git clone https://github.com/toxeek/sysadmin-stuff.git
 $ tricky@trickylocalhost:~/code/git/sysadmin-stuff$ ls
-LICENSE  README.md  ansible  chk_root.sh  install.sh  mysql_tunner  setup.sh  sysadmin.cfg  tmux  utils.sh
+LICENSE  README.md  chk_root.sh  install.sh  setup.sh  sysadmin.cfg  utils.sh
 $ sudo -s 
 > (input sudo pass)
 # ./install.sh
