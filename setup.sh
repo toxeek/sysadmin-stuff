@@ -7,14 +7,18 @@ export CWD=$(pwd)
 export REPO_ROOT_DIR=$(dirname $CWD)/${REPO_NAME}
 export HOME_DIR="$HOME"
 export UTILS_FILE="${REPO_ROOT_DIR}/utils.sh"
+# base utils in the array
+export utils_array=(build-essential apt-transport-https software-properties-common unzip wget curl gnupg-agent ca-certificates tree)
 
 echo "[+] utils.sh path: $UTILS_FILE"
 echo "[+] repo root dir: $REPO_ROOT_DIR"
 echo "[+] home dir: $HOME_DIR"
 
-cfg_file="${REPO_ROOT_DIR}/sysadmin-stuff/sysadmin.cfg"
-ansible_err_file="${REPO_ROOT_DIR}/ansible/error.log"
-ansible_roles="(toxeek.docker)"
+export cfg_file="${REPO_ROOT_DIR}/sysadmin.cfg"
+echo "[+] cfg file: $cfg_file"
+echo
+export ansible_err_file="${REPO_ROOT_DIR}/ansible/error.log"
+export ansible_roles="(toxeek.docker)"
 #####################
 APT="$(which apt-get)"
 SNAP="$(which snap)"

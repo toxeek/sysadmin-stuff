@@ -1,8 +1,12 @@
 ################
-parsecfg() {
-    local task="$1"
-    local val="$(grep $task $cfg_file | $AWK -F"=" '{print $2}')"
-    [[ "$val" -eq 1 ]] && echo 1 || echo 0      
+install_utils() {
+    while read UTIL; do 
+        util="$(echo $UTIL | $AWK -F"=" '{print $1}')"
+        val="$(echo $UTIL | $AWK -F"=" '{print $2}')"
+        [[ "$val" -eq "1" ]] && sleep 1 && echo "[~] adding $util to array .." && utils_array+=($util)
+    done < $cfg_file
+
+    return 0
 }
 ################
 addUsertoGroup() {
@@ -14,8 +18,8 @@ addUsertoGroup() {
 }
 ################
 install_vritualenvwrapper() {
-    echo "[+] installing virtualenvwrapper .."
     echo
+    echo "[+] installing virtualenvwrapper .."
     if [[ ! $(which pip3) ]] ; then
         exit "[+] pip3 not installed? Exiting." && exit 125
     fi
@@ -33,10 +37,12 @@ install_ansible_roles() {
 }
 ################
 install_aws_cli() {
+    echo "[+] installing awscli .."
     $(which pip3) install awscli
 }
 ################
 install_ansible() {
+    echo
     echo "[+] install ansible? [y/n]"
     read ansible
     if [[ "$ansible" == *y* ]]; then
@@ -47,8 +53,9 @@ install_ansible() {
     return 0
 }
 ################
-
 install_tfenv() {
+    echo 
+    echo "[+] installing tfenv .."
     mkdir -p /usr/local/bin 2>&1
     rm -rf ${HOME_DIR}/.tfenv
     git clone https://github.com/tfutils/tfenv.git ${HOME_DIR}/.tfenv &>/dev/null || exit 125
@@ -77,6 +84,7 @@ install_vscode() {
 }
 ################
 install_portainer() {
+    echo
     echo "[+] do you want Portainer installed, make sure you can (xinit, etc.) [y/n]"
     read portainer
     if [[ "$portainer" == *y ]] ; then	
@@ -126,8 +134,32 @@ install_awscli() {
     return 0
 }
 ################
+install_python3() {
+    echo
+    echo "[+] installing python3 .."
+    ${APT} install -y python3
+
+    return 0
+}
+################
+install_python2_7() {
+    echo
+    echo "[+] installing python2.7 .."
+    ${APT} install python2.7
+
+    return 0
+}
+#################
+install_tmux() {
+    echo 
+    echo "[+] installing tmux .."
+    ${APT} instal -y install install tmux
+
+    return 0
+}
 install_docker() {
     echo
+    echo "[+] installing docker .."
     if [[ ! $(which docker ) ]] ; then
         ${SNAP} install docker
         echo
@@ -138,24 +170,39 @@ install_docker() {
     return 0
 }
 ################
+install_docker-compose() {
+    echo "[+] installing docker-compose .."
+    ${APT} install -y docker-compose
 
+    return 0
+}
+################
+install_virtualenvwrapper() {
+    echo "[+] installing virtualenvwrapper ..."
+    $(which pip3) install virtualenvwrapper
+
+    return 0
+}
+################
+
+install_utils
 install_sys_utils() {
-    typeset -a system_utils
-    system_utils=(build-essential tmux unzip apt-transport-https software-properties-common vscode wget curl sshfs gnupg-agent ca-certificates tree nginx tcpdump python3 python3-pip strace tshark tfenv ansible awscli virtualenvwrapper docker docker-compose portainer)
-    for util in ${system_utils[*]}; do
-        if [ "$util" == "tfenv" ] ; then
+    for util in ${utils_array[*]}; do
+        if [[ "$util" == *tfenv* ]] ; then
             install_tfenv
-        elif [ "$util" == "vscode" ] ; then 
+        elif [[ "$util" == *vscode* ]] ; then 
             install_vscode
-        elif [ "$util" == "awscli" ] ; then
+        elif [[ "$util" == *awscli* ]] ; then
             install_awscli
-        elif [ "$util" == "docker" ] ; then 
+        elif [[ "$util" == *docker ]] ; then 
             install_docker
-        elif [ "$util" == "ansible" ]; then
+        elif [[ "$util" == *docker-compose* ]]; then 
+            install_docker-compose 
+        elif [[ "$util" == *ansible ]]; then
             install_ansible
-        elif [ "$util" == "portainer" ]; then
+        elif [[ "$util" == *portainer* ]]; then
             install_portainer
-        elif [ "$util" == "virtualenvwrapper" ]; then
+        elif [[ "$util" == *virtualenvwrapper* ]]; then
             install_virtualenvwrapper
         else 
             echo 
