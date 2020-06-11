@@ -18,7 +18,6 @@ ansible_roles="(toxeek.docker)"
 #####################
 APT="$(which apt-get)"
 SNAP="$(which snap)"
-GREP="$(which grep)"
 AWK="$(which awk)"
 CURL="$(which curl)"
 #### pip3 ###########

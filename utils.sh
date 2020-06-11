@@ -1,7 +1,7 @@
 ################
 parsecfg() {
     local task="$1"
-    local val="$($GREP $task $cfg_file | $AWK -F"=" '{print $2}')"
+    local val="$(grep $task $cfg_file | $AWK -F"=" '{print $2}')"
     [[ "$val" -eq 1 ]] && echo 1 || echo 0      
 }
 ################
