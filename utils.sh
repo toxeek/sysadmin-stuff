@@ -3,8 +3,20 @@ install_utils() {
     while read UTIL; do 
         util="$(echo $UTIL | $AWK -F"=" '{print $1}')"
         val="$(echo $UTIL | $AWK -F"=" '{print $2}')"
-        [[ "$val" -eq "1" ]] && sleep 1 && echo "[~] adding $util to array .." && utils_array+=($util)
+        if [[ "$util" == "terraform-version" ]] ; then
+            export tf_version=$(echo $val | sed -e 's/"//g')
+            result=$(awk -vn1="$val" -vn2="$tf_version" 'BEGIN{print (n1==n2)?1:0 }')
+            [ "$result" == 1 ] && export ft_ver="true"
+            echo "[+] Terraform version chosen: $tf_version"
+            echo "[+} debugging tf_version: $val"
+            val="$result"
+        fi
+        if [[ "$val" -eq "1" ]] || [ -n "$tf_ver" ] ; then 
+            sleep 1 && echo "[~] adding $util to array .." && utils_array+=($util)
+        fi
     done < $cfg_file
+
+    echo "[+] debugging array: $(echo ${utils_array[*]})"
 
     return 0
 }
@@ -60,8 +72,21 @@ install_tfenv() {
     rm -rf ${HOME_DIR}/.tfenv
     git clone https://github.com/tfutils/tfenv.git ${HOME_DIR}/.tfenv &>/dev/null || exit 125
     ln -s ${HOME_DIR}/.tfenv/bin/* /usr/local/bin 2>/dev/null
-    $(which tfenv) uninstall latest 2>/dev/null
-    $(which tfenv) install latest 2>/dev/null
+    # $(which tfenv) uninstall latest 2>/dev/null
+    if [ ! -z "$tf_version" ]; then
+        if [[ $(which tfenv) ]] ; then
+            echo
+            echo "[+] tfenv is already installed, listing installed version/s .." 2>/dev/null
+            $(which tfenv) list 
+        fi 
+        tf_env_tfv=$(echo $tf_version | sed -e s/\'//g)
+        echo
+        echo "[+] using tfenv to install terraform v${tf_env_tfv} .."
+        echo
+        $(which tfenv) install $tf_env_tfv 2>/dev/null
+    else
+        $(which ffenv) install latest 2>/dev/null
+    fi
     if [[ ! $(which tfenv) ]] ; then
         echo "[+] tfenv installation problems. exiting" && exit 125
     fi
@@ -157,6 +182,7 @@ install_tmux() {
 
     return 0
 }
+#################
 install_docker() {
     echo
     echo "[+] installing docker .."
@@ -165,6 +191,9 @@ install_docker() {
         echo
         echo "[+] enabling and starting Docker via systemctl .."
         echo
+    else 
+        echo
+        echo "[+] docker already installed."
     fi
 
     return 0
