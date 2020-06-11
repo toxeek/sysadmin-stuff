@@ -12,7 +12,9 @@ install_utils() {
             val="$result"
         fi
         if [[ "$val" -eq "1" ]] || [ -n "$tf_ver" ] ; then 
-            sleep 1 && echo "[~] adding $util to array .." && utils_array+=($util)
+            if [ "$util" != "terraform-version" ] ; then
+                sleep 1 && echo "[~] adding $util to array .." && utils_array+=($util)
+            fi
         fi
     done < $cfg_file
 
@@ -60,6 +62,20 @@ install_ansible() {
     if [[ "$ansible" == *y* ]]; then
         ${APT} install -y ansible
     else :
+    fi
+
+    return 0
+}
+################
+install_virtualbox() {
+    echo 
+    echo "[+] detecting if we are in a VirtualBox Vm .."
+    # remmember dmidecode is installed in Ubuntu 20.04 LTS 
+    if dmidecode | grep -q -i virtualbox; then 
+      echo "[+] VirtualBox running, as you are in one or have it.." 
+      return 1
+    else
+    ${APT} install -y virtualbox
     fi
 
     return 0
@@ -231,6 +247,8 @@ install_sys_utils() {
             install_ansible
         elif [[ "$util" == *portainer* ]]; then
             install_portainer
+        elif [[ "$util" == *virtualbo* ]]; then
+             install_virtualbox
         elif [[ "$util" == *virtualenvwrapper* ]]; then
             install_virtualenvwrapper
         else 
