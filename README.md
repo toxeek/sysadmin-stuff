@@ -1,4 +1,4 @@
-![alt text](https://img.pngio.com/motoko-kusanagi-ghost-in-the-shell-film-720p-fan-art-ghost-in-the-ghost-in-the-shell-png-728_410.jpg)
+![alt text](https://cdn.wccftech.com/wp-content/uploads/2015/09/First_Assault_group_shot_1442394288.png)
 
 
 # Project Name
