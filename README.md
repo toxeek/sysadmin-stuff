@@ -22,8 +22,7 @@ $ sudo -s
 ```
 
 ## Usage
-#### syadmin.cfg still to be used properly *under construnction*
-When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the stuff that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation make the value to =0 instead.
+When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the stuff that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation make the value to =0 instead. In the case of Terraform, single quote the version you want installed, make sure you toggle tfevn=1 tho .. as we use tfenv to install and manage terraform version/s we want installed.
 
 ## SYSADMIN.CFG NOW FULLY WORKING AND USED PROPERLY 
 ### so instead actually these are the steps to install the "goodies"
