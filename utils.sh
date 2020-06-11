@@ -16,7 +16,7 @@ install_utils() {
         fi
     done < $cfg_file
 
-    echo "[+] debugging array: $(echo ${utils_array[*]})"
+    # echo "[+] debugging array: $(echo ${utils_array[*]})"
 
     return 0
 }
