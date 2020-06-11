@@ -2,7 +2,7 @@
 
 iSysadm - UNDER CONSTRUCTION !
 
-### Now Devops oriented tools bootrstrapping
+### Now Devops oriented tools bootstrapping
 
 ## Installation
 
