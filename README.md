@@ -6,14 +6,25 @@ iSysadm - UNDER CONSTRUCTION !
 
 ## Installation
 
-To install first clone the project
+To install first clone the project as NON ROOT 
+The cfg file where you toggle tools on/off is sysadmin.cfg file. So make sure you toggle the 
+tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
+so: 
+```bash
+$ git clone https://github.com/toxeek/sysadmin-stuff.git
+$ cd sysadmin-stuff
+$ sudo -s
+(change to root)
+# ./install.sh
+```
 
 ## Usage
 #### syadmin.cfg still to be used properly *under construnction*
 When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the stuff that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation make the value to =0 instead.
 
-As said abve, sysadmin.cfg still to be used porperly
+## SYSADMIN.CFG NOW FULLY WORKING AND USED PROPERLY 
 ### so instead actually these are the steps to install the "goodies"
+#### example of cloning and execution (see above as well, as does not matter where you clone)
 ```bash
 $ mkdir -p ~/code/git && cd ~/code/git
 $ git clone https://github.com/toxeek/sysadmin-stuff.git
@@ -23,8 +34,6 @@ $ sudo -s
 > (input sudo pass)
 # ./innstall.sh
 ```
-
-### check the array in utils.sh, as those will be installed (until I cross reference the cfg file)
 
 ## Contributing
 
