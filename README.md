@@ -34,7 +34,7 @@ $ tricky@trickylocalhost:~/code/git/sysadmin-stuff$ ls
 LICENSE  README.md  ansible  chk_root.sh  install.sh  mysql_tunner  setup.sh  sysadmin.cfg  tmux  utils.sh
 $ sudo -s 
 > (input sudo pass)
-# ./innstall.sh
+# ./install.sh
 ```
 
 ## Contributing
