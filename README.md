@@ -33,7 +33,7 @@ $ git clone https://github.com/toxeek/sysadmin-stuff.git
 $ tricky@trickylocalhost:~/code/git/sysadmin-stuff$ ls
 LICENSE  README.md  chk_root.sh  install.sh  setup.sh  sysadmin.cfg  utils.sh
 $ sudo -s 
-> (input sudo pass)
+> (input sudo pass, make sure install.sh has chmod +x, plus other shell scripts althouth I try to do it myself)
 # ./install.sh
 ```
 
