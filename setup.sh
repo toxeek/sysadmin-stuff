@@ -17,8 +17,8 @@ echo "[+] home dir: $HOME_DIR"
 export cfg_file="${REPO_ROOT_DIR}/sysadmin.cfg"
 echo "[+] cfg file: $cfg_file"
 echo
-export ansible_err_file="${REPO_ROOT_DIR}/ansible/error.log"
-export ansible_roles="(toxeek.docker)"
+# export ansible_err_file="${REPO_ROOT_DIR}/ansible/error.log"
+# export ansible_roles="(toxeek.docker)"
 #####################
 APT="$(which apt-get)"
 SNAP="$(which snap)"
