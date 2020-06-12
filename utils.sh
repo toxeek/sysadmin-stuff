@@ -1,5 +1,6 @@
 ################
 install_utils() {
+    echo '############### installnig sys utils ###############'
     while read UTIL; do 
         if echo $UTIL | grep -q "#"; then
             continue
@@ -27,6 +28,7 @@ install_utils() {
 install_vritualenvwrapper() {
     echo
     echo "[+] installing virtualenvwrapper .."
+    echo
     if [[ ! $(which pip3) ]] ; then
         exit "[+] pip3 not installed? Exiting." && exit 125
     fi
@@ -45,6 +47,7 @@ install_ansible_roles() {
 ################
 install_aws_cli() {
     echo "[+] installing awscli .."
+    echo
     $(which pip3) install awscli
 }
 ################
@@ -52,6 +55,7 @@ install_ansible() {
     echo
     echo "[+] install ansible? [y/n]"
     read ansible
+    echo
     if [[ "$ansible" == *y* ]]; then
         ${APT} install -y ansible
     else :
@@ -65,6 +69,7 @@ install_htop() {
         echo
         echo "[+] htop already installed, passing." && return 1
     else
+        echo
         ${APT} install -y install htop
     fi
 
@@ -79,6 +84,7 @@ install_virtualbox() {
       echo "[+] VirtualBox running, as you are in one or have it.." 
       return 1
     else
+    echo
     ${APT} install -y virtualbox
     fi
 
@@ -182,6 +188,7 @@ install_awscli() {
 install_python3() {
     echo
     echo "[+] installing python3 .."
+    echo
     ${APT} install -y python3
 
     return 0
@@ -190,6 +197,7 @@ install_python3() {
 install_python2_7() {
     echo
     echo "[+] installing python2.7 .."
+    echo
     ${APT} install python2.7
 
     return 0
@@ -198,6 +206,7 @@ install_python2_7() {
 install_tmux() {
     echo 
     echo "[+] installing tmux .."
+    echo
     ${APT} instal -y install install tmux
 
     return 0
@@ -206,6 +215,7 @@ install_tmux() {
 install_docker() {
     echo
     echo "[+] installing docker .."
+    echo
     if [[ ! $(which docker ) ]] ; then
         ${SNAP} install docker
         echo
@@ -228,6 +238,7 @@ install_docker-compose() {
 ################
 install_virtualenvwrapper() {
     echo "[+] installing virtualenvwrapper ..."
+    echo
     $(which pip3) install virtualenvwrapper
 
     return 0
@@ -264,12 +275,13 @@ install_sys_utils() {
         fi
     done
     echo
-    echo "[~] all gooddies installed."
+    echo '############### sys utils installed ###############'
     echo
 
     return 0
 }
 ################
+
 
 
 

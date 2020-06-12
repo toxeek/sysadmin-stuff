@@ -10,7 +10,7 @@ export REPO_ROOT_DIR=$(dirname $CWD)/${REPO_NAME}
 export HOME_DIR="$HOME"
 export UTILS_FILE="${REPO_ROOT_DIR}/utils.sh"
 export PENTEST_UTILS_FILE="${REPO_ROOT_DIR}/pentest/utils.sh"
-export NMAP_NSE_UTILS_FILE="${REPO_ROOT_DIR}/pentest/utils.sh"
+export NMAP_NSE_UTILS_FILE="${REPO_ROOT_DIR}/pentest/nmap-nse/utils.sh"
 export HELPERS_FILE=${REPO_ROOT_DIR}/helpers.sh
 # base utils in the array
 export utils_array=(build-essential apt-transport-https software-properties-common unzip wget curl gnupg-agent ca-certificates tree)
@@ -35,6 +35,7 @@ APT="$(which apt-get)"
 SNAP="$(which snap)"
 AWK="$(which awk)"
 CURL="$(which curl)"
+WGET="$(which wget)"
 #### pip3 ###########
 apt-add-repository universe
 ${APT} update
@@ -63,6 +64,8 @@ addUsertoGroup sudo
 install_sys_utils
 #########
 install_pentest_utils
+#########
+install_nmap_nse_utils
 #########
 ## add user to fuse group for sshfs
 #########
