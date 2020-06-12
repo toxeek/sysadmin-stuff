@@ -1,6 +1,9 @@
 ################
 install_utils() {
     while read UTIL; do 
+        if echo $UTIL | grep -q "#"; then
+            continue
+        fi 
         util="$(echo $UTIL | $AWK -F"=" '{print $1}')"
         val="$(echo $UTIL | $AWK -F"=" '{print $2}')"
         if [[ "$util" == "terraform-version" ]] ; then
@@ -19,16 +22,6 @@ install_utils() {
     done < $cfg_file
 
     # echo "[+] debugging array: $(echo ${utils_array[*]})"
-
-    return 0
-}
-################
-addUsertoGroup() {
-    local WHO=$(who am i | awk '{print $1}')
-    local UGROUPS=$(groups $WHO | grep $1)
-    [ ! -n "$UGROUPS" ] && $(which usermod) -aG "$1" $WHO
-
-    return $?
 }
 ################
 install_vritualenvwrapper() {
@@ -270,7 +263,6 @@ install_sys_utils() {
             ${APT} -y install ${util}
         fi
     done
-    echo
     echo
     echo "[~] all gooddies installed."
     echo
