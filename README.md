@@ -25,6 +25,27 @@ $ sudo -s
 When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the stuff that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation make the value to =0 instead. In the case of Terraform, single quote the version you want installed, make sure you toggle tfevn=1 tho .. as we use tfenv to install and manage terraform version/s we want installed.
 
 ## SYSADMIN.CFG NOW FULLY WORKING AND USED PROPERLY 
+
+### ADDED the pentest folder, so as with other utils, there is an utils.sh and pentest.cfg following the same structure as other utils, always look and setup.sh
+```bash
+# ls
+nmap-nse  pentest.cfg  utils.sh
+```
+
+#### Also for nmap nse scripts, there is a subfolder into nmap-nse folder, for nse based nmap scripts installation, also following the structure of our utils within other parent directories:
+```bash
+root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff# ls
+LICENSE  README.md  chk_root.sh  helpers.sh  install.sh  pentest  setup.sh  sysadmin.cfg  utils.sh
+root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff# cd pentest/
+root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest# ls
+nmap-nse  pentest.cfg  utils.sh
+root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest# cd nmap-nse/
+root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest/nmap-nse# ls
+nse.cfg  utils.sh
+```
+
+#### I do a nmap scan of an IP to show that you had htt-headers script and dependencies installed correctly, and as a PoC [do not expect me to show you how to exploit stuff]
+
 ### so instead actually these are the steps to install the "goodies"
 #### example of cloning and execution (see above as well, as does not matter where you clone)
 ```bash
