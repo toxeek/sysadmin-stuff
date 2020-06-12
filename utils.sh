@@ -1,6 +1,6 @@
 ################
 install_utils() {
-    echo '############### installnig sys utils ###############'
+    echo '############### installing sys utils ###############'
     while read UTIL; do 
         if echo $UTIL | grep -q "#"; then
             continue
@@ -213,23 +213,19 @@ install_tmux() {
 }
 #################
 install_docker() {
-    echo
     echo "[+] installing docker .."
-    echo
     if [[ ! $(which docker ) ]] ; then
         ${SNAP} install docker
-        echo
-        echo "[+] enabling and starting Docker via systemctl .."
-        echo
     else 
-        echo
         echo "[+] docker already installed."
+        echo
     fi
 
     return 0
 }
 ################
 install_docker-compose() {
+    echo
     echo "[+] installing docker-compose .."
     ${APT} install -y docker-compose
 
