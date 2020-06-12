@@ -10,10 +10,13 @@ export REPO_ROOT_DIR=$(dirname $CWD)/${REPO_NAME}
 export HOME_DIR="$HOME"
 export UTILS_FILE="${REPO_ROOT_DIR}/utils.sh"
 export PENTEST_UTILS_FILE="${REPO_ROOT_DIR}/pentest/utils.sh"
+export NMAP_NSE_UTILS_FILE="${REPO_ROOT_DIR}/pentest/utils.sh"
 export HELPERS_FILE=${REPO_ROOT_DIR}/helpers.sh
 # base utils in the array
 export utils_array=(build-essential apt-transport-https software-properties-common unzip wget curl gnupg-agent ca-certificates tree)
 export pentest_utils_array=()
+export nmap_nse_utils_array=()
+
 echo "[+] utils.sh path: $UTILS_FILE"
 echo "[+] pentest utils.sh path: $PENTEST_UTILS_FILE"
 echo "[+] repo root dir: $REPO_ROOT_DIR"
@@ -21,6 +24,7 @@ echo "[+] home dir: $HOME_DIR"
 
 export cfg_file="${REPO_ROOT_DIR}/sysadmin.cfg"
 export pentest_cfg_file="${REPO_ROOT_DIR}/pentest/pentest.cfg"
+export nmap_nse_cfg_file="${REPO_ROOT_DIR}/pentest/nmap-nse/nse.cfg"
 echo "[+] cfg file: $cfg_file"
 echo
 # export ansible_err_file="${REPO_ROOT_DIR}/ansible/error.log"
@@ -47,8 +51,9 @@ echo
 ## sourcing utils file
 . ${UTILS_FILE}
 . ${HELPERS_FILE}
-# trap ". ${PENTEST_UTILS_FILE}" SIGTERM
 . ${PENTEST_UTILS_FILE}
+. ${NMAP_NSE_UTILS_FILE}
+
 ## add user to sudo group
 ##########
 addUsertoGroup sudo
