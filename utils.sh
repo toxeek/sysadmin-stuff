@@ -67,6 +67,17 @@ install_ansible() {
     return 0
 }
 ################
+install_htop() {
+    if [[ $(which htop) ]]; then
+        echo
+        echo "[+] htop already installed, passing." && return 1
+    else
+        ${APT} install -y install htop
+    fi
+
+    return 0
+}
+################
 install_virtualbox() {
     echo 
     echo "[+] detecting if we are in a VirtualBox Vm .."
@@ -247,6 +258,8 @@ install_sys_utils() {
             install_ansible
         elif [[ "$util" == *portainer* ]]; then
             install_portainer
+        elif [[ "$util" == *htop* ]]; then
+            install_htop
         elif [[ "$util" == *virtualbo* ]]; then
              install_virtualbox
         elif [[ "$util" == *virtualenvwrapper* ]]; then
