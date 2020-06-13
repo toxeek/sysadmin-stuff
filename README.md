@@ -72,6 +72,16 @@ nse.cfg  utils.sh
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
 1. ***http-headers***
 2. ***http-enum***
+
+**For the pentest tools installation, I provide a parameter named** *enable_pentest_utils* **that you can use to toggle off/on the installation of the pentest tools**
+```bash
+sysadmin-stuff/pentest$ cat pentest.cfg
+## pentest utils
+enable_pentest_utils=1
+sqlmap=1
+nmap=1
+sipvicious=1
+```
 ```bash
 tricky@trickylocalhost:~/code/git/sysadmin-stuff$ pwd
 /home/tricky/code/git/sysadmin-stuff
