@@ -39,9 +39,11 @@ There are other .cfg files, to install non sys/devops related tools, but it's al
 ***
 #### Added the pentest folder, so as with other utils, there is an utils.sh and pentest.cfg following the same structure as other utils, always look and setup.sh
 
-#### pentest directory:
+#### [~] pentest directory:
 ```bash
-# ls
+$ pwd
+/home/tricky/code/git/sysadmin-stuff/pentest
+$ ls
 nmap-nse  pentest.cfg  utils.sh
 ```
 
