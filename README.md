@@ -62,13 +62,13 @@ root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest# cd nmap-nse/
 root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest/nmap-nse# ls
 nse.cfg  utils.sh
 ```
-#### option to enable installing the following pentest tools: ***(see pentest.cfg)***
+#### [~] you can enable installing the following pentest tools: ***(see pentest.cfg)***
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
 1. ***nmap***
 2. ***sqlpam***
 4. ***sipvicious***
 
-#### option to enable nse nmap scripts: ***(see nse.cfg)***
+#### [~] you can enable these nse nmap scripts: ***(see nse.cfg)***
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
 1. ***http-headers***
 2. ***http-enum***
