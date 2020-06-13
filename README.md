@@ -32,7 +32,9 @@ $ sudo -s
 ## Usage
 When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the stuff that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation make the value to =0 instead. In the case of Terraform, single quote the version you want installed, make sure you toggle tfevn=1 tho .. as we use tfenv to install and manage terraform version/s we want installed.
 
+```bash
 ### sysadmin.cfg and other *.cfg files is where you toggle utils on/off
+```
 
 ### ADDED the pentest folder, so as with other utils, there is an utils.sh and pentest.cfg following the same structure as other utils, always look and setup.sh
 
