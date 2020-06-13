@@ -225,7 +225,6 @@ install_docker() {
 }
 ################
 install_docker-compose() {
-    echo
     echo "[+] installing docker-compose .."
     ${APT} install -y docker-compose
 
