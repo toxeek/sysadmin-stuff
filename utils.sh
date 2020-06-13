@@ -267,6 +267,13 @@ install_etckeeper() {
     return 0
 }
 #################
+install_whois() {
+    echo "[+] installing whois .."
+    ${APT} install -y whois
+
+    return 0
+}
+##################
 
 install_utils
 install_sys_utils() {
@@ -293,6 +300,8 @@ install_sys_utils() {
              install_microk8s
         elif [[ "$util" == *etckeeper* ]]; then
              install_etckeeper
+        elif [[ "$util" == *whois* ]]; then
+             install_whois
         elif [[ "$util" == *virtualenvwrapper* ]]; then
             install_virtualenvwrapper
         else 
