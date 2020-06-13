@@ -251,6 +251,14 @@ install_virtualenvwrapper() {
     return 0
 }
 ################
+################
+install_etckeeper() {
+    echo "[+] installing etckeeper .."
+    ${APT} install -y etckeeper
+
+    return 0
+}
+#################
 
 install_utils
 install_sys_utils() {
@@ -275,6 +283,8 @@ install_sys_utils() {
              install_virtualbox
         elif [[ "$util" == *microk8s* ]]; then
              install_microk8s
+        elif [[ "$util" == *etckeeper* ]]; then
+             install_etckeeper
         elif [[ "$util" == *virtualenvwrapper* ]]; then
             install_virtualenvwrapper
         else 
