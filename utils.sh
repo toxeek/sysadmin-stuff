@@ -230,6 +230,18 @@ install_docker-compose() {
 
     return 0
 }
+#################
+install_microk8s() {
+    echo "[+] microk8s .."
+    if [[ ! $(which microk8s ) ]] ; then
+        ${SNAP} install microk8s --classic
+    else
+        echo "[+] microk8s already installed."
+        echo
+    fi
+
+    return 0
+}
 ################
 install_virtualenvwrapper() {
     echo "[+] installing virtualenvwrapper ..."
@@ -259,8 +271,10 @@ install_sys_utils() {
             install_portainer
         elif [[ "$util" == *htop* ]]; then
             install_htop
-        elif [[ "$util" == *virtualbo* ]]; then
+        elif [[ "$util" == *virtualbox* ]]; then
              install_virtualbox
+        elif [[ "$util" == *microk8s* ]]; then
+             install_microk8s
         elif [[ "$util" == *virtualenvwrapper* ]]; then
             install_virtualenvwrapper
         else 
