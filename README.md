@@ -65,8 +65,8 @@ nse.cfg  utils.sh
 
 #### installed nse nmap scripts:
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
-1. *** http-headers
-2. *** http-enum
+1. *** http-headers ***
+2. *** http-enum ***
 
 ```bash
 tricky@trickylocalhost:~/code/git/sysadmin-stuff$ pwd
