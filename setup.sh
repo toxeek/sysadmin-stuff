@@ -4,6 +4,8 @@
 
 typeset -a utils_array
 typeset -a pentest_utils_array
+typeset -a nmap_nse_utils_array
+
 export REPO_NAME="sysadmin-stuff"
 export CWD=$(pwd)
 export REPO_ROOT_DIR=$(dirname $CWD)/${REPO_NAME}
