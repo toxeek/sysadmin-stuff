@@ -11,7 +11,7 @@ iSysadm - UNDER CONSTRUCTION !
 ## END OF DISCLAIMER
 ```
 
-## PORTED TO RUN ON UBUNTU 20.04 TLS: *or make sure you have snap installed at least*
+### PORTED TO RUN ON UBUNTU 20.04 TLS: *or make sure you have snap installed at least*
 
 #### Now Devops oriented tools bootstrapping
 
