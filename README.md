@@ -39,14 +39,6 @@ There are other .cfg files, to install non sys/devops related tools, but it's al
 ***
 #### Added the pentest folder, so as with other utils, there is an utils.sh and pentest.cfg following the same structure as other utils, always look and setup.sh
 
-#### added sipvicious for VOIP pentest research .. Remember sipvicious installs many tools:
-###### sipvicious_svcrack   sipvicious_svcrash   sipvicious_svmap     sipvicious_svreport  sipvicious_svwar
-##### so to get help with say, sipvicious_svcrack, do:
-```bash
-# sipvicious_svcrack --help
-```
-#### sipvicious github: https://github.com/EnableSecurity/sipvicious/blob/master/README.md
-***
 #### pentest directory:
 ```bash
 # ls
@@ -85,6 +77,16 @@ sqlmap=1
 nmap=1
 sipvicious=1
 ```
+#### added sipvicious for VOIP pentest research .. Remember sipvicious installs many tools:
+```bash 
+$ sipvicious_svcrack   sipvicious_svcrash   sipvicious_svmap     sipvicious_svreport  sipvicious_svwar
+```
+##### so to get help with say, sipvicious_svcrack, do:
+```bash
+# sipvicious_svcrack --help
+```
+#### sipvicious github: https://github.com/EnableSecurity/sipvicious/blob/master/README.md
+___
 ```bash
 tricky@trickylocalhost:~/code/git/sysadmin-stuff$ pwd
 /home/tricky/code/git/sysadmin-stuff
