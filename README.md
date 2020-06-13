@@ -6,7 +6,7 @@
 iSysadm - UNDER CONSTRUCTION !
 
 ### DISCLAIMER:
-#### After adding the pentest section, with nse nmap script, I DO NOT HOLD MYSELF RESPONSIBLE of what you do if you install the tools, or how you use them. Even more if you use them for malicious intentions, you'll be reported if I detect you doing so, and you will be banned from many places.
+#### After adding the pentest section, including nse nmap scripts, I DO NOT HOLD MYSELF RESPONSIBLE of what you do if you install the tools, or how you use them. Even more if you use them for malicious intentions, you'll be reported if I detect you doing so, and you will be banned from many places.
 ```bash
 ## END OF DISCLAIMER
 ```
