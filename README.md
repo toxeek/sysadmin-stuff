@@ -43,8 +43,11 @@ There are other .cfg files, to install non sys/devops related tools, but it's al
 ```bash
 $ pwd
 /home/tricky/code/git/sysadmin-stuff/pentest
-$ ls
-nmap-nse  pentest.cfg  utils.sh
+$ ls -ltr
+total 12
+drwxrwxr-x 2 tricky tricky 4096 Jun 12 23:37 nmap-nse
+-rw-rw-r-- 1 tricky tricky   77 Jun 13 18:27 pentest.cfg
+-rw-rw-r-- 1 tricky tricky 1945 Jun 13 18:56 utils.sh
 ```
 
 #### Also for nmap nse scripts, there is a subfolder into nmap-nse folder, for nse based nmap scripts installation, also following the structure of our utils within other parent directories:
