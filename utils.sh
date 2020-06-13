@@ -17,7 +17,7 @@ install_utils() {
         fi
         if [[ "$val" -eq "1" ]] || [ -n "$tf_ver" ] ; then 
             if [ "$util" != "terraform-version" ] ; then
-                sleep 1 && echo "[~] adding $util to array .." && utils_array+=($util)
+                sleep 1 && echo "[~] adding $util to sys utils array .." && utils_array+=($util)
             fi
         fi
     done < $cfg_file

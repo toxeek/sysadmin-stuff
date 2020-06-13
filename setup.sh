@@ -6,10 +6,6 @@ typeset -a utils_array
 typeset -a pentest_utils_array
 typeset -a nmap_nse_utils_array
 
-export utils_array="utils_array"
-export pentest_utils_array="pentest_utils_array"
-export nmap_nse_utils_array="nmap_nse_utils_array"
-
 export REPO_NAME="sysadmin-stuff"
 export CWD=$(pwd)
 export REPO_ROOT_DIR=$(dirname $CWD)/${REPO_NAME}
@@ -56,7 +52,7 @@ echo "[+] apt-get updated."
 echo
 
 ## sourcing utils file
-. ${UTILS_FILE}
+. ${UTILS_FILE} 
 . ${HELPERS_FILE}
 . ${PENTEST_UTILS_FILE}
 . ${NMAP_NSE_UTILS_FILE}
