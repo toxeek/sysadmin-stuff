@@ -35,7 +35,7 @@ When you first clone it, cd into the sysadmin-stuff folder. There you will see a
 ***
 #### sysadmin.cfg and other *.cfg files is where you toggle utils on/off
 ***
-### ADDED the pentest folder, so as with other utils, there is an utils.sh and pentest.cfg following the same structure as other utils, always look and setup.sh
+#### Added the pentest folder, so as with other utils, there is an utils.sh and pentest.cfg following the same structure as other utils, always look and setup.sh
 
 ##### added sipvicious for VOIP pentest research .. Remember sipvicious installs many tools:
 ###### sipvicious_svcrack   sipvicious_svcrash   sipvicious_svmap     sipvicious_svreport  sipvicious_svwar
