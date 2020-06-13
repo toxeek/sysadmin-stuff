@@ -109,11 +109,11 @@ http-headers=1
 http-enum=1
 tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest/nmap-nse$ 
 ```
-
+___
 #### **I do a nmap scan of an IP to show that you had http-headers nse script, and dependencies, installed correctly, and to serve as a PoC [do not expect me to show you how to exploit stuff]**
 ___
-#### These are the steps to install the "goodies"
-##### example of cloning and execution (see above as well, as does not matter where you clone)
+### These are the steps to install the "goodies"
+##### [~] example of cloning and execution (see above as well, as does not matter where you clone)
 ```bash
 $ mkdir -p ~/code/git && cd ~/code/git
 $ git clone https://github.com/toxeek/sysadmin-stuff.git
