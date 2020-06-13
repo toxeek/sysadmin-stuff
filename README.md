@@ -44,6 +44,31 @@ root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest/nmap-nse# ls
 nse.cfg  utils.sh
 ```
 
+```bash
+tricky@trickylocalhost:~/code/git/sysadmin-stuff$ pwd
+/home/tricky/code/git/sysadmin-stuff
+tricky@trickylocalhost:~/code/git/sysadmin-stuff$ ls
+LICENSE  README.md  chk_root.sh  helpers.sh  install.sh  pentest  setup.sh  sysadmin.cfg  utils.sh
+tricky@trickylocalhost:~/code/git/sysadmin-stuff$ cd pentest
+tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ ls
+nmap-nse  pentest.cfg  utils.sh
+tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ cat pentest.cfg
+## pentest utils
+enable_pentest_utils=1
+sqlmap=1
+nmap=1
+tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ ls
+nmap-nse  pentest.cfg  utils.sh
+tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ cd nmap-nse/
+tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest/nmap-nse$ ls
+nse.cfg  utils.sh
+tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest/nmap-nse$ cat nse.cfg
+## nmap nse scripts cfg
+http-headers=1
+http-enum=1
+tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest/nmap-nse$ 
+```
+
 #### I do a nmap scan of an IP to show that you had http-headers nse script, and dependencies, installed correctly, and to serve as a PoC [do not expect me to show you how to exploit stuff]
 
 ### so instead actually these are the steps to install the "goodies"
