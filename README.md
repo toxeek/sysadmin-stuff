@@ -44,7 +44,7 @@ root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest/nmap-nse# ls
 nse.cfg  utils.sh
 ```
 
-### added http-enum nse nmap script, as follows:
+#### added http-enum nse nmap script, as follows:
 
 ```bash
 tricky@trickylocalhost:~/code/git/sysadmin-stuff$ pwd
