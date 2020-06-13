@@ -34,6 +34,7 @@ When you first clone it, cd into the sysadmin-stuff folder. There you will see a
 ```bash
 # sipvicious_svcrack --help
 ```
+### sipvicious github: https://github.com/EnableSecurity/sipvicious/blob/master/README.md
 ### pentest directory:
 ```bash
 # ls
