@@ -232,7 +232,8 @@ install_docker-compose() {
 }
 #################
 install_microk8s() {
-    echo "[+] microk8s .."
+    echo
+    echo "[+] installing microk8s via snap .."
     if [[ ! $(which microk8s ) ]] ; then
         ${SNAP} install microk8s --classic
     else
@@ -251,10 +252,17 @@ install_virtualenvwrapper() {
     return 0
 }
 ################
-################
 install_etckeeper() {
+    [[ ! $(which git ) ]] && echo "[+] etckeeper uses git, exiting" && return 1
+    CWD="$(pwd)"
+    echo
     echo "[+] installing etckeeper .."
-    ${APT} install -y etckeeper
+    ${APT} install -y etckeeper &>/dev/null
+    echo
+    echo "[+] doing etckeeper init in /etc .."
+    cd /etc && $(which etckeeper) init 
+    $(which etckeeper) commit "Initial commi of /etc"
+    cd ${CWD}
 
     return 0
 }
