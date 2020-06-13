@@ -76,6 +76,8 @@ LICENSE  README.md  chk_root.sh  helpers.sh  install.sh  pentest  setup.sh  sysa
 tricky@trickylocalhost:~/code/git/sysadmin-stuff$ cd pentest
 tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ ls
 nmap-nse  pentest.cfg  utils.sh
+```
+```bash
 tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ cat pentest.cfg
 ## pentest utils
 enable_pentest_utils=1
