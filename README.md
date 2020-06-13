@@ -52,13 +52,15 @@ drwxrwxr-x 2 tricky tricky 4096 Jun 12 23:37 nmap-nse
 
 #### Also for nmap nse scripts, there is a subfolder into nmap-nse folder, for nse based nmap scripts installation, also following the structure of our utils within other parent directories:
 ```bash
-root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff# ls
+$ pwd
+/home/tricky/code/git/sysadmin-stuff
+$ ls
 LICENSE  README.md  chk_root.sh  helpers.sh  install.sh  pentest  setup.sh  sysadmin.cfg  utils.sh
-root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff# cd pentest/
-root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest# ls
+$ cd pentest/
+$ ls
 nmap-nse  pentest.cfg  utils.sh
-root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest# cd nmap-nse/
-root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest/nmap-nse# ls
+$ cd nmap-nse/
+$ ls
 nse.cfg  utils.sh
 ```
 #### [~] you can enable installing the following pentest tools: ***(see pentest.cfg)***
@@ -76,7 +78,9 @@ ___
 
 **For the pentest tools installation, I provide a parameter named** *enable_pentest_utils* **that you can use to toggle off/on the installation of the pentest tools**
 ```bash
-sysadmin-stuff/pentest$ cat pentest.cfg
+$ pwd
+/home/tricky/code/git/sysadmin-stuff/pentest
+$ cat pentest.cfg
 ## pentest utils
 enable_pentest_utils=1
 sqlmap=1
@@ -94,30 +98,24 @@ $ sipvicious_svcrack   sipvicious_svcrash   sipvicious_svmap     sipvicious_svre
 #### sipvicious github: https://github.com/EnableSecurity/sipvicious/blob/master/README.md
 ___
 ```bash
-tricky@trickylocalhost:~/code/git/sysadmin-stuff$ pwd
-/home/tricky/code/git/sysadmin-stuff
-tricky@trickylocalhost:~/code/git/sysadmin-stuff$ ls
-LICENSE  README.md  chk_root.sh  helpers.sh  install.sh  pentest  setup.sh  sysadmin.cfg  utils.sh
-tricky@trickylocalhost:~/code/git/sysadmin-stuff$ cd pentest
-tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ ls
-nmap-nse  pentest.cfg  utils.sh
-```
-```bash
-tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ cat pentest.cfg
+$ pwd
+/home/tricky/code/git/sysadmin-stuff/pentest
+$ cat pentest.cfg
 ## pentest utils
 enable_pentest_utils=1
 sqlmap=1
 nmap=1
 tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ ls
 nmap-nse  pentest.cfg  utils.sh
-tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest$ cd nmap-nse/
-tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest/nmap-nse$ ls
+$ cd nmap-nse/
+$ pwd
+/code/git/sysadmin-stuff/pentest/nmap-se
+$ ls
 nse.cfg  utils.sh
-tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest/nmap-nse$ cat nse.cfg
+$ cat nse.cfg
 ## nmap nse scripts cfg
 http-headers=1
 http-enum=1
-tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest/nmap-nse$ 
 ```
 ___
 #### **I do a nmap scan of an IP to show that you had http-headers nse script, and dependencies, installed correctly, and to serve as a PoC [do not expect me to show you how to exploit stuff]**
