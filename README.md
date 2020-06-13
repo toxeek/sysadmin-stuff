@@ -37,7 +37,7 @@ When you first clone it, cd into the sysadmin-stuff folder. There you will see a
 ***
 #### Added the pentest folder, so as with other utils, there is an utils.sh and pentest.cfg following the same structure as other utils, always look and setup.sh
 
-##### added sipvicious for VOIP pentest research .. Remember sipvicious installs many tools:
+#### added sipvicious for VOIP pentest research .. Remember sipvicious installs many tools:
 ###### sipvicious_svcrack   sipvicious_svcrash   sipvicious_svmap     sipvicious_svreport  sipvicious_svwar
 ##### so to get help with say, sipvicious_svcrack, do:
 ```bash
