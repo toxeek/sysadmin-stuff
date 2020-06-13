@@ -62,12 +62,16 @@ root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest# cd nmap-nse/
 root@trickylocalhost:/home/tricky/code/git/sysadmin-stuff/pentest/nmap-nse# ls
 nse.cfg  utils.sh
 ```
+#### option to enable installing the following pentest tools: ***(see pentest.cfg)***
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
+1. ***nmap***
+2. ***sqlpam***
+4. ***sipvicious***
 
-#### installed nse nmap scripts:
+#### option to enable nse nmap scripts: ***(see nse.cfg)***
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
 1. ***http-headers***
 2. ***http-enum***
-
 ```bash
 tricky@trickylocalhost:~/code/git/sysadmin-stuff$ pwd
 /home/tricky/code/git/sysadmin-stuff
@@ -95,7 +99,7 @@ http-enum=1
 tricky@trickylocalhost:~/code/git/sysadmin-stuff/pentest/nmap-nse$ 
 ```
 
-#### I do a nmap scan of an IP to show that you had http-headers nse script, and dependencies, installed correctly, and to serve as a PoC [do not expect me to show you how to exploit stuff]
+#### ***I do a nmap scan of an IP to show that you had http-headers nse script, and dependencies, installed correctly, and to serve as a PoC [do not expect me to show you how to exploit stuff]***
 
 ### so instead actually these are the steps to install the "goodies"
 #### example of cloning and execution (see above as well, as does not matter where you clone)
