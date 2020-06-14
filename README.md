@@ -139,5 +139,4 @@ TODO: Write history
 TODO: Write credits
 
 =======
-# sysadmin-stuff
-sysadmin help to kick off an Ubuntu system with some goodies
+
