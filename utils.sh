@@ -99,28 +99,31 @@ install_tfenv() {
     git clone https://github.com/tfutils/tfenv.git ${HOME_DIR}/.tfenv &>/dev/null || exit 125
     ln -s ${HOME_DIR}/.tfenv/bin/* /usr/local/bin 2>/dev/null
     # $(which tfenv) uninstall latest 2>/dev/null
-    if [ ! -z "$tf_version" ]; then
-        if [[ $(which tfenv) ]] ; then
-            echo
-            echo "[+] tfenv is already installed, listing installed version/s .." 2>/dev/null
-            $(which tfenv) list 
-        fi 
+    if [[ ! $(which tfenv) ]] ; then
+        echo "[+] tfenv installation problems. exiting" && exit 125
+    fi
+
+    if [[ $(which tfenv) ]] ; then
+        echo
+        echo "[+] tfenv is already installed, listing installed version/s .." 2>/dev/null
+        $(which tfenv) list 
+    fi
+
+    if [ ! -z "$tf_version" ]; then 
         tf_env_tfv=$(echo $tf_version | sed -e s/\'//g)
         echo
         echo "[+] using tfenv to install terraform v${tf_env_tfv} .."
         echo
         $(which tfenv) install $tf_env_tfv 2>/dev/null
+        echo "[+] switching to terraform v${tf_env_tfv} .."
+        $(which tfenv) use ${tf_env_tfv} 2>/dev/null
     else
-        $(which ffenv) install latest 2>/dev/null
+        $(which tfenv) install latest 2>/dev/null
+        echo
+        echo "[+] switching to latest terraform version ..."
+        $(which tfenv) use latest 2>/dev/null
+        $(which tfenv) list 2>/dev/null
     fi
-    if [[ ! $(which tfenv) ]] ; then
-        echo "[+] tfenv installation problems. exiting" && exit 125
-    fi
-    echo
-    echo "[+] switching to latest terraform version ..."
-    echo
-    $(which tfenv) use latest 2>/dev/null
-    $(which tfenv) list 
 
     return 0
 }
@@ -176,7 +179,6 @@ install_portainer() {
 }
 ################
 install_awscli() {
-    echo
     echo "[+] installing awscli .."
     echo
     $(which pip3) uninstall -y awscli &>/dev/null
