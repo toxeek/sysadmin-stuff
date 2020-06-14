@@ -258,8 +258,8 @@ install_etckeeper() {
     echo "[+] installing etckeeper .."
     ${APT} install -y etckeeper &>/dev/null
     echo
-    echo "[+] doing etckeeper init in /etc .."
     if [ ! -r "/var/run/etckeeper/etckeeper.lock" ] ; then
+        echo "[+] doing etckeeper init in /etc .."
         cd /etc && $(which etckeeper) init && touch /var/run/etckeeper/etckeeper.lock
     fi
 
