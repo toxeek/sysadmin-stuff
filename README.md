@@ -119,7 +119,7 @@ http-headers=1
 http-enum=1
 ```
 ___
-#### **I do a nmap scan of an IP to show that you had http-headers nse script, and dependencies, installed correctly, and to serve as a PoC [do not expect me to show you how to exploit stuff]**
+#### **I do a nmap scan of an IP one of nse script, and dependencies installed, to serve as a PoC [do not expect me to show you how to exploit stuff]**
 ___
 
 ## Contributing
