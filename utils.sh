@@ -52,14 +52,9 @@ install_aws_cli() {
 }
 ################
 install_ansible() {
+    echo "[+] installing ansible .."
     echo
-    echo "[+] install ansible? [y/n]"
-    read ansible
-    echo
-    if [[ "$ansible" == *y* ]]; then
-        ${APT} install -y ansible
-    else :
-    fi
+    ${APT} install -y ansible
 
     return 0
 }
@@ -179,8 +174,8 @@ install_portainer() {
 }
 ################
 install_awscli() {
-    echo "[+] installing awscli .."
     echo
+    echo "[+] installing awscli .."
     $(which pip3) uninstall -y awscli &>/dev/null
     $(which pip3) install awscli 
 
@@ -215,6 +210,7 @@ install_tmux() {
 }
 #################
 install_docker() {
+    echo
     echo "[+] installing docker .."
     if [[ ! $(which docker ) ]] ; then
         ${SNAP} install docker
@@ -247,8 +243,8 @@ install_microk8s() {
 }
 ################
 install_virtualenvwrapper() {
-    echo "[+] installing virtualenvwrapper ..."
     echo
+    echo "[+] installing virtualenvwrapper ..."
     $(which pip3) install virtualenvwrapper
 
     return 0
@@ -257,13 +253,17 @@ install_virtualenvwrapper() {
 install_etckeeper() {
     [[ ! $(which git ) ]] && echo "[+] etckeeper uses git, exiting" && return 1
     CWD="$(pwd)"
+    mkdir -p /var/run/etckeeper
     echo
     echo "[+] installing etckeeper .."
     ${APT} install -y etckeeper &>/dev/null
     echo
     echo "[+] doing etckeeper init in /etc .."
-    cd /etc && $(which etckeeper) init 
-    $(which etckeeper) commit "Initial commi of /etc"
+    if [ ! -r "/var/run/etckeeper/etckeeper.lock" ] ; then
+        cd /etc && $(which etckeeper) init && touch /var/run/etckeeper/etckeeper.lock
+    fi
+
+    $(which etckeeper) commit "commi of /etc"
     cd ${CWD}
 
     return 0
@@ -272,6 +272,21 @@ install_etckeeper() {
 install_whois() {
     echo "[+] installing whois .."
     ${APT} install -y whois
+
+    return 0
+}
+##################
+install_git() {
+    echo
+    echo "[+] installing git .."
+    ${APT} -y install git 
+    echo "[+] enter you email address for git use:"
+    read email
+    echo "[+] enter your user name for git to use:"
+    read user
+
+    $(which git) config --global user.email "${email}"
+    $(which git) config --global user.name "${user}"
 
     return 0
 }
@@ -306,6 +321,8 @@ install_sys_utils() {
              install_whois
         elif [[ "$util" == *virtualenvwrapper* ]]; then
             install_virtualenvwrapper
+        elif [[ "$util" == "git" ]]; then
+            install_git
         else 
             echo 
             echo "[+] installing ${util} .."
