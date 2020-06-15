@@ -71,7 +71,7 @@ nse.cfg  utils.sh
 5. ***hydra***
 6. ***gvm*** ** in Alpha state, toggle it off (=0)
 ___
-## ** ENABLING GVM (which does OpenVas,etc.) will install a lot of resources, postgresql, redis, etc.. You will need some good RAM and resoures available to run it [ in Alpha state ]**
+## **ENABLING GVM (which does OpenVas,etc.) will install a lot of resources, postgresql, redis, etc.. You will need some good RAM and resoures available to run it [ in Alpha state ]**
 
 #### [~] you can enable these nse nmap scripts: ***(see nse.cfg)***
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
