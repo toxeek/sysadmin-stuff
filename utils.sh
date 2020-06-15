@@ -279,14 +279,21 @@ install_whois() {
 install_git() {
     echo
     echo "[+] installing git .."
-    ${APT} -y install git 
-    echo "[+] enter you email address for git use:"
-    read email
-    echo "[+] enter your user name for git to use:"
-    read user
-
-    $(which git) config --global user.email "${email}"
-    $(which git) config --global user.name "${user}"
+    if [[ $(which git) ]]; then
+        echo "[+] git already installed .."
+    else
+        ${APT} -y install git
+    fi 
+    if $(which git) config --list | grep -q "user.name"; then
+        echo "[+] git already configured .."
+    else 
+        echo "[+] enter you email address for git use:"
+        read email
+        echo "[+] enter your user name for git to use:"
+        read user
+        $(which git) config --global user.email "${email}"
+        $(which git) config --global user.name "${user}"
+    fi
 
     return 0
 }
