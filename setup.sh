@@ -79,7 +79,7 @@ install_pentest_utils
 #########
 install_nmap_nse_utils
 #########
-install_gvm_utils
+# install_gvm_utils
 #########
 ## add user to fuse group for sshfs
 #########
