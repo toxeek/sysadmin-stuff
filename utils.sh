@@ -253,23 +253,24 @@ install_virtualenvwrapper() {
 install_etckeeper() {
     [[ ! $(which git ) ]] && echo "[+] etckeeper uses git, exiting" && return 1
     CWD="$(pwd)"
-    mkdir -p /var/run/etckeeper
+    mkdir -p /usr/local/etckeeper/run
     echo
     echo "[+] installing etckeeper .."
     ${APT} install -y etckeeper &>/dev/null
     echo
-    if [ ! -r "/var/run/etckeeper/etckeeper.lock" ] ; then
+    if [[ ! $(which etckeeper) ]] ; then
         echo "[+] doing etckeeper init in /etc .."
-        cd /etc && $(which etckeeper) init && touch /var/run/etckeeper/etckeeper.lock
+        cd /etc && $(which etckeeper) init && touch /usr/local/etckeeper/run/etckeeper.lock
+    else
+        $(which etckeeper) commit "commi of /etc"
     fi
-
-    $(which etckeeper) commit "commi of /etc"
     cd ${CWD}
 
     return 0
 }
 #################
 install_whois() {
+    echo
     echo "[+] installing whois .."
     ${APT} install -y whois
 
@@ -299,16 +300,22 @@ install_git() {
 }
 ##################
 install_mariadb_10_5() {
+    if [[ $(which mariadb) ]]; then
+        echo "[+] mariadb already installed .. passsing."
+        return 0
+    fi
+    echo
     echo "[+] installing mariadb 10.5 with defaults . you will be prompted."
-    echo "[+] adding repository key .."
-    $(which apt-key) --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-    echo "[+] addig mariadb repository .."
+    echo "[+] addding apt-get key .."
+    ${WGET} -qO - 'https://mariadb.org/mariadb_release_signing_key.asc' | apt-key add -
+    echo "[+] adding mariadb repository .."
     $(which add-apt-repository) 'deb [arch=amd64] http://mariadb.mirror.globo.tech/repo/10.5/ubuntu focal main'
     echo "[+] updating apt-get .."
     ${APT} update
     ${APT} install -y mariadb-server mariadb-client
 
-    echo "[+] mariadb installed."
+    echo
+    echo "[+] mariadb installed." && sleep 1
 
     return 0
 }

@@ -23,7 +23,7 @@ export utils_array=(build-essential git cmake pkg-config apt-transport-https sof
 export pentest_utils_array=()
 export nmap_nse_utils_array=()
 export gvm_utils_array=(cc g++ glib-2.0 glib-2.0-dev make bison flex libksba-dev curl redis-server libpcap-dev cmake libglib2.0-dev libgpgme-dev libgnutls28-dev uuid-dev libssh-gcrypt-dev libldap2-dev gnutls-bin libmicrohttpd-dev libhiredis-dev zlib1g-dev libxml2-dev libradcli-dev clang-format libldap2-dev doxygen gcc-mingw-w64 xml-twig-tools libical-dev perl-base heimdal-dev libpopt-dev libsnmp-dev python3-setuptools python3-paramiko python3-lxml python3-defusedxml python3-dev gettext python3-polib xmltoman texlive-fonts-recommended texlive-latex-extra)
-export services_array=(postgresql docker etckeeper redis-server)
+export services_array=(postgresql docker etckeeper redis-server mariadb)
 
 echo "[+] utils.sh path: $UTILS_FILE"
 echo "[+] pentest utils.sh path: $PENTEST_UTILS_FILE"
@@ -78,6 +78,8 @@ install_sys_utils
 install_pentest_utils
 #########
 install_nmap_nse_utils
+#########
+utils_svc_mngr
 #########
 # install_gvm_utils
 #########
