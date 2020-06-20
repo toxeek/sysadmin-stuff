@@ -131,11 +131,7 @@ ___
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+https://kbroman.org/github_tutorial/pages/fork.html#:~:text=Go%20to%20your%20version%20of%20the%20repository%20on%20github.,button%20%E2%80%9CCreate%20pull%20request%E2%80%9D.
 
 ## History
 
