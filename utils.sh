@@ -313,6 +313,10 @@ install_mariadb_10_5() {
     echo "[+] updating apt-get .."
     ${APT} update
     ${APT} install -y mariadb-server mariadb-client
+    echo "[+] starting mysql_secure_installation .."
+    if [ ! -r "/usr/local/src/.mysql_sec_inst.lock" ]; then 
+        $(which mysql_secure_installation) && touch "/usr/local/src/.mysql_sec_inst.lock"
+    fi
 
     echo
     echo "[+] mariadb installed." && sleep 1
