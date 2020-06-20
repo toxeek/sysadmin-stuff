@@ -298,6 +298,21 @@ install_git() {
     return 0
 }
 ##################
+install_mariadb_10_5() {
+    echo "[+] installing mariadb 10.5 with defaults . you will be prompted."
+    echo "[+] adding repository key .."
+    $(which apt-key) --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+    echo "[+] addig mariadb repository .."
+    $(which add-apt-repository) 'deb [arch=amd64] http://mariadb.mirror.globo.tech/repo/10.5/ubuntu focal main'
+    echo "[+] updating apt-get .."
+    ${APT} update
+    ${APT} install -y mariadb-server mariadb-client
+
+    echo "[+] mariadb installed."
+
+    return 0
+}
+##################
 
 install_utils
 install_sys_utils() {
@@ -330,6 +345,8 @@ install_sys_utils() {
             install_virtualenvwrapper
         elif [[ "$util" == "git" ]]; then
             install_git
+        elif [[ "$util" == *mariadb_10_5* ]]; then
+            install_mariadb_10_5
         else 
             echo 
             echo "[+] installing ${util} .."
