@@ -67,7 +67,7 @@ nse.cfg  utils.sh
 #### [~] you can enable installing the following pentest tools: ***(see pentest.cfg)***
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "pentest tools")
 1. ***nmap***
-2. ***sqlpam***
+2. ***sqlmap***
 4. ***sipvicious***
 5. ***hydra***
 6. ***gvm*** ** in Alpha state, toggle it off (=0)
