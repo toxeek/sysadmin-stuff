@@ -28,7 +28,11 @@ $ git clone https://github.com/toxeek/sysadmin-stuff.git
 $ cd sysadmin-stuff
 $ sudo -s
 (change to root, or do a sudo ./install.sh)
-# ./install.sh
+$ sudo ./install.sh
+```
+The above means that tools are, atm, installed as root user, so e.g. for tfenv list, you will need to do a
+```bash
+$ sudo tfenv list
 ```
 
 ## Dependencies
