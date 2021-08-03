@@ -11,7 +11,7 @@ iSysadm - UNDER CONSTRUCTION !
 ## END OF DISCLAIMER
 ```
 
-### PORTED TO RUN ON UBUNTU 20.04 LTS: *or make sure you have snap installed at least*
+### FOR UBUNTU 20.04 LTS or later: *or make sure you have snap installed at least*
 
 #### Now Devops oriented tools bootstrapping
 I have added now a different, segragated section for devops, with its own utils and cfg so you can toggle utils on/off (keep reading the README.md)
