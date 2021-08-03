@@ -28,9 +28,10 @@ $ git clone https://github.com/toxeek/sysadmin-stuff.git
 $ cd sysadmin-stuff
 $ sudo ./install.sh
 ```
-The above means that tools are, atm, installed as root user, so e.g. for tfenv list, you will need to do a
+The above means that most tools are, atm, installed as root user. Tfenv and Terraform though, can be called as the SUDO_USER, no need for sudo / root:
 ```bash
-$ sudo tfenv list
+$ tfenv list
+$ terraform -version
 ```
 
 ## Dependencies
