@@ -15,6 +15,7 @@ iSysadm - UNDER CONSTRUCTION !
 
 #### Now Devops oriented tools bootstrapping
 I have added now a different, segragated section for devops, with its own utils and cfg so you can toggle utils on/off (keep reading the README.md)
+It has its own devops/ directory, and works as the pentest one (see underneath). You can avoid installing the devops tools by setting, in the devops/devops.cfg entry to 0: enable_devops_utils=0, insted of =1 (default)
 
 ## Installation
 
