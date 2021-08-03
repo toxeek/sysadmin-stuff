@@ -21,7 +21,7 @@ install_devps_utils() {
             result=$(awk -vn1="$val" -vn2="$tf_version" 'BEGIN{print (n1==n2)?1:0 }')
             [ "$result" == 1 ] && export ft_ver="true"
             echo "[+] Terraform version chosen: $tf_version"
-            echo "[+} debugging tf_version: $val"
+            echo "[+] debugging tf_version: $val"
             val="$result"
         fi
         if [[ "$val" -eq "1" ]] || [ -n "$tf_ver" ] ; then 
