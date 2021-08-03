@@ -53,7 +53,7 @@ WGET="$(which wget)"
 #### pip3 ###########
 apt-add-repository universe
 ${APT} update 
-${APT} upgrade
+${APT} -y upgrade
 
 $(which find) ${REPO_DIR} -name ".*sh" -exec chmod +x '{}' \;
 [ ! -f "${UTILS_FILE}" ] && echo "[+] no utils file found." >&2 && exit 125
