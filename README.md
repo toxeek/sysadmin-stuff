@@ -19,7 +19,7 @@ It has its own devops/ directory, and works as the pentest one (see underneath).
 
 ## Installation
 
-To install first clone the project as NON ROOT 
+To install first clone the project as non root. **you would be prompted twice, one for git and one for Mariadb (if toggled on)**.
 The cfg file where you toggle tools on/off is sysadmin.cfg file. So make sure you toggle the 
 tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
 so: 
