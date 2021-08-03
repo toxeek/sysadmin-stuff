@@ -34,9 +34,25 @@ install_devps_utils() {
 }
 ################
 install_aws_cli() {
-    echo "[+] installing awscli .."
+    if [[ ! $(which docker ) ]] ; then
+        $(which pip) install awscli
+    else 
+        echo "[+] awscli already installed."
+        echo
+    fi  
+
+    return 0
+}
+################
+install_nodejs() {
+    echo "[+] installing nodejs and npm .."
     echo
-    $(which pip3) install awscli
+    ${APT} -y install nodejs
+    if [[ ! $(which npm) ]] ; then
+        ${APT} -y install npm
+    fi
+
+    return 0 
 }
 ################
 install_docker() {
@@ -172,6 +188,8 @@ install_devops_utils() {
             install_awscli
         elif [[ "$util" == *tfenv* ]] ; then
             install_tfenv
+        elif [[ "$util" == *nodejs* ]] ; then
+            install_nodejs
         elif [[ "$util" == *localstack* ]] ; then
             install_localstack
         elif [[ "$util" == *microk8s* ]] ; then
