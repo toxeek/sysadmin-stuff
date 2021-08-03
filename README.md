@@ -6,7 +6,7 @@
 iSysadm - UNDER CONSTRUCTION !
 
 ### DISCLAIMER:
-#### After adding the pentest section, including nse nmap scripts, I DO NOT HOLD MYSELF RESPONSIBLE of what you do if you install the tools, or how you use them. Even more if you use them for malicious intentions, you'll be reported if I detect you doing so, and you will be banned from many places.
+#### After adding the pentest section, including nse nmap scripts, I DO NOT HOLD MYSELF RESPONSIBLE of what you do if you install the tools, or how you use them.
 ```bash
 ## END OF DISCLAIMER
 ```
@@ -14,6 +14,7 @@ iSysadm - UNDER CONSTRUCTION !
 ### PORTED TO RUN ON UBUNTU 20.04 LTS: *or make sure you have snap installed at least*
 
 #### Now Devops oriented tools bootstrapping
+I have added now a different, segragated section for devops, with its own utils and cfg so you can toggle utils on/off (keep reading the README.md)
 
 ## Installation
 
@@ -25,9 +26,13 @@ so:
 $ git clone https://github.com/toxeek/sysadmin-stuff.git
 $ cd sysadmin-stuff
 $ sudo -s
-(change to root)
+(change to root, or do a sudo ./install.sh)
 # ./install.sh
 ```
+
+## Dependencies
+You will need git installed and ready to clone the repository, and a GNU/Linux system Ubuntu 20.04 at least per using snap for certain packages such as docker and VSCode.
+
 
 ## Usage
 When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the sys/devops utils that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation of certain util, in the cfg file make the value  set to =0 instead. In the case of Terraform, single quote the version you want installed, make sure you toggle tfevn=1 tho .. as we use tfenv to install and manage terraform version/s we want installed.
