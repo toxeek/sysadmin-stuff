@@ -21,7 +21,7 @@ export GVM_UTILS_FILE="${REPO_ROOT_DIR}/pentest/gvm/utils.sh"
 export HELPERS_FILE=${REPO_ROOT_DIR}/helpers.sh
 export SVC_MNGR_FILE="${REPO_ROOT_DIR}/services_mngr.sh"
 # base utils in the array
-export utils_array=(build-essential git cmake pkg-config apt-transport-https software-properties-common unzip wget curl gnupg-agent ca-certificates tree)
+export utils_array=(build-essential ssh git wget curl cmake pkg-config apt-transport-https software-properties-common unzip gnupg-agent ca-certificates tree)
 export pentest_utils_array=()
 export pentest_utils_array=()
 export nmap_nse_utils_array=()
