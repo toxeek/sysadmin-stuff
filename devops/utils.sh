@@ -208,8 +208,6 @@ install_devops_utils() {
         fi
 
     done
-
-    echo '############### devops utils installed ###############'
     echo
 
     return 0

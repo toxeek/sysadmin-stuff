@@ -228,8 +228,6 @@ install_sys_utils() {
         fi
     done
     echo
-    echo '############### sys utils installed ###############'
-    echo
 
     return 0
 }
