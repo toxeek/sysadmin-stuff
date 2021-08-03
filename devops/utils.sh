@@ -1,5 +1,6 @@
 ################
 install_devps_utils() {
+    echo '############### installing devops utils ###############'
     while read DEVOPS_UTIL; do 
         if echo $DEVOPS_UTIL | grep -q "#"; then
             continue
@@ -183,7 +184,6 @@ install_portainer() {
 
 install_devps_utils
 install_devops_utils() {
-    echo '############### installing devops utils ###############'
     for util in ${devops_utils_array[*]}; do
         if [[ "$util" == *awscli* ]] ; then
             install_awscli
