@@ -45,12 +45,6 @@ install_ansible_roles() {
     return 0     
 }
 ################
-install_aws_cli() {
-    echo "[+] installing awscli .."
-    echo
-    $(which pip3) install awscli
-}
-################
 install_ansible() {
     echo "[+] installing ansible .."
     echo
@@ -86,98 +80,11 @@ install_virtualbox() {
     return 0
 }
 ################
-install_tfenv() {
-    echo 
-    echo "[+] installing tfenv .."
-    mkdir -p /usr/local/bin 2>&1
-    rm -rf ${HOME_DIR}/.tfenv
-    git clone https://github.com/tfutils/tfenv.git ${HOME_DIR}/.tfenv &>/dev/null || exit 125
-    ln -s ${HOME_DIR}/.tfenv/bin/* /usr/local/bin 2>/dev/null
-    # $(which tfenv) uninstall latest 2>/dev/null
-    if [[ ! $(which tfenv) ]] ; then
-        echo "[+] tfenv installation problems. exiting" && exit 125
-    fi
-
-    if [[ $(which tfenv) ]] ; then
-        echo
-        echo "[+] tfenv is already installed, listing installed version/s .." 2>/dev/null
-        $(which tfenv) list 
-    fi
-
-    if [ ! -z "$tf_version" ]; then 
-        tf_env_tfv=$(echo $tf_version | sed -e s/\'//g)
-        echo
-        echo "[+] using tfenv to install terraform v${tf_env_tfv} .."
-        echo
-        $(which tfenv) install $tf_env_tfv 2>/dev/null
-        echo "[+] switching to terraform v${tf_env_tfv} .."
-        $(which tfenv) use ${tf_env_tfv} 2>/dev/null
-    else
-        $(which tfenv) install latest 2>/dev/null
-        echo
-        echo "[+] switching to latest terraform version ..."
-        $(which tfenv) use latest 2>/dev/null
-        $(which tfenv) list 2>/dev/null
-    fi
-
-    return 0
-}
-################
 install_vscode() {
     echo
     echo "[+] installing Visual Code Studio .."
     echo
     ${SNAP} install --classic code
-
-    return 0
-}
-################
-install_portainer() {
-    echo
-    echo "[+] do you want Portainer installed, make sure you can (xinit, etc.) [y/n]"
-    read portainer
-    if [[ "$portainer" == *y ]] ; then	
-        is_port_installed="$($(which docker) images | grep portainer)"
-        if [ -n "$is_port_installed" ] ; then 
-            echo "[+] Portainer seems to be running. passing.."  && return 1
-        fi
-        term_type="$(tty)"
-        if echo "$term_type" | grep -q "pts"; then
-            echo "[+] we are may be on a ssh terminal, exiting."  && return 1
-        else
-            ${APT} install xinit
-            export DISPLAY=:0
-        fi
-            
-        if [[ $(which docker) ]] ; then
-            $(which docker) volume create portainer_data 2>/dev/null
-            $(which docker) run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer 2>/dev/null
-            # I do not have any royalties with FF!
-            ${APT} install firefox &>/dev/nul
-            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
-            apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu focal main"
-            ${APT} update
-            echo "[+] to run portainer just do: firefox 127.0.0.1:9000"
-            echo "[+] or form your web browser: http://127.0.0.1:9000"
-            echo
-        fi
-        echo "[+] do you want to run portainer now? [Y/N]"
-        read runport
-        if [[ "$runport" == *y ]] ; then
-            $(which firefox) http://127.0.0.1:9000
-        fi  
-    else
-        :
-    fi
-    
-    return 0
-}
-################
-install_awscli() {
-    echo
-    echo "[+] installing awscli .."
-    $(which pip3) uninstall -y awscli &>/dev/null
-    $(which pip3) install awscli 
 
     return 0
 }
@@ -205,39 +112,6 @@ install_tmux() {
     echo "[+] installing tmux .."
     echo
     ${APT} instal -y install install tmux
-
-    return 0
-}
-#################
-install_docker() {
-    echo
-    echo "[+] installing docker .."
-    if [[ ! $(which docker ) ]] ; then
-        ${SNAP} install docker
-    else 
-        echo "[+] docker already installed."
-        echo
-    fi
-
-    return 0
-}
-################
-install_docker-compose() {
-    echo "[+] installing docker-compose .."
-    ${APT} install -y docker-compose
-
-    return 0
-}
-#################
-install_microk8s() {
-    echo
-    echo "[+] installing microk8s via snap .."
-    if [[ ! $(which microk8s ) ]] ; then
-        ${SNAP} install microk8s --classic
-    else
-        echo "[+] microk8s already installed."
-        echo
-    fi
 
     return 0
 }
@@ -277,6 +151,7 @@ install_whois() {
     return 0
 }
 ##################
+# redundant, as you will need to clone this repository
 install_git() {
     echo
     echo "[+] installing git .."
@@ -328,26 +203,14 @@ install_mariadb_10_5() {
 install_utils
 install_sys_utils() {
     for util in ${utils_array[*]}; do
-        if [[ "$util" == *tfenv* ]] ; then
-            install_tfenv
-        elif [[ "$util" == *vscode* ]] ; then 
+        if [[ "$util" == *vscode* ]] ; then 
             install_vscode
-        elif [[ "$util" == *awscli* ]] ; then
-            install_awscli
-        elif [[ "$util" == *docker ]] ; then 
-            install_docker
-        elif [[ "$util" == *docker-compose* ]]; then 
-            install_docker-compose 
         elif [[ "$util" == *ansible ]]; then
             install_ansible
-        elif [[ "$util" == *portainer* ]]; then
-            install_portainer
         elif [[ "$util" == *htop* ]]; then
             install_htop
         elif [[ "$util" == *virtualbox* ]]; then
              install_virtualbox
-        elif [[ "$util" == *microk8s* ]]; then
-             install_microk8s
         elif [[ "$util" == *etckeeper* ]]; then
              install_etckeeper
         elif [[ "$util" == *whois* ]]; then
