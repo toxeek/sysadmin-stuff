@@ -34,7 +34,7 @@ install_devps_utils() {
     return 0
 }
 ################
-install_aws_cli() {
+install_awscli() {
     if [[ ! $(which docker ) ]] ; then
         $(which pip) install awscli
     else 
