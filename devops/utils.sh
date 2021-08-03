@@ -14,7 +14,7 @@ install_devps_utils() {
                 echo
                 exit 1
             fi
-        continue
+            continue
         fi
         if [[ "$util" == "terraform-version" ]] ; then
             export tf_version=$(echo $val | sed -e 's/"//g')
@@ -25,8 +25,8 @@ install_devps_utils() {
             val="$result"
         fi
         if [[ "$val" -eq "1" ]] || [ -n "$tf_ver" ] ; then 
-            if [ "$util" != "terraform-version" ] ; then
-                sleep 1 && echo "[~] adding $util to sys utils array .." && utils_array+=($util)
+            if [[ "$util" != "terraform-version" ]] ||  [[ "$util" != "tfenv" ]]; then
+                sleep 1 && echo "[~] adding $util to sys utils array .." && devops_utils_array+=($util)
             fi
         fi
     done < $devops_cfg_file
@@ -205,7 +205,7 @@ install_devops_utils() {
         else 
             echo 
             echo "[+] installing ${util} .."
-            ${APT} -y install ${util}
+            ${APT} -y install ${util} 2>> error.log
         fi
 
     done
