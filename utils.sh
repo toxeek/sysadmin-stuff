@@ -224,7 +224,7 @@ install_sys_utils() {
         else 
             echo 
             echo "[+] installing ${util} .."
-            ${APT} -y install ${util}
+            ${APT} -y install ${util} 2>>./error.log
         fi
     done
     echo
