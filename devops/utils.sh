@@ -105,9 +105,10 @@ install_tfenv() {
     echo 
     echo "[+] installing tfenv .."
     mkdir -p /usr/local/bin 2>&1
-    rm -rf ${HOME_DIR}/.tfenv
-    git clone https://github.com/tfutils/tfenv.git ${HOME_DIR}/.tfenv &>/dev/null || exit 125
-    ln -s ${HOME_DIR}/.tfenv/bin/* /usr/local/bin 2>/dev/null
+    rm -rf /home/${SUDO_USER}/.tfenv
+    git clone https://github.com/tfutils/tfenv.git /home/${SUDO_USER}/.tfenv &>/dev/null || exit 125
+    ln -s /home/${SUDO_USER}/.tfenv/bin/* /usr/local/bin 2>/dev/null
+    ln -s /home/${SUDO_USER}/.tfenv/bin/* /bin 2>/dev/null
     # $(which tfenv) uninstall latest 2>/dev/null
     if [[ ! $(which tfenv) ]] ; then
         echo "[+] tfenv installation problems. exiting" && exit 125
