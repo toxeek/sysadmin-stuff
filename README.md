@@ -18,16 +18,14 @@ I have added now a different, segragated section for devops, with its own utils 
 It has its own devops/ directory, and works as the pentest one (see underneath). You can avoid installing the devops tools by setting, in the devops/devops.cfg entry to 0: enable_devops_utils=0, insted of =1 (default)
 
 ## Installation
-
-To install first clone the project as non root. **you would be prompted twice, one for git and one for Mariadb (if toggled on)**.
+You ought to use sudo atm to do the installation.
+To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**.
 The cfg file where you toggle tools on/off is sysadmin.cfg file. So make sure you toggle the 
 tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
 so: 
 ```bash
 $ git clone https://github.com/toxeek/sysadmin-stuff.git
 $ cd sysadmin-stuff
-$ sudo -s
-(change to root, or do a sudo ./install.sh)
 $ sudo ./install.sh
 ```
 The above means that tools are, atm, installed as root user, so e.g. for tfenv list, you will need to do a
