@@ -19,7 +19,8 @@ It has its own devops/ directory, and works as the pentest one (see underneath).
 
 ## Installation
 You ought to use sudo atm to do the installation.
-To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**. If you decided to turn on gvm installation, under pentesting/gvm, then *it will take like 1/2 to update and install the services and plugins, and it is heavyweight as uses Redis, Postgres, etc.
+To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**. If you decided to turn on gvm installation, under pentesting/gvm, then *it will take like 1/2 to update and install the services and plugins, and it is heavyweight as uses Redis, Postgres, etc.* 
+Kali Liunx does not includ eby default OpenVAS/gvm, so it is a nice to have. The point is to have the code do, in the pentesting section, things that Kali Linux does not do out of the box.
 
 The cfg file where you toggle tools on/off for sysadmin stuff, is sysadmin.cfg file. So make sure you toggle the 
 tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
