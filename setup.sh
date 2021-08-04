@@ -26,7 +26,9 @@ export pentest_utils_array=()
 export devops_utils_array=()
 export nmap_nse_utils_array=()
 export gvm_utils_array=(cc g++ glib-2.0 glib-2.0-dev make bison flex libksba-dev curl redis-server libpcap-dev cmake libglib2.0-dev libgpgme-dev libgnutls28-dev uuid-dev libssh-gcrypt-dev libldap2-dev gnutls-bin libmicrohttpd-dev libhiredis-dev zlib1g-dev libxml2-dev libradcli-dev clang-format libldap2-dev doxygen gcc-mingw-w64 xml-twig-tools libical-dev perl-base heimdal-dev libpopt-dev libsnmp-dev python3-setuptools python3-paramiko python3-lxml python3-defusedxml python3-dev gettext python3-polib xmltoman texlive-fonts-recommended texlive-latex-extra)
-export services_array=(postgresql etckeeper redis-server mariadb)
+export services_array=(etckeeper mariadb)
+# for OpenVAS/GVM
+services_array+=(gvmd gsad postgresql redis-server)
 
 echo "[+] utils.sh path: $UTILS_FILE"
 echo "[+] pentest utils.sh path: $PENTEST_UTILS_FILE"
@@ -45,7 +47,7 @@ echo
 # export ansible_roles="(toxeek.docker)"
 #####################
 BASH=$(which bash)
-APT="$(which apt-get)"
+APT="$(which apt)"
 SNAP="$(which snap)"
 AWK="$(which awk)"
 CURL="$(which curl)"
@@ -87,9 +89,16 @@ install_pentest_utils
 #########
 install_nmap_nse_utils
 #########
+install_gvm_utils
+#########
 utils_svc_mngr
 #########
-# install_gvm_utils
+echo "[+] now youĺl be given the option to start the web interface for OpneVAS gvm, but it will take you around 10 minutes to log in, as the service takes a while to start fully."
+read -r -p "[+] all chosen utils installed. Do you want to start OpenVAS/gvm pentest admin panel? (with firefox. user=admin, pass=admin. [Y/n]? " gvm
+    case $answer in
+        [Yy]*) $(which firefox) https://127.0.0.1:9392
+        [Nn]*) exit;;
+    esac
 #########
 ## add user to fuse group for sshfs
 #########
