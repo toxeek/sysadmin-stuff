@@ -22,7 +22,7 @@ You ought to use sudo atm to do the installation.
 To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**. If you decided to turn on gvm installation, under pentesting/gvm, then *it will take like 1/2 to update and install the services and plugins, and it is heavyweight as uses Redis, Postgres, etc.* 
 Kali Liunx does not include by default OpenVAS/gvm, so it is a nice to have. The point is to have the code do, in the pentesting section, things that Kali Linux does not do out of the box.
 
-When opying to install OpenVS/GVM as explained in the README, you will br prompted. Id exclude the prompt (choose NO) for the advanced db options administration, and the rest are OK. The script at the end, will prompt you if you want to get to the gvm admin web panel at https://127.0.0.1:9392, but you should access it after like 10 mins after the script ends as the necessary services take a while to start.
+When opying to install OpenVS/GVM as explained in the README, you will br prompted. Id exclude the prompt (choose NO) for the advanced db options administration, and the rest are OK. The script at the end, will prompt you if you want to get to the gvm admin web panel at https://127.0.0.1:9392, but you should access it after like 10 mins after the script ends as the necessary services take a while to start. Btw, when accessing the gvm web admin panel, you will need to accept the self signed cert.
 
 The cfg file where you toggle tools on/off for sysadmin stuff, is sysadmin.cfg file. So make sure you toggle the 
 tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
