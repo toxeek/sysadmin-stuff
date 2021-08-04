@@ -19,8 +19,9 @@ It has its own devops/ directory, and works as the pentest one (see underneath).
 
 ## Installation
 You ought to use sudo atm to do the installation.
-To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**.
-The cfg file where you toggle tools on/off is sysadmin.cfg file. So make sure you toggle the 
+To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**. If you decided to turn on gvm installation, under pentesting/gvm, then *it will take like 1/2 to update and install the services and plugins, and it is heavyweight as uses Redis, Postgres, etc.
+
+The cfg file where you toggle tools on/off for sysadmin stuff, is sysadmin.cfg file. So make sure you toggle the 
 tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
 so: 
 ```bash
@@ -79,16 +80,15 @@ nse.cfg  utils.sh
 2. ***sqlmap***
 4. ***sipvicious***
 5. ***hydra***
-6. ***gvm*** ** in Alpha state, toggle it off (=0)
 ___
-## **ENABLING GVM (which does OpenVas,etc.) will install a lot of services/utils, postgresql, redis, etc.. You will need some good RAM and resoures available to run it [ in Alpha state ]**
+## **ENABLING GVM (which does OpenVas,etc.) will install a lot of services/utils, postgresql, redis, etc.. You will need some good RAM and resoures available to run it [ in Beta/Stable state ]**
 
 #### [~] you can enable these nse nmap scripts: ***(see nse.cfg)***
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
 1. ***http-headers***
 2. ***http-enum***
 3. ***dns-brute***
-4. ***vulscan*** **as gvm is in alpha, we have this a vuln scanner
+4. ***vulscan***
 ___
 
 **For the pentest tools installation, I provide a parameter named** *enable_pentest_utils* **that you can use to toggle off/on the installation of the pentest tools**
@@ -146,9 +146,4 @@ https://kbroman.org/github_tutorial/pages/fork.html#:~:text=Go%20to%20your%20ver
 
 TODO: Write history
 
-## Credits
-
-TODO: Write credits
-
-=======
 
