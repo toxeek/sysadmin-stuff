@@ -151,7 +151,7 @@ install_whois() {
     return 0
 }
 ##################
-# redundant, as you will need to clone this repository
+# redundant, as you will need to clone this repository somehow
 install_git() {
     echo
     echo "[+] installing git .."
