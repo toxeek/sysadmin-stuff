@@ -23,7 +23,7 @@ To install first clone the project as non root. **you would be prompted few time
 Kali Liunx does not include by default OpenVAS/gvm, so it is a nice to have. The point is to have the code do, in the pentesting section, things that Kali Linux does not do out of the box.
 
 When opting to install OpenVS/GVM as explained in the README, you will br prompted. At the end, I will prompt you if you want to open the gvm admin web panel (with firefox) at https://127.0.0.1:9392, but you should access it after like 10 mins after the script ends as the necessary services take a while to start. Btw, when accessing the gvm web admin panel, you will need to accept the self signed cert. The user t log into the web panel is admin, and pass admin by default :).
-When prompted by dpkg when installing gvm, say OK to Redis and Postgress, and wen prompted, input a password for Postgres. then let the installation go on (select localhost for the redis db prompt). Remember to add 2 vpc cores to your VM (if in a VM) and if you can, 3Gi of RAM (2Gi should be ok..).
+When prompted by dpkg when installing gvm, say OK to Redis and Postgress, and wen prompted, input a password for Postgres. then let the installation go on (select localhost for the redis db prompt). Remember to add 2 vpc cores to your VM (if in a VM) and if you can, 3Gi of RAM (2Gi should be ok, I tweak the systemd Unit file timeouts to let it longer..).
 
 I am toggling of gvm installation, bu feel free to toggle it on (=1) in the cfg file and give this Bta installation a go!
 
