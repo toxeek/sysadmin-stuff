@@ -22,12 +22,12 @@ You ought to use sudo atm to do the installation.
 To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**. If you decided to turn on gvm installation, under pentesting/gvm, then *it will take like 1/2 to update and install the services and plugins, and it is heavyweight as uses Redis, Postgres, etc.* 
 Kali Liunx does not include by default OpenVAS/gvm, so it is a nice to have. The point is to have the code do, in the pentesting section, things that Kali Linux does not do out of the box.
 
-When opting to install OpenVS/GVM as explained in the README, you will br prompted. At the end, I will prompt you if you want to open the gvm admin web panel (with firefox) at https://127.0.0.1:9392, but you should access it after like 10 mins after the script ends as the necessary services take a while to start. Btw, when accessing the gvm web admin panel, you will need to accept the self signed cert. The user t log into the web panel is admin, and pass admin by default :).
-When prompted by dpkg when installing gvm, say OK to Redis and Postgress, and wen prompted, input a password for Postgres. then let the installation go on (select localhost for the redis db prompt). Remember to add 2 vpc cores to your VM (if in a VM) and if you can, 3Gi of RAM (2Gi should be ok, I tweak the systemd Unit file timeouts to let it longer..).
+When opting to install OpenVS/GVM as explained in the README, you will br prompted ny dpkg. At the end, if you want to open the gvm admin web panel (with firefox?) is at https://127.0.0.1:9392, but you should access it after like 10 mins after the script ends as the necessary services take a while to start. Btw, when accessing the gvm web admin panel, you will need to accept the self signed cert (https://127.0.0.1:9392) . The user to log into the web admin panel is admin, and pass admin by default :).
+When prompted by dpkg when installing gvm, say OK to Redis and Postgress, and wen prompted, input a password for Postgres. then let the installation go on (select localhost for the redis db prompt). Remember to add 2 vpc cores to your VM (if in a VM) and if you can, 3Gi of RAM (2Gi should be ok, I tweak the systemd Unit file timeouts to let it longer..). The more tools we install, the more libraries etc. are installed as well.
 
-I am toggling of gvm installation, bu feel free to toggle it on (=1) in the cfg file and give this Bta installation a go!
+I am toggling on gvm installation, bu feel free to toggle it off (=0) in the cfg file and give this Bta installation ..
 
-It is also crucial tha, you have git cofigured with your email and user already, or do it when I prompt you (more likely as you may wish to run this script in a freshly installed Ubuntu).
+It is also crucial that you have git installed, and cofigured with your email and user already; do it when I prompt you (more likely as you may wish to run this script in a freshly installed Ubuntu).
 
 The cfg file where you toggle tools on/off for sysadmin stuff, is sysadmin.cfg file. So make sure you toggle the 
 tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
