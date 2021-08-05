@@ -27,6 +27,8 @@ When prompted by dpkg when installing gvm, say OK to Redis and Postgress, and we
 
 I am toggling of gvm installation, bu feel free to toggle it on (=1) in the cfg file and give this Bta installation a go!
 
+It is also crucial tha, you have git cofigured with your email and user already, or do it when I prompt you (more likely as you may wish to run this script in a freshly installed Ubuntu).
+
 The cfg file where you toggle tools on/off for sysadmin stuff, is sysadmin.cfg file. So make sure you toggle the 
 tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
 so: 
