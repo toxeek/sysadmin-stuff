@@ -93,12 +93,7 @@ install_gvm_utils
 #########
 utils_svc_mngr
 #########
-echo "[+] now youĺl be given the option to start the web interface for OpneVAS gvm, but it will take you around 10 minutes to log in, as the service takes a while to start fully."
-read -r -p "[+] all chosen utils installed. Do you want to start OpenVAS/gvm pentest admin panel? (with firefox. user=admin, pass=admin. [Y/n]? " gvm
-    case $gvm in
-        [Yy]*) $(which firefox) https://127.0.0.1:9392;;
-        [Nn]*) exit;;
-    esac
+echo "[+] now you can start OpenVAS/gvm pentest admin panel (with firefox?) at https://127.0.0.1:9392. user=admin, pass=admin."
 #########
 ## add user to fuse group for sshfs
 #########
