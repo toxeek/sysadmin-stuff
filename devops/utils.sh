@@ -93,7 +93,7 @@ install_localstack() {
     echo
     echo "[+] installing localstack .."
     if [[ ! $(which localstack) ]] ; then
-        $(which pip) install localstack
+        sudo su -u $LOCALSTACK_USER -c 'python3 -m pip install localstack'
     else
         echo "[+] localstack already installed."
         echo

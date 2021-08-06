@@ -13,6 +13,7 @@ export REPO_NAME="sysadmin-stuff"
 export CWD=$(pwd)
 export REPO_ROOT_DIR=$(dirname $CWD)/${REPO_NAME}
 export HOME_DIR="$HOME"
+export LOCALSTACK_USER="$SUDO_USER"
 export UTILS_FILE="${REPO_ROOT_DIR}/utils.sh"
 export PENTEST_UTILS_FILE="${REPO_ROOT_DIR}/pentest/utils.sh"
 export DEVOPS_UTILS_FILE="${REPO_ROOT_DIR}/devops/utils.sh"
