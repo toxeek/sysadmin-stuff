@@ -88,6 +88,7 @@ nse.cfg  utils.sh
 2. ***sqlmap***
 4. ***sipvicious***
 5. ***hydra***
+6. ***wpscan***
 ___
 ## **ENABLING GVM (which does OpenVas,etc.) will install a lot of services/utils, postgresql, redis, etc.. You will need some good RAM and resoures available to run it [ in Beta/Stable state ]**
 
