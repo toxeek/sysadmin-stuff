@@ -171,6 +171,11 @@ install_git() {
         $(which git) config --global user.name "${user}"
     fi
 
+    # needed for metasploit git clone
+    git config http.sslVerify false
+    git config --global http.postBuffer 1048576000
+
+
     return 0
 }
 ##################
