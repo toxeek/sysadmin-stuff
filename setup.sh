@@ -55,8 +55,12 @@ CURL="$(which curl)"
 WGET="$(which wget)"
 #### pip3 ###########
 apt-add-repository universe
-${APT} update 
-${APT} -y upgrade
+${APT} update
+echo "[!] dp you want to do an apt-get ugrade? [y/n]"
+read upgrade
+if [[ "$upgrade" == *[yY]* ]]
+    ${APT} -y upgrade
+fi
 
 $(which find) ${REPO_DIR} -name ".*sh" -exec chmod +x '{}' \;
 [ ! -f "${UTILS_FILE}" ] && echo "[+] no utils file found." >&2 && exit 125
