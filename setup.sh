@@ -56,9 +56,9 @@ WGET="$(which wget)"
 #### pip3 ###########
 apt-add-repository universe
 ${APT} update
-echo "[!] dp you want to do an apt-get ugrade? [y/n]"
+echo "[!] do you want to do an apt-get ugrade? [y/n]"
 read upgrade
-if [[ "$upgrade" == *[yY]* ]]
+if [[ "$upgrade" == *[yY]* ]]; then
     ${APT} -y upgrade
 fi
 
