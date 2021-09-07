@@ -12,7 +12,7 @@ install_devps_utils() {
                 echo
                 echo "[+] you decided not to enable devops utils being installed. Exiting."
                 echo
-                exit 1
+                return 1
             fi
             continue
         fi
