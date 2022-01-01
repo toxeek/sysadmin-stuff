@@ -26,7 +26,7 @@ export utils_array=(build-essential ssh git wget curl cmake pkg-config apt-trans
 export pentest_utils_array=(zlib1g zlib1g-dev libpq-dev libpcap-dev libsqlite3-dev ruby ruby-dev)
 export devops_utils_array=(libsasl2-dev python3 python3-pip)
 export nmap_nse_utils_array=()
-export gvm_utils_array=(vim cc g++ glib-2.0 golang glib-2.0-dev make bison flex libksba-dev curl redis-server libpcap-dev cmake libglib2.0-dev libgpgme-dev libgnutls28-dev uuid-dev libssh-gcrypt-dev libldap2-dev gnutls-bin libmicrohttpd-dev libhiredis-dev zlib1g-dev libxml2-dev libradcli-dev clang-format libldap2-dev doxygen gcc-mingw-w64 xml-twig-tools libical-dev perl-base heimdal-dev libpopt-dev libsnmp-dev python3-setuptools python3-paramiko python3-lxml python3-defusedxml python3-dev gettext python3-polib xmltoman texlive-fonts-recommended texlive-latex-extra)
+export gvm_utils_array=(vim cc g++ glib-2.0 glib-2.0-dev make bison flex libksba-dev curl redis-server libpcap-dev cmake libglib2.0-dev libgpgme-dev libgnutls28-dev uuid-dev libssh-gcrypt-dev libldap2-dev gnutls-bin libmicrohttpd-dev libhiredis-dev zlib1g-dev libxml2-dev libradcli-dev clang-format libldap2-dev doxygen gcc-mingw-w64 xml-twig-tools libical-dev perl-base heimdal-dev libpopt-dev libsnmp-dev python3-setuptools python3-paramiko python3-lxml python3-defusedxml python3-dev gettext python3-polib xmltoman texlive-fonts-recommended texlive-latex-extra)
 export services_array=(etckeeper mariadb)
 # for OpenVAS/GVM
 services_array+=(gvmd gsad postgresql redis-server)

@@ -41,10 +41,10 @@ install_golang() {
     echo
     echo "[+] installing golan 1.17 .."
 
-    wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
-    rm -rf /usr/local/go
-    tar -C /usr/local -xzf go*.linux-amd64.tar.gz
     if ! grep -q 'go/bin' "/etc/profile"; then
+        wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+        rm -rf /usr/local/go
+        tar -C /usr/local -xzf go*.linux-amd64.tar.gz
         sudo sh -c 'echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile'
     fi
 
