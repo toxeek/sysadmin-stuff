@@ -47,6 +47,8 @@ install_golang() {
     if ! grep -q 'go/bin' "etc/profile"; then
         sudo sh -c 'echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile'
     fi
+
+    rm -f *tar.gz
     
     return 0
 }
