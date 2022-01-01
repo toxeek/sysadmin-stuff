@@ -37,6 +37,20 @@ install_vritualenvwrapper() {
     return 0
 }
 ################
+install_golang() {
+    echo
+    echo "[+] installing golan 1.17 .."
+
+    wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+    rm -rf /usr/local/go
+    tar -C /usr/local -xzf go*.linux-amd64.tar.gz
+    if ! grep -q 'go/bin' "etc/profile"; then
+        sudo sh -c 'echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile'
+    fi
+    
+    return 0
+}
+################
 install_ansible_roles() {
     for role in ${ansible_roles[*]}; do
         $(which ansible-galaxy) install ${role} 
@@ -218,6 +232,8 @@ install_sys_utils() {
              install_virtualbox
         elif [[ "$util" == *etckeeper* ]]; then
              install_etckeeper
+        elif [[ "$util" == *golang* ]]; then
+             install_golang
         elif [[ "$util" == *whois* ]]; then
              install_whois
         elif [[ "$util" == *virtualenvwrapper* ]]; then
