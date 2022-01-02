@@ -1,6 +1,6 @@
 ################
 install_devps_utils() {
-    echo '############### installing devops utils ###############'
+    echo '############### adding devops utils ###############'
     while read DEVOPS_UTIL; do 
         if echo $DEVOPS_UTIL | grep -q "#"; then
             continue

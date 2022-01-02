@@ -1,6 +1,6 @@
 ################
 install_utils() {
-    echo '############### installing sys utils ###############'
+    echo '############### adding sys utils ###############'
     while read UTIL; do 
         if echo $UTIL | grep -q "#"; then
             continue
