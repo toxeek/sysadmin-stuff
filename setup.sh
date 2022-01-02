@@ -98,8 +98,6 @@ install_gvm_utils
 #########
 utils_svc_mngr
 #########
-echo "[+] now you can start OpenVAS/gvm pentest admin panel (with firefox?) at https://127.0.0.1:9392. user=admin, pass=admin."
-#########
 ## add user to fuse group for sshfs
 #########
 # addUsertoGroup fuse ## not anymore for 20.04
