@@ -62,6 +62,14 @@ install_ansible() {
     return 0
 }
 ################
+install_monit() {
+    echo "´[+] installing monit .."
+    echo
+    ${APT} install -y monit
+
+    return 0
+}
+################
 install_htop() {
     if [[ $(which htop) ]]; then
         echo
@@ -223,6 +231,8 @@ install_sys_utils() {
             install_ansible
         elif [[ "$util" == *htop* ]]; then
             install_htop
+	elif [[ "$util" == *monit* ]]; then
+	    install_monit
         elif [[ "$util" == *virtualbox* ]]; then
              install_virtualbox
         elif [[ "$util" == *etckeeper* ]]; then
