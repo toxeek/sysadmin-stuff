@@ -70,6 +70,14 @@ install_monit() {
     return 0
 }
 ################
+install_fail2ban() {
+    echo "´[+] installing fail2ban .."
+    echo
+    ${APT} install -y fail2ban
+
+    return 0
+}
+################
 install_htop() {
     if [[ $(which htop) ]]; then
         echo
@@ -231,8 +239,10 @@ install_sys_utils() {
             install_ansible
         elif [[ "$util" == *htop* ]]; then
             install_htop
-	elif [[ "$util" == *monit* ]]; then
-	    install_monit
+	    elif [[ "$util" == *monit* ]]; then
+	        install_monit
+	    elif [[ "$util" == *fail2ban* ]]; then
+	        install_fail2ban
         elif [[ "$util" == *virtualbox* ]]; then
              install_virtualbox
         elif [[ "$util" == *etckeeper* ]]; then
