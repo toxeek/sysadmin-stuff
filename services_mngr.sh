@@ -8,6 +8,7 @@ utils_svc_mngr() {
         if ${SYSCTL} list-units --type service | grep -q $svc; then
             echo 
             echo "[+] retarting, and enabling $svc .."
+            ${SYSCTL} daemon-reload
             ${SYSCTL} restart $svc
             ${SYSCTL} enable $svc
         fi
