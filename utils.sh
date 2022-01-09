@@ -90,6 +90,18 @@ install_htop() {
     return 0
 }
 ################
+install_ngrep() {
+    if [[ $(which ngrep) ]]; then
+        echo
+        echo "[+] ngrep already installed, passing." && return 1
+    else
+        echo
+        ${APT} install -y install ngrep
+    fi
+
+    return 0
+}
+################
 install_virtualbox() {
     echo 
     echo "[+] detecting if we are in a VirtualBox Vm .."
@@ -251,6 +263,8 @@ install_sys_utils() {
              install_golang
         elif [[ "$util" == *whois* ]]; then
              install_whois
+        elif [[ "$util" == *ngrep* ]]; then
+             install_ngrep
         elif [[ "$util" == *virtualenvwrapper* ]]; then
             install_virtualenvwrapper
         elif [[ "$util" == "git" ]]; then
