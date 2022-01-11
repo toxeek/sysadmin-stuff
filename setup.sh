@@ -80,9 +80,6 @@ echo
 . ${GVM_UTILS_FILE}
 . ${SVC_MNGR_FILE}
 
-## add user to sudo group
-##########
-addUsertoGroup sudo
 #########
 ## install sys goodies
 #########
@@ -97,6 +94,13 @@ install_nmap_nse_utils
 install_gvm_utils
 #########
 utils_svc_mngr
+## add user to sudo group
+##########
+addUsertoGroup sudo
+#########
+## add user to docker group
+##########
+addUsertoGroup docker 2>/dev/null
 #########
 ## add user to fuse group for sshfs
 #########
