@@ -1,5 +1,6 @@
 #/bin/bash -x
 
+# we source the helper
 . chk_root.sh
 
 typeset -a utils_array
