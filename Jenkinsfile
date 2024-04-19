@@ -13,5 +13,18 @@ pipeline {
       }
     }
   }
+  post {
+    always {
+      deleteDir() /* clean up our workspace */
+    }
+        // if build was successful
+    success {
+      echo "SUCCEEDED"
+    }
+        // if build failed
+    failure {
+      echo "BIG FAIL!"
+    }
+  }
 }
 
