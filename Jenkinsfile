@@ -4,7 +4,7 @@ pipeline {
     stage("echo build number") {
       steps {
         echo "echoing build number .."
-        echo currentBuild.number
+        echo "currentBuild.number"
       }
     }
   }
