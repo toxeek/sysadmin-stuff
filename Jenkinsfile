@@ -13,11 +13,6 @@ pipeline {
         sh "echo current build id ${currentBuild.id}"
       }
     }
-    post {
-      always {
-        echo 'post stage finished.'
-      }
-    }
   }
   post {
     always {
