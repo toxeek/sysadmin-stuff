@@ -10,7 +10,7 @@ pipeline {
       steps {
         echo "echoing build number .."
         echo "${currentBuild.number}"
-        sh "echo current build id ${currentbuild.id}"
+        sh "echo current build id ${currentBuild.id}"
       }
     }
   }
