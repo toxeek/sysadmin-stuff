@@ -12,12 +12,12 @@ pipeline {
         echo "${currentBuild.number}"
         sh "echo current build id ${currentBuild.id}"
       }
-    }  
-    post {
-      always {
-        echo "Stage successfully finished"
+      post {
+        always {
+          echo "Stage successfully finished"
+        }
       }
-    }
+    }  
   }
   post {
     always {
