@@ -6,11 +6,16 @@ pipeline {
         expression {
           currentBuild.getNumber() % 2 == 1
         }
-      }        
+      }
+      environment {
+        MY_PROJECT = "sysadmin-stuff"
+        S3_BUCKET = "toxeek-bucket"
+      }
       steps {
         echo "echoing build number .."
         echo "${currentBuild.number}"
         sh "echo current build id ${currentBuild.id}"
+        sh "echo ${MY_PROJECT} to ${S3_BUCKET}"
       }
       post {
         success {
