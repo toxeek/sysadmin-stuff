@@ -16,6 +16,11 @@ pipeline {
         echo "${currentBuild.number}"
         sh "echo current build id ${currentBuild.id}"
         sh "echo ${MY_PROJECT} to ${S3_BUCKET}"
+        timeout(time: 5, unit: "SECONDS") {
+          retry(5) {
+            echo "hello"
+          }
+        }
       }
       post {
         success {
