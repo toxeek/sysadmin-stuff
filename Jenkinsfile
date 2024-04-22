@@ -16,6 +16,11 @@ pipeline {
         echo "${currentBuild.number}"
         sh "echo current build id ${currentBuild.id}"
         sh "echo ${MY_PROJECT} to ${S3_BUCKET}"
+        script {
+          foo = docker.image('ubuntu')
+          env.bar = "${foo.imageName()}"
+          echo "foo: ${foo.imageName()}"
+        }
       }
       post {
         success {
