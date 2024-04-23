@@ -36,7 +36,7 @@ pipeline {
         environment name: 'THIS_PIPELINE', value: 'test-pipeline'
       }
       steps {
-        echo "my project is ${MY_PROJECT}"
+        echo "my project is ${THIS_PIPELINE}"
       }
     }
   }
