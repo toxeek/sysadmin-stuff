@@ -48,12 +48,13 @@ pipeline {
         echo "this pipeline is ${THIS_TEST}"
       }
     }
+    /*
     stage('foo') {
       sh 'echo "FOO IS $FOO"'
       sh 'echo "FOO_USR is $FOO_USR"'
       sh 'echo "FOO_PSW IS $FOO_PSW"'
-    }
-  }
+    } */
+  } 
   post {
     always {
       deleteDir() /* clean up our workspace */
