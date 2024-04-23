@@ -48,12 +48,11 @@ pipeline {
         echo "this pipeline is ${THIS_TEST}"
       }
     }
-    /*
     stage('foo') {
-      sh 'echo "FOO IS $FOO"'
+      sh 'echo "FOO is $FOO"'
       sh 'echo "FOO_USR is $FOO_USR"'
-      sh 'echo "FOO_PSW IS $FOO_PSW"'
-    } */
+      sh 'echo "FOO_PSW is $FOO_PSW"'
+    } 
   } 
   post {
     always {
