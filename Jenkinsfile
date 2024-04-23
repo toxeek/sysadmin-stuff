@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
     THIS_PIPELINE = "test-pipeline"
+    THIS_TEST = "pipeline-test"
   }
   stages {
     stage("echo build number") {
@@ -37,6 +38,12 @@ pipeline {
       }
       steps {
         echo "my project is ${THIS_PIPELINE}"
+      }
+    }
+    stage ('another when expression') {
+      when { expression { env.THIS_TEST == "pipeline-test" }}
+      steps {
+        echo "this pipeline is ${THIS_TEST}"
       }
     }
   }
