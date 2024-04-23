@@ -42,16 +42,18 @@ pipeline {
         echo "my project is ${THIS_PIPELINE}"
       }
     }
-    stage ('another when expression') {
+    stage('another when expression') {
       when { expression { env.THIS_TEST == "pipeline-test" }}
       steps {
         echo "this pipeline is ${THIS_TEST}"
       }
     }
     stage('foo') {
-      sh 'echo "FOO is $FOO"'
-      sh 'echo "FOO_USR is $FOO_USR"'
-      sh 'echo "FOO_PSW is $FOO_PSW"'
+      steps { 
+        sh 'echo "FOO is $FOO"'
+        sh 'echo "FOO_USR is $FOO_USR"'
+        sh 'echo "FOO_PSW is $FOO_PSW"'
+      }
     } 
   } 
   post {
