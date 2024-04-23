@@ -3,6 +3,7 @@ pipeline {
   environment {
     THIS_PIPELINE = "test-pipeline"
     THIS_TEST = "pipeline-test"
+    FOO = credentials("cddb9cfb-06ed-417a-8631-11e126687840")
   }
   stages {
     stage("echo build number") {
@@ -23,7 +24,7 @@ pipeline {
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         timeout(time: 5, unit: "SECONDS") {
           retry(5) {
-            echo "hello"
+            echo "hello world"
           }
         }
       }
@@ -47,7 +48,11 @@ pipeline {
         echo "this pipeline is ${THIS_TEST}"
       }
     }
-  }
+    stage('foo') {
+      sh 'echo "FOO IS $FOO"'
+      sh 'echo "FOO_USR is $FOO_USR"'
+      sh 'echo "FOO_PSW IS $FOO_PSW"'
+    }
   post {
     always {
       deleteDir() /* clean up our workspace */
