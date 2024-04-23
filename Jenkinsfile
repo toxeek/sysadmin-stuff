@@ -19,7 +19,7 @@ pipeline {
         echo "echoing build number .."
         echo "${currentBuild.number}"
         sh "echo current build id ${currentBuild.id}"
-        sh "echo ${MY_PROJECT} to ${S3_BUCKET}"
+        sh "echo ${MY_PROJECT} to ${env.S3_BUCKET}"
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         timeout(time: 5, unit: "SECONDS") {
           retry(5) {
