@@ -27,7 +27,15 @@ pipeline {
           echo "Stage successfully finished"
         }
       }
-    }  
+    }
+    stage('when expression') { 
+      when {
+        expression { env.MY_PROJECT == 'sysadmin-stuff' }
+      }
+      steps {
+        echo "my project is ${MY_PROJECT}"
+      }
+    }
   }
   post {
     always {
