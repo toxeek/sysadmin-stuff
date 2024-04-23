@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    THIS_PIPELINE = "test-pipeline"
+  }
   stages {
     stage("echo build number") {
       when {
@@ -30,7 +33,7 @@ pipeline {
     }
     stage('when expression') { 
       when {
-        environment name: 'MY_PROJECT', value: 'sysadmin-stuff'
+        environment name: 'THIS_PIPELINE', value: 'test-pipeline'
       }
       steps {
         echo "my project is ${MY_PROJECT}"
