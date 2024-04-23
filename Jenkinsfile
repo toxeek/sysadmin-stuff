@@ -30,7 +30,7 @@ pipeline {
     }
     stage('when expression') { 
       when {
-        expression { env.MY_PROJECT == 'sysadmin-stuff' }
+        expression { env.MY_PROJECT != null }
       }
       steps {
         echo "my project is ${MY_PROJECT}"
