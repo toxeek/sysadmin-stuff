@@ -9,7 +9,7 @@ pipeline {
     stage("echo build number") {
       when {
         expression {
-          currentBuild.getNumber() % 2 == 1 && !(env.BRANCH_NAME =~ /feature/)
+          currentBuild.getNumber() % 2 == 1 && !(env.BRANCH_NAME =~ /femaster/)
         }
       }
       environment {
