@@ -22,6 +22,7 @@ pipeline {
         sh "echo current build id ${currentBuild.id}"
         sh "echo ${MY_PROJECT} to ${env.S3_BUCKET}"
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        echo "building on branch ${env.BRANCH_NAME}"
         timeout(time: 5, unit: "SECONDS") {
           retry(5) {
             echo "hello world"
