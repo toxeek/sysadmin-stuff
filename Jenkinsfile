@@ -9,7 +9,7 @@ pipeline {
     stage("echo build number") {
       when {
         expression {
-          currentBuild.getNumber() % 2 == 1 && !(env.BRANCH_NAME =~ /master/)
+          currentBuild.getNumber() % 2 == 1 && !(env.BRANCH_NAME =~ /feature/) // env.BRANCH_NAME only works in multi branch pipelines
         }
       }
       environment {
@@ -22,7 +22,8 @@ pipeline {
         sh "echo current build id ${currentBuild.id}"
         sh "echo ${MY_PROJECT} to ${env.S3_BUCKET}"
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-        echo "building on branch ${env.BRANCH_NAME}"
+        // env.BRANCH_NAME only works in multi branch pipelines, will be null
+        // echo "building on branch ${env.BRANCH_NAME}" 
         timeout(time: 5, unit: "SECONDS") {
           retry(5) {
             echo "hello world"
