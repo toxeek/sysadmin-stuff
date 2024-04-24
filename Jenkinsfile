@@ -9,7 +9,7 @@ pipeline {
     stage("echo build number") {
       when {
         expression {
-          currentBuild.getNumber() % 2 == 1
+          currentBuild.getNumber() % 2 == 1 && !(env.BRANCH_NAME =~ /feature/)
         }
       }
       environment {
@@ -36,7 +36,7 @@ pipeline {
     }
     stage('when expression') { 
       when {
-        environment name: 'THIS_PIPELINE', value: 'test-pipeline'
+        environment name: 'THIS_PIPELINE', value: 'test-pipeline' 
       }
       steps {
         echo "my project is ${THIS_PIPELINE}"
