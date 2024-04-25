@@ -9,7 +9,8 @@ pipeline {
     stage("echo build number") {
       when {
         expression {
-          currentBuild.getNumber() % 2 == 1 && !(env.BRANCH_NAME =~ /feature/) // env.BRANCH_NAME only works in multi branch pipelines
+          currentBuild.getNumber() % 2 == 1 && !(env.BRANCH_NAME =~ /feature/)
+          // env.BRANCH_NAME only works in multi branch pipelines, will be set to null here
         }
       }
       environment {
@@ -56,7 +57,13 @@ pipeline {
         sh 'echo "FOO_USR is $FOO_USR"'
         sh 'echo "FOO_PSW is $FOO_PSW"'
       }
-    } 
+    }
+    stage('when branch stage') {
+      when {
+        branch 'master'
+      }
+      echo 'we are at the master branch'
+    }
   } 
   post {
     always {
