@@ -58,9 +58,11 @@ pipeline {
         sh 'echo "FOO_PSW is $FOO_PSW"'
       }
     }
-    stage('when branch stage') {
+    stage('when not branch stage') {
       when {
-        branch 'master'
+        not {
+          branch 'master'
+        }
       }
       steps {
         echo 'we are at the master branch'
