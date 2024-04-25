@@ -68,6 +68,18 @@ pipeline {
         echo 'we are NOT at the master branch'
       }
     }
+    parallel {
+      stage('parallel one') {
+        steps {
+          echo "parallel one stage"
+        }
+      }
+      stage('parallel two') {
+        steps {
+          echo 'parallel two stage'
+        }
+      }
+    }
   } 
   post {
     always {
