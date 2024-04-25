@@ -65,7 +65,7 @@ pipeline {
         }
       }
       steps {
-        echo 'we are at the master branch'
+        echo 'we are NOT at the master branch'
       }
     }
   } 
