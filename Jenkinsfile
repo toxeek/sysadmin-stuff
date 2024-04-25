@@ -62,7 +62,9 @@ pipeline {
       when {
         branch 'master'
       }
-      echo 'we are at the master branch'
+      steps {
+        echo 'we are at the master branch'
+      }
     }
   } 
   post {
