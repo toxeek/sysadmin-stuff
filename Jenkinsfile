@@ -11,6 +11,7 @@ pipeline {
     booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
     choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+    string (name: 'build', description: 'Appcast build number for appcastdev.json (0 to delete)', defaultValue: '')
   }
   stages {
     stage("echo build number") {
@@ -104,6 +105,36 @@ pipeline {
       }
       steps {
         echo "branch name is ${env.BRANCH_NAME}"
+        // will echo "branch name is null"
+      }
+    }
+    stage('Appcast') {
+      steps {
+        script {
+          String version
+          int build
+
+          if (env.BRANCH_NAME ==~ /^(hotfix|release)\/.+/) {
+            version = env.BRANCH_NAME.replaceAll(/.+\/v(?=[0-9.]+)/,'')
+          } else if (env.BRANCH_NAME == null) {
+            version = '99.99.99'
+          } else {
+            error("bad version")
+          }
+
+          try {
+            build = "${params.build}".toInteger()
+          } catch (err) {
+            error("bad build")
+          }
+
+          if (build > 0) {
+            sh """
+            echo "running sh within script block"
+            echo "${params.build} is the params.build"
+            """
+          }
+        }
       }
     }
   } 
