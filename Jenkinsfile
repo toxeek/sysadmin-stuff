@@ -119,8 +119,8 @@ pipeline {
           } else if (env.BRANCH_NAME == null) {
             version = '99.99.99'
           } else {
-            // error("bad version")
-            version = '99'
+            error("bad version")
+            // version = '99'
           }
           echo "branch name is ${env.BRANCH_NAME}"
           try {
