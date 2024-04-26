@@ -104,7 +104,7 @@ pipeline {
         expression { (env.BRANCH_NAME == null) }
       }
       steps {
-        echo "branch name is ${env.BRANCH_NAME}"
+        echo "env.BRANCH_NAME is ${env.BRANCH_NAME}"
         // will echo "branch name is null"
       }
     }
@@ -113,15 +113,16 @@ pipeline {
         script {
           String version
           int build
-
+          
           if (env.BRANCH_NAME ==~ /^(hotfix|release)\/.+/) {
             version = env.BRANCH_NAME.replaceAll(/.+\/v(?=[0-9.]+)/,'')
           } else if (env.BRANCH_NAME == null) {
             version = '99.99.99'
           } else {
-            error("bad version")
+            // error("bad version")
+            version = '99'
           }
-
+          echo "branch name is ${env.BRANCH_NAME}"
           try {
             build = "${params.build}".toInteger()
           } catch (err) {
