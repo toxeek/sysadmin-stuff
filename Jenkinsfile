@@ -86,7 +86,7 @@ pipeline {
   post {
     always {
       deleteDir() /* clean up our workspace */
-      archiveArtifacts artifacts: '**/*.log, **/*.layout'
+      // archiveArtifacts artifacts: '**/*.log, **/*.layout'
     }
         // if build was successful
     success {
