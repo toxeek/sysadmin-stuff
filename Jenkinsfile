@@ -149,6 +149,7 @@ pipeline {
             echo "build param is not greater than 0"
             echo "ending stage"
             """
+            currentBuild.result  = 'UNSTABLE'
           }
         }
       }
