@@ -132,7 +132,7 @@ pipeline {
           }
           echo "params.build is ${params.build}"
           try {
-            build = "${params.build}".toInteger()
+            build = params.build.toInteger()
           } catch (err) {
             error("bad build")
             // this will make the pipeline error
