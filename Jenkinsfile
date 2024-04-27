@@ -11,7 +11,7 @@ pipeline {
     booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
     choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
-    string (name: 'build', description: 'Appcast build number for appcastdev.json (0 to delete)', defaultValue: '')
+    string(name: 'build', description: 'Appcast build number', defaultValue: '')
   }
   stages {
     stage("echo build number") {
@@ -90,7 +90,7 @@ pipeline {
         }
       }
     }
-    stage('Example') {
+    stage('Params Example') {
       steps {
         echo "Hello ${params.PERSON}"
         echo "Biography: ${params.BIOGRAPHY}"
@@ -108,7 +108,15 @@ pipeline {
         // will echo "branch name is null"
       }
     }
-    stage('Appcast') {
+    stage('params.build to Integer expression') {
+      when {
+        expression { ${params.build}.toInteger() > 0 }
+      }
+      steps {
+        echo "params.build is greater than 0, toxeek acme."
+      }
+    }
+    stage('sh within script block') {
       steps {
         script {
           String version
@@ -116,23 +124,30 @@ pipeline {
           
           if (env.BRANCH_NAME ==~ /^(hotfix|release)\/.+/) {
             version = env.BRANCH_NAME.replaceAll(/.+\/v(?=[0-9.]+)/,'')
-          } else if (env.BRANCH_NAME == null) {
+          } else if (env.BRANCH_NAME == null) { // else if (env.BRANCH_NAME == 'develop') {
             version = '99.99.99'
           } else {
             error("bad version")
-            // version = '99'
+            // this will make the pipeline error
           }
-          echo "branch name is ${env.BRANCH_NAME}"
+          echo "params.build is ${params.build}"
           try {
             build = "${params.build}".toInteger()
           } catch (err) {
             error("bad build")
+            // this will make the pipeline error
           }
 
           if (build > 0) {
             sh """
             echo "running sh within script block"
             echo "${params.build} is the params.build"
+            """
+          }
+          else {
+            sh """
+            echo "build param is not greater than 0"
+            echo "ending stage"
             """
           }
         }
