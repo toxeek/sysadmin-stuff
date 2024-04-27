@@ -110,7 +110,7 @@ pipeline {
     }
     stage('params.build to Integer expression') {
       when {
-        expression { ${params.build}.toInteger() > 0 }
+        expression { ("${params.build}".toInteger() > 0) }
       }
       steps {
         echo "params.build is greater than 0, toxeek acme."
