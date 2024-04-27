@@ -97,6 +97,7 @@ pipeline {
         echo "Toggle: ${params.TOGGLE}"
         echo "Choice: ${params.CHOICE}"
         echo "Password: ${params.PASSWORD}"
+        echo "build: ${params.build}"
       }
     }
     stage('branch name') {
@@ -126,6 +127,7 @@ pipeline {
             version = env.BRANCH_NAME.replaceAll(/.+\/v(?=[0-9.]+)/,'')
           } else if (env.BRANCH_NAME == null) { // else if (env.BRANCH_NAME == 'develop') {
             version = '99.99.99'
+            echo "version is ${version}"
           } else {
             error("bad version")
             // this will make the pipeline error
