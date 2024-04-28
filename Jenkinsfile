@@ -3,7 +3,6 @@ pipeline {
   tools {
     maven 'MAVEN'
   }
-
   environment {
     THIS_PIPELINE = "test-pipeline"
     THIS_TEST = "pipeline-test"
@@ -129,7 +128,8 @@ pipeline {
         script {
           String version
           int build
-          
+          def output = sh(returnStdout: true, script: 'pwd')
+          echo "Output: ${output}"
           if (env.BRANCH_NAME ==~ /^(hotfix|release)\/.+/) {
             version = env.BRANCH_NAME.replaceAll(/.+\/v(?=[0-9.]+)/,'')
           } else if (env.BRANCH_NAME == null) { // else if (env.BRANCH_NAME == 'develop') {
