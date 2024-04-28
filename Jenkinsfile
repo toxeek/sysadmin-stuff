@@ -106,7 +106,7 @@ pipeline {
       }
       steps {
         echo "env.BRANCH_NAME is ${env.BRANCH_NAME}"
-        // will echo "branch name is null"
+        // will echo "env.BRANCH_NAME is null" as this is not a multibranch pipeline
       }
     }
     stage('params.build to Integer expression') {
@@ -169,6 +169,9 @@ pipeline {
         // if build failed
     failure {
       echo "BIG FAIL!"
+    }
+    unstable {
+      echo "things got messed up"
     }
   }
 }
