@@ -4,6 +4,7 @@ pipeline {
     THIS_PIPELINE = "test-pipeline"
     THIS_TEST = "pipeline-test"
     FOO = credentials("cddb9cfb-06ed-417a-8631-11e126687840")
+    JOB_TIME = sh(returnStdout: true, script: "date '+%A %W %Y %X'").trim()
   }
   parameters {
     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
@@ -26,6 +27,7 @@ pipeline {
         S3_BUCKET = "toxeek-bucket"
       }
       steps {
+        echo "job time: ${env.JOB_TIME}"
         echo "echoing build number .."
         echo "${currentBuild.number}"
         sh "echo current build id ${currentBuild.id}"
