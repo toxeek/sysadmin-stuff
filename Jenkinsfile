@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  tools {
+    maven 'MAVEN'
+  }
+
   environment {
     THIS_PIPELINE = "test-pipeline"
     THIS_TEST = "pipeline-test"
@@ -28,7 +32,8 @@ pipeline {
       }
       steps {
         echo "job time: ${env.JOB_TIME}"
-        echo "echoing build number .."
+        sh 'mvn -version'
+        echo "echoing current build number .."
         echo "${currentBuild.number}"
         sh "echo current build id ${currentBuild.id}"
         sh "echo ${MY_PROJECT} to ${env.S3_BUCKET}"
