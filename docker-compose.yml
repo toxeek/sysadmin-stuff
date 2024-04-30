@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  php:
+    image: "nginx:alpine"
+    container_name: "nginx"
+    ports:
+      - 8081:80
+    volumes:
+      - data:/usr/share/nginx
+    networks:
+      - connect
+    restart: always
+
+  mysql:
+    image: mysql
+    container_name: "mysql"
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - connect
+    environment:
+      - MYSQL_ROOT_PASSWORD="rootPassword"
+    restart: always
+    
+volumes:
+  data: {}
+  db: {}
+networks:
+  connect: {}
