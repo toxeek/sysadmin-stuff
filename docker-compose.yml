@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  php:
+  nginx:
     image: "nginx:alpine"
     container_name: "nginx"
     ports:
