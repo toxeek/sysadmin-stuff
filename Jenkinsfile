@@ -145,7 +145,7 @@ pipeline {
         }
       }
       steps {
-        sh 'echo "env.CHANGE_ID is not null, a PR was raised'
+        sh 'echo "env.CHANGE_ID is not null, a PR was raised"'
         //sh './build/run make vendor.check'
         //sh './build/run make -j\$(nproc) build.all'
       }
