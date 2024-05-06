@@ -117,6 +117,17 @@ pipeline {
       steps {
         echo "env.BRANCH_NAME is ${env.BRANCH_NAME}"
         // will echo "env.BRANCH_NAME is null" as this is not a multibranch pipeline
+		    script {
+		      env.START_DATE = sh (
+			      script: 'date +%Y-%m-%d',
+			      returnStdout: true
+		      ).trim()
+
+		      env.START_DAY = sh (
+			      script: 'date +%A',
+			      returnStdout: true
+		      ).trim()
+        }
       }
     }
     stage('params.build to Integer expression') {
@@ -125,6 +136,7 @@ pipeline {
       }
       steps {
         echo "params.build is greater than 0, toxeek acme."
+        echo "env.START_DAY is ${env.START_DAY}"
           script {
             if (env.CHANGE_ID != null) {
               // env.CHANGE_ID won't be null for PRs
