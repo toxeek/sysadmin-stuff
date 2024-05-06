@@ -8,6 +8,9 @@ pipeline {
     THIS_TEST = "pipeline-test"
     FOO = credentials("cddb9cfb-06ed-417a-8631-11e126687840")
     JOB_TIME = sh(returnStdout: true, script: "date '+%A %W %Y %X'").trim()
+    REPOSITORY_OWNER = "toxeek"
+    REPOSITORY_NAME = "sysadmin-stuff"
+    
   }
   parameters {
     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
@@ -73,6 +76,7 @@ pipeline {
       }
     }
     stage('when not branch stage') {
+      
       when {
         not {
           branch 'master'
@@ -121,7 +125,35 @@ pipeline {
       }
       steps {
         echo "params.build is greater than 0, toxeek acme."
+          script {
+            if (env.CHANGE_ID != null) {
+              // env.CHANGE_ID won't be null for PRs
+              def json = sh (script: "curl -s https://api.github.com/repos/${REPOSITORY_OWNER}/${REPOSITORY_NAME}/pulls/${env.CHANGE_ID}", returnStdout: true).trim()
+              def body = evaluateJson(json,'${json.body}')
+              if (body.contains("[skip ci]")) {
+                echo ("'[skip ci]' spotted in PR body text.")
+                env.shouldBuild = "false"
+              }
+            }
+         }
       }
+    }
+    stage('Build'){
+      when {
+        expression {
+          return env.shouldBuild != "false"
+        }
+      }
+      steps {
+        sh 'echo "env.CHANGE_ID is not null, a PR was raised'
+        //sh './build/run make vendor.check'
+        //sh './build/run make -j\$(nproc) build.all'
+      }
+      // post {
+      //  always {
+      //   archiveArtifacts "_output/lint/**/*"
+      //  }
+      // }
     }
     stage('sh within script block') {
       steps {
