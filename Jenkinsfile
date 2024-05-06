@@ -130,6 +130,7 @@ pipeline {
               // env.CHANGE_ID won't be null for PRs
               def json = sh (script: "curl -s https://api.github.com/repos/${REPOSITORY_OWNER}/${REPOSITORY_NAME}/pulls/${env.CHANGE_ID}", returnStdout: true).trim()
               def body = evaluateJson(json,'${json.body}')
+              echo "getting PR json"
               if (body.contains("[skip ci]")) {
                 echo ("'[skip ci]' spotted in PR body text.")
                 env.shouldBuild = "false"
@@ -145,7 +146,7 @@ pipeline {
         }
       }
       steps {
-        sh 'echo "env.CHANGE_ID is not null, a PR was raised"'
+        sh 'echo "env.CHANGE_ID is not null, is ${env.CHANGE_ID}, a PR was raised"'
         //sh './build/run make vendor.check'
         //sh './build/run make -j\$(nproc) build.all'
       }
