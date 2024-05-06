@@ -143,11 +143,11 @@ pipeline {
       when {
         expression {
           return env.shouldBuild != "false"
+          // env.shouldBuild is null, and not defined can not be printed
         }
       }
       steps {
-        sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, we do not skip ci"
-        sh "env.shouldBuild is ${env.shouldBuild}"
+        sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, and we do not skip ci"
         sh 'echo "FOO login is $FOO_USR"'
         //sh './build/run make vendor.check'
         //sh './build/run make -j\$(nproc) build.all'
