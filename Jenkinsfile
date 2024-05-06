@@ -146,7 +146,7 @@ pipeline {
         }
       }
       steps {
-        sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, we dont skip ci"
+        sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, we do not skip ci"
         //sh './build/run make vendor.check'
         //sh './build/run make -j\$(nproc) build.all'
       }
