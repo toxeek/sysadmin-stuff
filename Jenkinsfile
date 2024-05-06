@@ -146,7 +146,7 @@ pipeline {
         }
       }
       steps {
-        sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, we don't skip ci"
+        sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, we dont skip ci"
         //sh './build/run make vendor.check'
         //sh './build/run make -j\$(nproc) build.all'
       }
@@ -214,4 +214,11 @@ pipeline {
       echo "things got messed up"
     }
   }
+}
+@NonCPS
+def evaluateJson(String json, String gpath){
+    // parse json
+    def ojson = new groovy.json.JsonSlurper().parseText(json)
+    // evaluate gpath as a gstring template where $json is a parsed json parameter
+    return new groovy.text.GStringTemplateEngine().createTemplate(gpath).make(json:ojson).toString()
 }
