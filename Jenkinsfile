@@ -138,7 +138,7 @@ pipeline {
         echo "params.build is greater than 0, toxeek acme."
         echo "env.START_DAY is ${env.START_DAY}"
           script {
-            if (env.CHANGE_ID != null) {
+            if (env.CHANGE_ID == null) {
               // env.CHANGE_ID won't be null for PRs
               def json = sh (script: "curl -s https://api.github.com/repos/${REPOSITORY_OWNER}/${REPOSITORY_NAME}/pulls/${env.CHANGE_ID}", returnStdout: true).trim()
               def body = evaluateJson(json,'${json.body}')
