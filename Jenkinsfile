@@ -76,7 +76,6 @@ pipeline {
       }
     }
     stage('when not branch stage') {
-      
       when {
         not {
           branch 'master'
@@ -116,6 +115,7 @@ pipeline {
       }
       steps {
         echo "env.BRANCH_NAME is ${env.BRANCH_NAME}"
+        echo "env.WORKSPACE is ${env.WORKSPACE}"
         // will echo "env.BRANCH_NAME is null" as this is not a multibranch pipeline
 		    script {
 		      env.START_DATE = sh (
@@ -140,6 +140,14 @@ pipeline {
           script {
             if (env.CHANGE_ID != null) {
               // env.CHANGE_ID won't be null for PRs
+
+              def installFiles = ['stripes-install.json',
+                                  'okapi-install.json',
+                                  'install.json',
+                                  'yarn.lock']
+              for (int i = 0; i < installFiles.size(); i++) {
+                sh "git add ${env.WORKSPACE}/${installFiles[i]}"
+              }
               def json = sh (script: "curl -s https://api.github.com/repos/${REPOSITORY_OWNER}/${REPOSITORY_NAME}/pulls/${env.CHANGE_ID}", returnStdout: true).trim()
               def body = evaluateJson(json,'${json.body}')
               echo "getting PR json"
