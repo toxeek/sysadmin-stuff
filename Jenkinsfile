@@ -20,6 +20,13 @@ pipeline {
     password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     string(name: 'build', description: 'Appcast build number', defaultValue: '')
   }
+  options {
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '20'))
+    timestamps()
+    //retry(3)
+    timeout time:10, unit:'MINUTES'
+  }
+  
   stages {
     stage("echo build number") {
       when {
