@@ -162,6 +162,11 @@ pipeline {
                 echo ("'[skip ci]' spotted in PR body text.")
                 env.shouldBuild = "false"
               }
+
+              def jenkins = sh(returnStdout: true, script: "pwd").trim()
+              if (jenkins.contains("jenkins")) {
+                echo "jenkins found in path"
+              }
             }
          }
       }
