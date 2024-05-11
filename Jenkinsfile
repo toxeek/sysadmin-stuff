@@ -164,6 +164,7 @@ pipeline {
               }
 
               def jenkins = sh(returnStdout: true, script: "pwd").trim()
+              echo "jenkins path is: ${jenkins}"
               if (jenkins.contains("jenkins")) {
                 echo "jenkins found in path"
               }
