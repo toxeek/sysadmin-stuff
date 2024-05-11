@@ -26,7 +26,7 @@ pipeline {
     //retry(3)
     timeout time:10, unit:'MINUTES'
   }
-  
+
   stages {
     stage("echo build number") {
       when {
@@ -162,6 +162,11 @@ pipeline {
                 echo ("'[skip ci]' spotted in PR body text.")
                 env.shouldBuild = "false"
               }
+
+              def jenkins = sh(returnStdout: true, script: "pwd").trim()
+              if (jenkins.contains("jenkins")) {
+                echo "jenkins found in path"
+              }
             }
          }
       }
@@ -184,6 +189,16 @@ pipeline {
       //   archiveArtifacts "_output/lint/**/*"
       //  }
       // }
+    }
+    stage("Publish coverage to Codecov") {
+      when {
+        epression { env.BRANCH_NAME != null }
+      }
+      steps {
+        script {
+          sh 'curl -s https://codecov.io/bash | bash -s -- -c -f _output/tests/**/coverage.txt -F unittests'
+        }
+      }
     }
     stage('sh within script block') {
       steps {
