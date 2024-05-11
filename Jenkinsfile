@@ -192,7 +192,7 @@ pipeline {
     }
     stage("Publish coverage to Codecov") {
       when {
-        epression { env.BRANCH_NAME != null }
+        expression { env.BRANCH_NAME != null }
       }
       steps {
         script {
