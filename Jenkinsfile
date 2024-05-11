@@ -261,10 +261,10 @@ pipeline {
     }
   }
 }
-@NonCPS
-def evaluateJson(String json, String gpath){
+//@NonCPS
+//def evaluateJson(String json, String gpath){
     // parse json
-    def ojson = new groovy.json.JsonSlurper().parseText(json)
+//    def ojson = new groovy.json.JsonSlurper().parseText(json)
     // evaluate gpath as a gstring template where $json is a parsed json parameter
-    return new groovy.text.GStringTemplateEngine().createTemplate(gpath).make(json:ojson).toString()
-}
+ //   return new groovy.text.GStringTemplateEngine().createTemplate(gpath).make(json:ojson).toString()
+//}
