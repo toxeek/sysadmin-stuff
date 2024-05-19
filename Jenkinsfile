@@ -60,7 +60,7 @@ pipeline {
         }
         script {
           if (isReleaseBranch()) {
-            echo "branch is master"
+            echo "isReleaseBranch branch is ${releaseBranch}"
           }
         }
       }
