@@ -1,3 +1,6 @@
+releaseBranch = "master"
+
+
 pipeline {
   agent any
   tools {
@@ -23,6 +26,7 @@ pipeline {
   options {
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '20'))
     timestamps()
+    disableConcurrentBuilds()
     //retry(3)
     timeout time:10, unit:'MINUTES'
   }
@@ -52,6 +56,11 @@ pipeline {
         timeout(time: 5, unit: "SECONDS") {
           retry(5) {
             echo "hello world"
+          }
+        }
+        script {
+          if (isReleaseBranch()) {
+            echo "branch is master"
           }
         }
       }
@@ -261,10 +270,14 @@ pipeline {
     }
   }
 }
-//@NonCPS
-//def evaluateJson(String json, String gpath){
+@NonCPS
+def evaluateJson(String json, String gpath){
     // parse json
-//    def ojson = new groovy.json.JsonSlurper().parseText(json)
+    def ojson = new groovy.json.JsonSlurper().parseText(json)
     // evaluate gpath as a gstring template where $json is a parsed json parameter
- //   return new groovy.text.GStringTemplateEngine().createTemplate(gpath).make(json:ojson).toString()
-//}
+    return new groovy.text.GStringTemplateEngine().createTemplate(gpath).make(json:ojson).toString()
+}
+
+def isReleaseBranch() {
+    return (env.BRANCH_NAME == releaseBranch)
+}
