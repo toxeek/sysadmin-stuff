@@ -1,4 +1,4 @@
-releaseBranch = "master"
+releaseBranch = null
 
 
 pipeline {
