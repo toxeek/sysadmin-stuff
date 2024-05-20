@@ -70,6 +70,15 @@ pipeline {
         }
       }
     }
+    stage('Build and Push Release') {
+      when {
+        branch 'master'
+      }
+      steps {
+                // auto upgrade demo env
+        echo 'auto upgrades not yet implemented'
+      }
+    }
     stage('when expression') { 
       when {
         environment name: 'THIS_PIPELINE', value: 'test-pipeline' 
