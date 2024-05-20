@@ -260,6 +260,28 @@ pipeline {
         }
       }
     }
+    stage('Ubuntu jammy packaging') {
+      when {
+        beforeAgent true
+        expression { return fileExists('src/packages/docker/deb-jammy/Dockerfile') }
+        anyOf {
+          changeset "src/**"
+          changeset "Jenkinsfile"
+        }
+      }
+      agent {
+        dockerfile {
+          dir 'src/packages/docker/deb-jammy'
+          args '-v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -e HOME=/tmp'
+          reuseNode true
+        }
+      }
+      steps {
+        script {
+          sh './src/packages/build-deb.sh jammy'
+        }
+      }
+    }
   } 
   post {
     always {
