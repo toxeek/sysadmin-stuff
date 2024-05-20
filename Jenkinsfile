@@ -259,7 +259,7 @@ pipeline {
           }
         }
       }
-    }
+    } /*
     stage('Ubuntu jammy packaging') {
       when {
         beforeAgent true
@@ -281,7 +281,7 @@ pipeline {
           sh './src/packages/build-deb.sh jammy'
         }
       }
-    }
+    } */
   } 
   post {
     always {
