@@ -201,8 +201,6 @@ pipeline {
       steps {
         sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, and we do not skip ci"
         sh 'echo "FOO login is $FOO_USR"'
-        //sh './build/run make vendor.check'
-        //sh './build/run make -j\$(nproc) build.all'
       }
       // post {
       //  always {
@@ -259,7 +257,24 @@ pipeline {
           }
         }
       }
-    } /*
+    }
+    stage('publish') {
+			when {
+			  anyOf {
+					branch 'develop'
+					branch 'master'
+				}
+			}
+      steps {
+        withDockerRegistry([
+          credentialsId: "oa-sa-jenkins-registry",
+          url: "https://registry.openanalytics.eu"]) {
+            sh "docker push registry.openanalytics.eu/${env.NS}/rdepot-${MODULE}:${env.VERSION}"
+            sh "docker push registry.openanalytics.eu/${env.NS}/rdepot-${MODULE}:latest"
+        }
+      }
+    }
+     /*
     stage('Ubuntu jammy packaging') {
       when {
         beforeAgent true
