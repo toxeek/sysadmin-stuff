@@ -60,7 +60,7 @@ pipeline {
           }
         }
         script {
-          if (isReleaseBranch()) {
+          if (!isReleaseBranch()) {
             echo "isReleaseBranch branch is ${releaseBranch}"
           }
           def setupResult = build job: 'Build_CVP_Testbed', parameters: [
