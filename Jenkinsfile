@@ -62,6 +62,7 @@ pipeline {
         script {
           if (isReleaseBranch()) {
             echo "isReleaseBranch branch is ${releaseBranch}"
+          }
         }
       }
       post {
