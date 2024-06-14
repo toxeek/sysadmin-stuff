@@ -60,24 +60,8 @@ pipeline {
           }
         }
         script {
-          if (!isReleaseBranch()) {
+          if (isReleaseBranch()) {
             echo "isReleaseBranch branch is ${releaseBranch}"
-          }
-          def setupResult = build job: 'Build_CVP_Testbed', parameters: [
-                        string(name: 'FQDN_NAME', value: 'cvpracrb-cvp.rtp.aristanetworks.com'),
-                        string(name: 'VSPHERE_FOLDER', value: 'cvprac-ruby'),
-                        string(name: 'CVP_VERSION', value: '2017.1.0.1'),
-                        string(name: 'CVP_ADDRESSES', value: "10.81.111.62"),
-                        string(name: 'VEOS_VERSION', value: '4.16.6M-ztp'),
-                        string(name: 'TOPOLOGY', value: 'flat'),
-                        booleanParam(name: 'BUILD_TESTS', value: false),
-                        booleanParam(name: 'TEARDOWN', value: false)
-          ]
-          def systest_build_number = setupResult.getNumber()
-          // Navigate to jenkins > Manage jenkins > In-process Script Approval
-          // staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods putAt java.lang.Object java.lang.String java.lang.Object
-          env['setup_build_number'] = setupResult.getNumber()
-          echo "systest_build_number is ${systest_build_number}"
         }
       }
       post {
