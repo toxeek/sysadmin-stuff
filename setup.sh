@@ -49,7 +49,7 @@ echo
 # export ansible_roles="(toxeek.docker)"
 #####################
 BASH=$(which bash)
-APT="$(which apt-get)"
+APT="$(which apt)"
 SNAP="$(which snap)"
 AWK="$(which awk)"
 CURL="$(which curl)"
