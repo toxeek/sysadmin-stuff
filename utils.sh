@@ -7,18 +7,8 @@ install_utils() {
         fi 
         util="$(echo $UTIL | $AWK -F"=" '{print $1}')"
         val="$(echo $UTIL | $AWK -F"=" '{print $2}')"
-        if [[ "$util" == "terraform-version" ]] ; then
-            export tf_version=$(echo $val | sed -e 's/"//g')
-            result=$(awk -vn1="$val" -vn2="$tf_version" 'BEGIN{print (n1==n2)?1:0 }')
-            [ "$result" == 1 ] && export ft_ver="true"
-            echo "[+] Terraform version chosen: $tf_version"
-            echo "[+} debugging tf_version: $val"
-            val="$result"
-        fi
-        if [[ "$val" -eq "1" ]] || [ -n "$tf_ver" ] ; then 
-            if [ "$util" != "terraform-version" ] ; then
+        if [[ "$val" -eq "1" ]]; then
                 sleep 1 && echo "[~] adding $util to sys utils array .." && utils_array+=($util)
-            fi
         fi
     done < $cfg_file
 
