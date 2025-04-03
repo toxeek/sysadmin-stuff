@@ -16,11 +16,6 @@ You ought to use sudo atm to do the installation.
 To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**. If you decided to turn on gvm installation, under pentesting/gvm, then *it will take like 1/2 to update and install the services and plugins, and it is heavyweight as uses Redis, Postgres, etc.* 
 Kali Liunx does not include by default OpenVAS/gvm, so it is a nice to have. The point is to have the code do, in the pentesting section, things that Kali Linux does not do out of the box.
 
-When opting to install OpenVS/GVM as explained in the README, you will br prompted ny dpkg. At the end, if you want to open the gvm admin web panel (with firefox?) is at https://127.0.0.1:9392, but you should access it after like 10 mins after the script ends as the necessary services take a while to start. Btw, when accessing the gvm web admin panel, you will need to accept the self signed cert (https://127.0.0.1:9392) . The user to log into the web admin panel is admin, and pass admin by default :).
-When prompted by dpkg when installing gvm, say OK to Redis and Postgress, and wen prompted, input a password for Postgres. then let the installation go on (select localhost for the redis db prompt). Remember to add 2 vpc cores to your VM (if in a VM) and if you can, 3Gi of RAM (2Gi should be ok, I tweak the systemd Unit file timeouts to let it longer..). The more tools we install, the more libraries etc. are installed as well.
-
-I am toggling on gvm installation, bu feel free to toggle it off (=0) in the cfg file and give this Bta installation ..
-
 It is also crucial that you have git installed, and cofigured with your email and user already; do it when I prompt you (more likely as you may wish to run this script in a freshly installed Ubuntu).
 
 The cfg file where you toggle tools on/off for sysadmin stuff, is sysadmin.cfg file. So make sure you toggle the 
@@ -38,12 +33,11 @@ $ terraform -version
 ```
 
 ## Dependencies
-You will need git installed and ready to clone the repository, and a GNU/Linux system Ubuntu 20.04 at least per using snap for certain packages such as docker and VSCode.
+You will need git installed and ready to clone the repository, and a GNU/Linux system Ubuntu 16.04 at least per using snap for certain packages such as docker and VSCode.
 
 
 ## Usage
 When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the sys/devops utils that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation of certain util, in the cfg file make the value  set to =0 instead. In the case of Terraform, single quote the version you want installed, make sure you toggle tfevn=1 tho .. as we use tfenv to install and manage terraform version/s we want installed.
-**The tools will be installed as root, so most are available atm only as root** (tbc).
 
 There are other .cfg files, to install non sys/devops related tools, but it's all explained bellow.
 
@@ -84,7 +78,6 @@ nse.cfg  utils.sh
 5. ***hydra***
 6. ***wpscan***
 ___
-## **ENABLING GVM (which does OpenVas,etc.) will install a lot of services/utils, postgresql, redis, etc.. You will need some good RAM and resoures available to run it [ in Beta/Stable state ]**
 
 #### [~] you can enable these nse nmap scripts: ***(see nse.cfg)***
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "nse scripts")
