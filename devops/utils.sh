@@ -19,17 +19,14 @@ install_devps_utils() {
         if [[ "$util" == "terraform-version" ]] ; then
             export tf_version=$(echo $val | sed -e 's/"//g')
             result=$(awk -vn1="$val" -vn2="$tf_version" 'BEGIN{print (n1==n2)?1:0 }')
-            [ "$result" == 1 ] && export ft_ver="true"
             echo "[+] Terraform version chosen: $tf_version"
             echo "[+] debugging tf_version: $val"
             val="$result"
         fi
-        if [[ "$val" -eq "1" ]] || [ -n "$tf_ver" ] ; then 
-            if [[ "$util" != "terraform-version" ]] || [[ "$util" != "tfenv" ]]; then
-                if [[ "$util" != "terraform-version" ]]; then
-	            sleep 1 && echo "[~] adding $util to devops utils array .." && devops_utils_array+=($util)
+        if [[ "$val" -eq "1" ]] ; then 
+            if [[ "$util" != "terraform-version" ]]; then
+	        sleep 1 && echo "[~] adding $util to devops utils array .." && devops_utils_array+=($util)
 
-        	fi
 	    fi
         fi
     done < $devops_cfg_file
