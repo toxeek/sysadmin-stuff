@@ -26,8 +26,11 @@ install_devps_utils() {
         fi
         if [[ "$val" -eq "1" ]] || [ -n "$tf_ver" ] ; then 
             if [[ "$util" != "terraform-version" ]] || [[ "$util" != "tfenv" ]]; then
-                sleep 1 && echo "[~] adding $util to devops utils array .." && devops_utils_array+=($util)
-            fi
+                if [[ "$util" != "terraform-version" ]]; then
+	            sleep 1 && echo "[~] adding $util to devops utils array .." && devops_utils_array+=($util)
+
+        	fi
+	    fi
         fi
     done < $devops_cfg_file
 

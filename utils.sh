@@ -23,6 +23,7 @@ install_utils() {
     done < $cfg_file
 
     # echo "[+] debugging array: $(echo ${utils_array[*]})"
+    # exit 0
 }
 ################
 install_vritualenvwrapper() {
