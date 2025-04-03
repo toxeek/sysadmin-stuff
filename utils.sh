@@ -84,7 +84,7 @@ install_htop() {
         echo "[+] htop already installed, passing." && return 1
     else
         echo
-        ${APT} install -y install htop
+        ${APT} install -y htop
     fi
 
     return 0
