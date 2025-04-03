@@ -76,13 +76,15 @@ install_docker-compose() {
     return 0
 }
 #################
-install_microk8s() {
+install_kind() {
     echo
-    echo "[+] installing microk8s via snap .."
-    if [[ ! $(which microk8s) ]] ; then
-        ${SNAP} install microk8s --classic
+    echo "[+] installing kind .."
+    if [[ ! $(which kind) ]] ; then
+        [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.27.0/kind-linux-amd64
+	chmod +x ./kind
+	mv ./kind /usr/local/bin/kind
     else
-        echo "[+] microk8s already installed."
+        echo "[+] kind already installed."
         echo
     fi
 
@@ -194,8 +196,8 @@ install_devops_utils() {
             install_nodejs
         elif [[ "$util" == *localstack* ]] ; then
             install_localstack
-        elif [[ "$util" == *microk8s* ]] ; then
-            install_microk8s
+        elif [[ "$util" == *kind* ]] ; then
+            install_kind
         elif [[ "$util" == *docker* ]] ; then
             install_docker
         elif [[ "$util" == *docker-compose* ]] ; then
