@@ -5,12 +5,6 @@
 
 iSysadm - UNDER CONSTRUCTION !
 
-### DISCLAIMER:
-#### After adding the pentest section, including nse nmap scripts, I DO NOT HOLD MYSELF RESPONSIBLE of what you do if you install the tools, or how you use them.
-```bash
-## END OF DISCLAIMER
-```
-
 ### FOR UBUNTU 20.04 LTS or later: *or make sure you have snap installed at least*
 
 #### Now Devops oriented tools bootstrapping
