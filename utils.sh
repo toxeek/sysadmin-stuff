@@ -96,7 +96,7 @@ install_ngrep() {
         echo "[+] ngrep already installed, passing." && return 1
     else
         echo
-        ${APT} install -y install ngrep
+        ${APT} install -y ngrep
     fi
 
     return 0
