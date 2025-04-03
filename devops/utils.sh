@@ -45,17 +45,6 @@ install_awscli() {
     return 0
 }
 ################
-install_nodejs() {
-    echo "[+] installing nodejs and npm .."
-    echo
-    ${APT} -y install nodejs
-    if [[ ! $(which npm) ]] ; then
-        ${APT} -y install npm
-    fi
-
-    return 0 
-}
-################
 install_docker() {
     echo
     echo "[+] installing docker .."
@@ -192,8 +181,6 @@ install_devops_utils() {
             install_awscli
         elif [[ "$util" == *tfenv* ]] ; then
             install_tfenv
-        elif [[ "$util" == *nodejs* ]] ; then
-            install_nodejs
         elif [[ "$util" == *localstack* ]] ; then
             install_localstack
         elif [[ "$util" == *kind* ]] ; then
