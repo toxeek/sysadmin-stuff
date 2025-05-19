@@ -13,9 +13,7 @@ It has its own devops/ directory, and works as the pentest one (see underneath).
 
 ## Installation
 You ought to use sudo atm to do the installation.
-To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**. If you decided to turn on gvm installation, under pentesting/gvm, then *it will take like 1/2 to update and install the services and plugins, and it is heavyweight as uses Redis, Postgres, etc.* 
-Kali Liunx does not include by default OpenVAS/gvm, so it is a nice to have. The point is to have the code do, in the pentesting section, things that Kali Linux does not do out of the box.
-
+To install first clone the project as non root. **you would be prompted few times, one for git and one for Mariadb (if toggled on)**.
 It is also crucial that you have git installed, and cofigured with your email and user already; do it when I prompt you (more likely as you may wish to run this script in a freshly installed Ubuntu).
 
 The cfg file where you toggle tools on/off for sysadmin stuff, is sysadmin.cfg file. So make sure you toggle the 
