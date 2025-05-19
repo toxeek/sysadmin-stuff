@@ -127,8 +127,6 @@ http-headers=1
 http-enum=1
 ```
 ___
-#### **I do a nmap scan of an IP one of nse script, and dependencies installed, to serve as a PoC [do not expect me to show you how to exploit stuff]**
-___
 #### ***if you choose to install mariadb 10.5 (in sysadmin.cfg utils file) I do a mysql_secure_installation so you will be prompted for decisions. If you already installed mariadb, with my scripts, we detect it and skip re-running mysql_secure_installation. I try to make it idempotent, so you can re-run the script without hassle multiple times***
 ___
 
