@@ -35,7 +35,7 @@ install_devps_utils() {
 }
 ################
 install_awscli() {
-    if [[ ! $(which docker ) ]] ; then
+    if [[ ! $(which aws) ]] ; then
         $(which pip) install awscli
     else 
         echo "[+] awscli already installed."
@@ -48,8 +48,9 @@ install_awscli() {
 install_docker() {
     echo
     echo "[+] installing docker .."
-    if [[ ! $(which docker ) ]] ; then
+    if [[ ! $(which docker) ]] ; then
         ${SNAP} install docker
+        usermod -aG docker $SUDO_USER
     else 
         echo "[+] docker already installed."
         echo
