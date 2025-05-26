@@ -92,10 +92,7 @@ utils_svc_mngr
 ##########
 addUsertoGroup sudo
 #########
-## add user to docker group
-##########
-addUsertoGroup docker 2>/dev/null
-#########
+
 
 
 
