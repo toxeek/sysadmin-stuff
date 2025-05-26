@@ -16,12 +16,12 @@ install_utils() {
     # exit 0
 }
 ################
-install_vritualenvwrapper() {
+install_virtualenvwrapper() {
     echo
     echo "[+] installing virtualenvwrapper .."
     echo
     if [[ ! $(which pip3) ]] ; then
-        exit "[+] pip3 not installed? Exiting." && exit 125
+        echo "[+] pip3 not installed?" && install_python3
     fi
     $(which pip3) install virtualenvwrapper
 
@@ -30,9 +30,18 @@ install_vritualenvwrapper() {
 ################
 install_golang() {
     echo
-    echo "[+] installing golan 1.17 .."
+    echo "[+] installing golang .."
 
-    snap install go --classic
+    ${SNAP} install go --classic
+    
+    return 0
+}
+################
+install_nginx() {
+    echo
+    echo "[+] installing golan nginx .."
+
+    ${APT} install -y nginx
     
     return 0
 }
@@ -70,25 +79,15 @@ install_fail2ban() {
 }
 ################
 install_htop() {
-    if [[ $(which htop) ]]; then
-        echo
-        echo "[+] htop already installed, passing." && return 1
-    else
-        echo
-        ${APT} install -y htop
-    fi
+    echo
+    ${APT} install -y htop
 
     return 0
 }
 ################
 install_ngrep() {
-    if [[ $(which ngrep) ]]; then
-        echo
-        echo "[+] ngrep already installed, passing." && return 1
-    else
-        echo
-        ${APT} install -y ngrep
-    fi
+    echo
+    ${APT} install -y ngrep
 
     return 0
 }
@@ -121,7 +120,7 @@ install_python3() {
     echo
     echo "[+] installing python3 .."
     echo
-    ${APT} install -y python3
+    ${APT} install -y python3 python3-pip
 
     return 0
 }
@@ -130,7 +129,16 @@ install_python2_7() {
     echo
     echo "[+] installing python2.7 .."
     echo
-    ${APT} install python2.7
+    ${APT} install -y python2.7
+
+    return 0
+}
+#################
+install_tcpdump() {
+    echo
+    echo "[+] installing tcpdump .."
+    echo
+    ${APT} install -y tcpdump
 
     return 0
 }
@@ -139,7 +147,25 @@ install_tmux() {
     echo 
     echo "[+] installing tmux .."
     echo
-    ${APT} instal -y install install tmux
+    ${APT} instal -y install tmux
+
+    return 0
+}
+################
+install_jq() {
+    echo 
+    echo "[+] installing jq .."
+    echo
+    ${APT} instal -y install install jq
+
+    return 0
+}
+################
+install_yq() {
+    echo 
+    echo "[+] installing yq .."
+    echo
+    ${SNAP} install yq --channel=v3/stable
 
     return 0
 }
@@ -179,60 +205,6 @@ install_whois() {
     return 0
 }
 ##################
-# redundant, as you will need to clone this repository somehow
-install_git() {
-    echo
-    echo "[+] installing git .."
-    if [[ $(which git) ]]; then
-        echo "[+] git already installed .."
-    else
-        ${APT} -y install git
-    fi 
-    if $(which git) config --list | grep -q "user.name"; then
-        echo "[+] git already configured .."
-    else 
-        echo "[+] enter you email address for git use:"
-        read email
-        echo "[+] enter your user name for git to use:"
-        read user
-        $(which git) config --global user.email "${email}"
-        $(which git) config --global user.name "${user}"
-    fi
-
-    # needed for metasploit git clone
-    git config http.sslVerify false
-    git config --global http.postBuffer 1048576000
-
-
-    return 0
-}
-##################
-install_mariadb_10_5() {
-    if [[ $(which mariadb) ]]; then
-        echo "[+] mariadb already installed .. passsing."
-        return 0
-    fi
-    echo
-    echo "[+] installing mariadb 10.5 with defaults . you will be prompted."
-    echo "[+] addding apt-get key .."
-    ${WGET} -qO - 'https://mariadb.org/mariadb_release_signing_key.asc' | apt-key add -
-    echo "[+] adding mariadb repository .."
-    $(which add-apt-repository) 'deb [arch=amd64] http://mariadb.mirror.globo.tech/repo/10.5/ubuntu focal main'
-    echo "[+] updating apt-get .."
-    ${APT} update
-    ${APT} install -y mariadb-server mariadb-client
-    echo "[+] starting mysql_secure_installation .."
-    if [ ! -r "/usr/local/src/.mysql_sec_inst.lock" ]; then 
-        $(which mysql_secure_installation) && touch "/usr/local/src/.mysql_sec_inst.lock"
-    fi
-
-    echo
-    echo "[+] mariadb installed." && sleep 1
-
-    return 0
-}
-##################
-
 install_utils
 install_sys_utils() {
     for util in ${utils_array[*]}; do
@@ -244,8 +216,14 @@ install_sys_utils() {
             install_htop
 	    elif [[ "$util" == *monit* ]]; then
 	        install_monit
+	    elif [[ "$util" == *nginx* ]]; then
+	        install_nginx
+	    elif [[ "$util" == *python_2_7* ]]; then
+	        install_python2_7
 	    elif [[ "$util" == *fail2ban* ]]; then
 	        install_fail2ban
+	    elif [[ "$util" == *tcpdump* ]]; then
+	        install_tcpdump
         elif [[ "$util" == *virtualbox* ]]; then
              install_virtualbox
         elif [[ "$util" == *etckeeper* ]]; then
@@ -258,10 +236,10 @@ install_sys_utils() {
              install_ngrep
         elif [[ "$util" == *virtualenvwrapper* ]]; then
             install_virtualenvwrapper
-        elif [[ "$util" == "git" ]]; then
-            install_git
-        elif [[ "$util" == *mariadb_10_5* ]]; then
-            install_mariadb_10_5
+        elif [[ "$util" == *jq* ]]; then
+            install_jq
+        elif [[ "$util" == *yq* ]]; then
+            install_yq
         else 
             echo 
             echo "[+] installing ${util} .."
