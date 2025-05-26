@@ -78,7 +78,6 @@ echo
 . ${PENTEST_UTILS_FILE}
 . ${DEVOPS_UTILS_FILE}
 . ${NMAP_NSE_UTILS_FILE}
-. ${GVM_UTILS_FILE}
 . ${SVC_MNGR_FILE}
 
 #########
