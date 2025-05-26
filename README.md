@@ -17,27 +17,19 @@ To install first clone the project as non root. **you would be prompted few time
 It is also crucial that you have git installed, and cofigured with your email and user already; do it when I prompt you (more likely as you may wish to run this script in a freshly installed Ubuntu).
 
 The cfg file where you toggle tools on/off for sysadmin stuff, is sysadmin.cfg file. So make sure you toggle the 
-tools in sysadmin.cfg as you like (on/off/) and for the terraform version, make sure you toggle on tfevn, and that you select the terraform version you want installed.
-so: 
+tools in sysadmin.cfg as you like (on/off/) So in order to run the script, run: 
 ```bash
 $ git clone https://github.com/toxeek/sysadmin-stuff.git
 $ cd sysadmin-stuff
 $ sudo ./install.sh
 ```
-The above means that most tools are, atm, installed as root user. Tfenv and Terraform though, can be called as the SUDO_USER, no need for sudo / root:
-```bash
-$ tfenv list
-$ terraform -version
-```
-
 ## Dependencies
 You will need git installed and ready to clone the repository, and a GNU/Linux system Ubuntu 16.04 at least per using snap for certain packages such as docker and VSCode.
 
-
 ## Usage
-When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the sys/devops utils that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation of certain util, in the cfg file make the value  set to =0 instead. In the case of Terraform, single quote the version you want installed, make sure you toggle tfevn=1 tho .. as we use tfenv to install and manage terraform version/s we want installed.
+When you first clone it, cd into the sysadmin-stuff folder. There you will see a sysadminf.cfg file with a key=value format for the sys utils that's to be installed (or not). if the value equals 1, then it will be installed. To disable that installation of certain util, in the cfg file make the value  set to =0 instead. In the case of Terraform (in the devops folder, devops.cfg file), single quote the version you want installed, make sure you toggle tfevn=1 tho .. as we use tfenv to install and manage terraform version/s we want installed.
 
-There are other .cfg files, to install non sys/devops related tools, but it's all explained bellow.
+There are other .cfg files, to install non sys/devops/pentest related tools, but it's all explained bellow.
 
 ***
 #### sysadmin.cfg and other *.cfg files is where you toggle utils on/off
