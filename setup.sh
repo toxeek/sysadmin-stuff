@@ -6,7 +6,6 @@
 typeset -a utils_array
 typeset -a pentest_utils_array
 typeset -a nmap_nse_utils_array
-typeset -a gvm_utils_array
 typeset -a services_array
 typeset -a devops_array
 
