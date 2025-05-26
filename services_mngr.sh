@@ -1,6 +1,6 @@
 ################
 utils_svc_mngr() {
-    echo "[+] starting serVice mngr .."
+    echo "[+] starting service mngr .."
     SYSCTL=$(which systemctl)
     echo "[+] doing a daemon-reload .."
     $SYSCTL daemon-reload

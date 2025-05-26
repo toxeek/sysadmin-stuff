@@ -23,9 +23,8 @@ export SVC_MNGR_FILE="${REPO_ROOT_DIR}/services_mngr.sh"
 # base utils in the array
 export utils_array=(build-essential ssh git wget curl cmake pkg-config apt-transport-https software-properties-common unzip gnupg-agent ca-certificates tree)
 export pentest_utils_array=(zlib1g zlib1g-dev libpq-dev libpcap-dev libsqlite3-dev ruby ruby-dev)
-export devops_utils_array=(libsasl2-dev python3 python3-pip)
 export nmap_nse_utils_array=()
-export services_array=(etckeeper mariadb monit fail2banS)
+export services_array=(etckeeper mariadb monit fail2ban docker)
 
 echo "[+] utils.sh path: $UTILS_FILE"
 echo "[+] pentest utils.sh path: $PENTEST_UTILS_FILE"
