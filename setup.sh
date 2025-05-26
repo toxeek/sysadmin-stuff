@@ -92,7 +92,7 @@ install_pentest_utils
 #########
 install_nmap_nse_utils
 #########
-install_gvm_utils
+# install_gvm_utils
 #########
 utils_svc_mngr
 ## add user to sudo group
