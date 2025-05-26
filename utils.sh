@@ -156,7 +156,7 @@ install_jq() {
     echo 
     echo "[+] installing jq .."
     echo
-    ${APT} instal -y install install jq
+    ${APT} install -y jq
 
     return 0
 }
