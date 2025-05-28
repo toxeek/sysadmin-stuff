@@ -30,7 +30,7 @@ pipeline {
     disableConcurrentBuilds()
     skipDefaultCheckout true
     //retry(3)
-    timeout time:10, unit:'MINUTES'
+    timeout time:40, unit:'MINUTES'
   }
 
   stages {
