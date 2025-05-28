@@ -80,7 +80,7 @@ pipeline {
                     -f 'ALL' 
                     --prettyPrint''', odcInstallation: 'OWASP dependency check'
         
-        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+        dependencyCheckPublisher failedTotalCritical: 1, pattern: 'dependency-check-report.xml', stopBuild: true
       }
     }
     stage('Build and Push Release') {
