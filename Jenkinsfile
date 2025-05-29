@@ -1,4 +1,5 @@
-releaseBranch = null
+def releaseBranch = null
+def app
 
 
 pipeline {
@@ -214,10 +215,15 @@ pipeline {
       steps {
         sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, and we do not skip ci"
         sh 'echo "FOO login is $FOO_USR"'
-      script {
-        sh "docker build -t toxeek/test:${env.BUILD_ID} ."
-        echo "docker build finished"
-      }
+        script {
+          // sh "docker build -t toxeek/test:${env.BUILD_ID} ."
+          app = docker.build("toxeek/test")
+          docker.withRegistry('https://registry.hub.docker.com', 'docker-private-credentials') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+          }
+          echo "docker build finished"
+        }
       }
       // post {
       //  always {
