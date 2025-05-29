@@ -214,6 +214,8 @@ pipeline {
       steps {
         sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, and we do not skip ci"
         sh 'echo "FOO login is $FOO_USR"'
+      script {
+        docker.build("cloud.canister.io:5000/opstree/spring3hibernate:${env.BUILD_ID}")
       }
       // post {
       //  always {
