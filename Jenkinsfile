@@ -240,7 +240,7 @@ pipeline {
           echo "Output: ${output}"
           if (env.BRANCH_NAME ==~ /^(hotfix|release)\/.+/) {
             version = env.BRANCH_NAME.replaceAll(/.+\/v(?=[0-9.]+)/,'')
-          } else if (env.BRANCH_NAME == null) { // else if (env.BRANCH_NAME == 'develop') {
+          } else if (env.BRANCH_NAME == 'dev') { // else if (env.BRANCH_NAME == 'develop') {
             version = '99.99.99'
             echo "version is ${version}"
           } else {
