@@ -43,7 +43,7 @@ install_awscli() {
     fi  
 
     return 0
-}install -m 0755 -d /etc/apt/keyrings
+}
 ################
 install_docker() {
     echo
