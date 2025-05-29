@@ -124,6 +124,17 @@ pipeline {
         echo 'we are NOT at the master branch'
       }
     }
+    stage('agent docker node') {
+      agent {
+        docker {
+          image 'node:16-alpine'
+          label 'linux-vm'
+        }
+      }
+      steps {
+        sh 'node --version'
+      }
+    }
     stage('parallel') {
       parallel {
         stage('parallel one') {
@@ -218,7 +229,6 @@ pipeline {
         // for the next, I need to install the Docker Pipeline Plugin
         // https://plugins.jenkins.io/docker-workflow/
         script {
-          // sh "docker build -t toxeek/test:${env.BUILD_ID} ."
           app = docker.build("toxeek/test")
           docker.withRegistry('https://registry.hub.docker.com', 'docker-private-credentials') {
             app.push("${env.BUILD_NUMBER}")
@@ -252,7 +262,7 @@ pipeline {
           echo "Output: ${output}"
           if (env.BRANCH_NAME ==~ /^(hotfix|release)\/.+/) {
             version = env.BRANCH_NAME.replaceAll(/.+\/v(?=[0-9.]+)/,'')
-          } else if (env.BRANCH_NAME == 'dev') { // else if (env.BRANCH_NAME == 'develop') {
+          } else if (env.BRANCH_NAME == 'dev') { 
             version = '99.99.99'
             echo "version is ${version}"
           } else {
