@@ -217,6 +217,8 @@ pipeline {
       script {
         docker.build("cloud.canister.io:5000/opstree/spring3hibernate:${env.BUILD_ID}")
       }
+        sh 'echo "Docker build finished"'
+      }
       // post {
       //  always {
       //   archiveArtifacts "_output/lint/**/*"
