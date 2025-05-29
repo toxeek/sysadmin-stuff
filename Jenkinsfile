@@ -28,7 +28,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr:'10'))
     timestamps()
     disableConcurrentBuilds()
-    skipDefaultCheckout true
+    // skipDefaultCheckout true
     //retry(3)
     timeout time:40, unit:'MINUTES'
   }
@@ -215,7 +215,7 @@ pipeline {
         sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, and we do not skip ci"
         sh 'echo "FOO login is $FOO_USR"'
       script {
-        sh "docker build -t ctoxeek/test:${env.BUILD_ID} ."
+        sh "docker build -t toxeek/test:${env.BUILD_ID} ."
         echo "docker build finished"
       }
       }
