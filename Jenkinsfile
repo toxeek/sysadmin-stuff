@@ -215,7 +215,7 @@ pipeline {
         sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, and we do not skip ci"
         sh 'echo "FOO login is $FOO_USR"'
       script {
-        sh "docker build -t cloud.canister.io:5000/opstree/spring3hibernate:${env.BUILD_ID} ."
+        sh "docker build -t ctoxeek/test:${env.BUILD_ID} ."
         echo "docker build finished"
       }
       }
