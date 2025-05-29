@@ -215,6 +215,8 @@ pipeline {
       steps {
         sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, and we do not skip ci"
         sh 'echo "FOO login is $FOO_USR"'
+        // for the next, I need to install the Docker Pipeline Plugin
+        // https://plugins.jenkins.io/docker-workflow/
         script {
           // sh "docker build -t toxeek/test:${env.BUILD_ID} ."
           app = docker.build("toxeek/test")
