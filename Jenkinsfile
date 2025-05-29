@@ -2,7 +2,7 @@ releaseBranch = null
 
 
 pipeline {
-  agent any
+  agent {node {label 'linux-vm'}}
   tools {
     maven 'MAVEN'
   }
