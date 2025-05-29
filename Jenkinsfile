@@ -1,4 +1,4 @@
-def releaseBranch = null
+releaseBranch = null
 def app
 
 
