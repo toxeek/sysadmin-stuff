@@ -254,7 +254,7 @@ pipeline {
     }
     stage('Scan Docker Image') {
         steps {
-            sh "mkidr trivy"
+            sh "mkdir trivy"
             script {
                 // Run Trivy to scan the Docker image
                 def trivyOutput = sh(script: "trivy image toxeek/test:latest", returnStdout: true).trim()
