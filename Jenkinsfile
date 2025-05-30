@@ -257,7 +257,7 @@ pipeline {
             sh "mkdir trivy"
             script {
                 // Run Trivy to scan the Docker image
-                def trivyOutput = sh(script: "trivy image toxeek/test:latest", returnStdout: true).trim()
+                def trivyOutput = sh(script: "trivy image toxeek/test:latest -f json", returnStdout: true).trim()
 
                 // Display Trivy scan results
                 // println trivyOutput
