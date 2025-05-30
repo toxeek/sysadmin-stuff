@@ -344,8 +344,8 @@ pipeline {
   } 
   post {
     always {
+      archiveArtifacts artifacts: 'hadolint/*.log', allowEmptyArchive: true
       deleteDir() /* clean up our workspace */
-      archiveArtifacts artifacts: '**/*.log', allowEmptyArchive: true
       // archiveArtifacts artifacts: '**/*.log, **/*.layout'
     }
         // if build was successful
