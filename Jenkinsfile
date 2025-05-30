@@ -254,12 +254,14 @@ pipeline {
     }
     stage('Scan Docker Image') {
         steps {
+            sh "mkidr trivy"
             script {
                 // Run Trivy to scan the Docker image
                 def trivyOutput = sh(script: "trivy image toxeek/test:latest", returnStdout: true).trim()
 
                 // Display Trivy scan results
-                println trivyOutput
+                // println trivyOutput
+                sh "echo ${trivyOutput} > trivy/trivy.log" 
 
                 // Check if vulnerabilities were found
                 if (trivyOutput.contains("Total: 0")) {
@@ -366,7 +368,8 @@ pipeline {
   } 
   post {
     always {
-      archiveArtifacts artifacts: 'hadolint/*.log', allowEmptyArchive: true
+      // archiveArtifacts artifacts: 'hadolint/*.log', allowEmptyArchive: true
+      archiveArtifacts artifacts: '**/*.log', allowEmptyArchive: true
       deleteDir() /* clean up our workspace */
       // archiveArtifacts artifacts: '**/*.log, **/*.layout'
     }
