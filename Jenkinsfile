@@ -219,8 +219,7 @@ pipeline {
     }
     stage("Hadolint") {
       steps {
-        sh "hadolint Dockerfile --no-fail -f json | tee -a hadolint.json"
-        recordIssues(tools: [hadoLint(pattern: 'hadolint.son')])
+        sh "hadolint Dockerfile --no-fail | tee -a hadolint.txt"
       }
     }
     stage('Build and Push'){
@@ -344,6 +343,7 @@ pipeline {
   post {
     always {
       deleteDir() /* clean up our workspace */
+      archiveArtifacts 'hadolint.txt'
       // archiveArtifacts artifacts: '**/*.log, **/*.layout'
     }
         // if build was successful
