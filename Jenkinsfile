@@ -260,8 +260,8 @@ pipeline {
                 def trivyOutput = sh(script: "trivy image toxeek/test:latest", returnStdout: true).trim()
 
                 // Display Trivy scan results
-                // println trivyOutput
-                sh "echo ${trivyOutput} > trivy/trivy.log" 
+                println trivyOutput
+                // sh "echo ${trivyOutput} > trivy/trivy.log" 
 
                 // Check if vulnerabilities were found
                 if (trivyOutput.contains("Total: 0")) {
