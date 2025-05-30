@@ -220,6 +220,7 @@ pipeline {
     stage("Hadolint") {
       steps {
         sh "hadolint Dockerfile --no-fail | tee -a hadolint.txt"
+        sh "cat hadolint.txt"
       }
     }
     stage('Build and Push'){
@@ -343,7 +344,7 @@ pipeline {
   post {
     always {
       deleteDir() /* clean up our workspace */
-      archiveArtifacts 'hadolint.txt'
+      archiveArtifacts 'hadolint.txt', allowEmptyArchive: true
       // archiveArtifacts artifacts: '**/*.log, **/*.layout'
     }
         // if build was successful
