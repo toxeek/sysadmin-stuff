@@ -217,7 +217,13 @@ pipeline {
          }
       }
     }
-    stage('Build'){
+    stage("Hadolint") {
+      steps {
+        sh "hadolint Dockerfile --no-fail -f json | tee -a hadolint.json"
+        recordIssues(tools: [hadoLint(pattern: 'hadolint.son')])
+      }
+    }
+    stage('Build and Push'){
       when {
         expression {
           return env.shouldBuild != "false"
