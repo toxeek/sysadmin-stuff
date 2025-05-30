@@ -220,7 +220,7 @@ pipeline {
     stage("Hadolint") {
       steps {
         sh "mkdir hadolint"
-        sh "hadolint Dockerfile --no-fail | tee -a hadolint/hadolint.log"
+        sh " NO_COLOR=1 hadolint Dockerfile --no-fail | tee -a hadolint/hadolint.log"
         sh "cat hadolint/hadolint.log"
       }
     }
