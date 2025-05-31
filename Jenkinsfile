@@ -450,3 +450,34 @@ def evaluateJson(String json, String gpath){
 def isReleaseBranch() {
     return (env.BRANCH_NAME == releaseBranch)
 }
+
+
+def waitForAllPodsRunning(String namespace) {
+    timeout(KUBERNETES_RESOURCE_INIT_TIMEOUT) {
+        while (true) {
+            podsStatus = sh(returnStdout: true, script: "kubectl --namespace='${namespace}' get pods --no-headers").trim()
+            def notRunning = podsStatus.readLines().findAll { line -> !line.contains('Running') }
+            if (notRunning.isEmpty()) {
+                echo 'All pods are running'
+                break
+            }
+            sh "kubectl --namespace='${namespace}' get pods"
+            sleep 10
+        }
+    }
+}
+
+def waitForAllServicesRunning(String namespace) {
+    timeout(KUBERNETES_RESOURCE_INIT_TIMEOUT) {
+        while (true) {
+            servicesStatus = sh(returnStdout: true, script: "kubectl --namespace='${namespace}' get services --no-headers").trim()
+            def notRunning = servicesStatus.readLines().findAll { line -> line.contains('pending') }
+            if (notRunning.isEmpty()) {
+                echo 'All pods are running'
+                break
+            }
+            sh "kubectl --namespace='${namespace}' get services"
+            sleep 10
+        }
+    }
+}
