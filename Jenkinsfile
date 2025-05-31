@@ -88,9 +88,13 @@ pipeline {
       when {
         branch 'dev'
       }
+      environment {
+        GIT_SHA1 = sh(returnStdout: true, script: 'git rev-parse --short HEAD')
+      }
       steps {
                 // auto upgrade demo env
         echo "env.GIT_COMMIT: ${env.GIT_COMMIT[0..6]}"
+        echo "env.GIT_SHA1: ${GIT_SHA1}"
       }
     }
     stage('when expression') { 
