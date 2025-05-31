@@ -279,6 +279,55 @@ pipeline {
             }
         }
     }
+    stage("Parallel docker build & sonar-scanner") {
+        when { 
+           expression { env.BRANCH_NAME == 'master' }
+        }
+        parallel {
+        // PRs are going to be against dev or master so we just check the PR id
+        // parallel build simulating the bitbucket-pipelines.yml one
+            stage("Build and Push Docker to AWS registry") {
+                agent {
+                        label 'docker'
+                }
+                steps {
+                    // regions and also credentials per account may need changing
+                    withAWS(credentials: 'AWS-TASKS-ACCESS', region: 'us-east-1') {
+                        sh "curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip"
+                        sh "unzip -o awscli-bundle.zip"
+                        sh "./awscli-bundle/install -b ~/bin/aws"
+                        sh "export PATH=~/bin:\$PATH"
+                        sh 'eval \$(aws ecr get-login --no-include-email --region us-east-1)'
+                        sh "docker build -t ${env.IMAGE_NAME_VERSION} ."
+                        sh "docker push ${env.IMAGE_NAME_VERSION} && docker rmi ${env.IMAGE_NAME_VERSION}"
+                    }
+                }
+            }
+            // SonarQube scanner tool - running in the npm agent node
+            stage("SonarQube Scanner") {
+                agent {
+                        label 'docker'
+                }
+                environment {
+                    SCANNER_HOME = tool 'SonarCloudOne'
+                    ORGANIZATION = "hyperjar"
+                    PROJECT_NAME = "hyperjar-bacoffice-fe"
+                    SONAR_LOGIN = "jose-hyperjar@bitbucket"
+                }
+                steps {
+                    // sonarQube needs installed ..
+                    withSonarQubeEnv('SonarCloudOne') { 
+                        sh '''
+                        sonar-scanner -Dsonar.organization=\$ORGANIZATION \
+                        -Dsonar.inclusions=**/*.js \
+                        -D.projectName=\$PROJECT_NAME \
+                        -D.sonar.login=\$SONAR_LOGIN \
+                        -Dsonar.projectKey=finovertech_hyperjar-back-office-fe'''
+                    }
+                }
+            }
+        }
+    }
     stage("Publish coverage to Codecov") {
       when {
         expression { env.BRANCH_NAME != null }
