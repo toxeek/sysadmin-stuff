@@ -341,7 +341,7 @@ pipeline {
     // if the pipeline fails the  quality gate stage with PENDING, go to the sonarqube dashboard, Administration > Configuration > Webhooks,
     // and see the Last Modified message. If it says SERVER UNREACHABLE, try to exec into the container:
     // docker exec -it -u 0 sonarqube bash
-    // and install curl and curl the jenkins webhook url, see what happens, may be routing problem.
+    // and install curl and curl the jenkins webhook url (e.g.: http://192.168.1.103:8080/sonarqube-webhook/), see what happens, may be routing problem.
     stage("Sonarqube QualityGate") {
       when {
         branch 'dev'
