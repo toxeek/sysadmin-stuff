@@ -3,7 +3,7 @@ def app
 
 
 pipeline {
-  agent {node {label 'linux-vm'}}
+  agent {node {label 'linux'}}
   tools {
     maven 'MAVEN'
   }
