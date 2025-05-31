@@ -90,7 +90,7 @@ pipeline {
       }
       steps {
                 // auto upgrade demo env
-        echo "env.GIT_COMMIT: ${env.GIT_COMMIT[0..7]}"
+        echo "env.GIT_COMMIT: ${env.GIT_COMMIT[0..6]}"
       }
     }
     stage('when expression') { 
