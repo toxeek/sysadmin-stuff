@@ -343,16 +343,19 @@ pipeline {
     // docker exec -it -u 0 sonarqube bash
     // and install curl and curl the jenkins webhook url (e.g.: http://192.168.1.103:8080/sonarqube-webhook/), see what happens
     // normally containers can not access the host without host mode networking ... in case jenkins is running in the host
-    //stage("Sonarqube QualityGate") {
-    //  when {
-    //   branch 'dev'
-    //  }
-    //  steps {
-    //    timeout(time: 2, unit: 'MINUTES') {
-    //      waitForQualityGate abortPipeline: true
-    //    }
-    //  }
-    //}
+    // If the host is running ubuntu make sure I allow 8080 on ufw: (this solved my issue)
+    // sudo ufw status
+    // sudo ufw allow 8080
+    stage("Sonarqube QualityGate") {
+      when {
+       branch 'dev'
+      }
+      steps {
+        timeout(time: 2, unit: 'MINUTES') {
+        waitForQualityGate abortPipeline: true
+        }
+      }
+    }
     stage("Publish coverage to Codecov") {
       when {
         expression { env.BRANCH_NAME != null }
