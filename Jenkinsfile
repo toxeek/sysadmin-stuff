@@ -86,11 +86,11 @@ pipeline {
     }
     stage('Build and Push Release') {
       when {
-        branch 'master'
+        branch 'dev'
       }
       steps {
                 // auto upgrade demo env
-        echo 'auto upgrades not yet implemented'
+        echo "env.GIT_COMMIT: ${env.GIT_COMMIT[0..7]}"
       }
     }
     stage('when expression') { 
