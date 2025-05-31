@@ -338,6 +338,16 @@ pipeline {
         }
       }
     }
+    stage("Sonarqube QualityGate") {
+      when {
+        branch 'dev'
+      }
+      steps {
+        timeout(time: 2, unit: 'MINUTES') {
+          waitForQualityGate abortPipeline: true
+        }
+      }
+    }
     stage("Publish coverage to Codecov") {
       when {
         expression { env.BRANCH_NAME != null }
