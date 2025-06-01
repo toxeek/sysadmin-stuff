@@ -463,6 +463,7 @@ pipeline {
       }
       */
         // if build failed
+    }
     failure {
       echo "BIG FAIL!"
       /*
