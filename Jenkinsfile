@@ -225,7 +225,7 @@ pipeline {
       steps {
         // sh 'hadolint dockerfiles/* | tee -a hadolint_lint.txt'
         sh "mkdir hadolint"
-        sh " NO_COLOR=1 hadolint Dockerfile --no-fail | tee -a hadolint/hadolint.log"
+        sh "NO_COLOR=1 hadolint Dockerfile --no-fail | tee -a hadolint/hadolint.log"
         sh "cat hadolint/hadolint.log"
       }
     }
@@ -292,6 +292,7 @@ pipeline {
                 }
                 steps {
                     // regions and also credentials per account may need changing
+                    // this needs the plugin https://plugins.jenkins.io/pipeline-aws/
                     withAWS(credentials: 'AWS-TASKS-ACCESS', region: 'us-east-1') {
                         sh "curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip"
                         sh "unzip -o awscli-bundle.zip"
@@ -456,10 +457,19 @@ pipeline {
         // if build was successful
     success {
       echo "PIPELINE SUCCEEDED"
-    }
+      /*
+      script {
+				slackSend(color: 'green', message: "Result: ${currentBuild.currentResult} | Build# ${env.BUILD_URL}", channel: "#jenkins-alerts-teamx")
+      }
+      */
         // if build failed
     failure {
       echo "BIG FAIL!"
+      /*
+      script {
+				slackSend(color: 'red', message: "Result: ${currentBuild.currentResult} | Build# ${env.BUILD_URL}", channel: "#jenkins-alerts-teamx")
+      }
+      */
     }
     unstable {
       echo "things got messed up"
