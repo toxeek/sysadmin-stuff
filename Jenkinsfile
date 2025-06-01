@@ -166,7 +166,7 @@ pipeline {
     }
     stage('branch name') {
       when {
-        expression { (env.BRANCH_NAME == null) }
+        expression { (env.BRANCH_NAME == 'dev') }
       }
       steps {
         echo "env.BRANCH_NAME is ${env.BRANCH_NAME}"
