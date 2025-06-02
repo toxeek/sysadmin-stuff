@@ -221,6 +221,7 @@ pipeline {
          }
       }
     }
+    // hadolint doesn't need a plugin, just installed in the worker
     stage("Hadolint") {
       steps {
         // sh 'hadolint dockerfiles/* | tee -a hadolint_lint.txt'
@@ -256,6 +257,7 @@ pipeline {
       //  }
       // }
     }
+    // trivy doesn't need a plugin, just installed in the worker
     stage('Scan Docker Image') {
         steps {
             sh "mkdir trivy"
