@@ -238,6 +238,7 @@ pipeline {
         }
       }
       steps {
+        // adding comment
         sh "echo env.CHANGE_ID is ${env.CHANGE_ID}, and we do not skip ci"
         sh 'echo "FOO login is $FOO_USR"'
         // for the next, I need to install the Docker Pipeline Plugin
