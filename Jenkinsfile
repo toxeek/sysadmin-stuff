@@ -189,6 +189,7 @@ pipeline {
         }
       }
     }
+    /*
     stage('params.build to Integer expression') {
       when {
         expression { params.build.toInteger() > 0 }
@@ -224,7 +225,7 @@ pipeline {
             }
          }
       }
-    }
+    } */
     // hadolint doesn't need a plugin, just installed in the worker
     stage("Hadolint") {
       steps {
@@ -389,6 +390,7 @@ pipeline {
             error("bad version")
             // this will make the pipeline error
           }
+          /*
           echo "params.build is ${params.build}"
           try {
             build = params.build.toInteger()
@@ -410,6 +412,7 @@ pipeline {
             """
             currentBuild.result  = 'UNSTABLE'
           }
+        */
         }
       }
     }
