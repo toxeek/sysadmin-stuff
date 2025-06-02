@@ -16,6 +16,7 @@ pipeline {
     REPOSITORY_NAME = "sysadmin-stuff"
     
   }
+  /*
   parameters {
     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
     text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
@@ -24,6 +25,7 @@ pipeline {
     password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     string(name: 'build', description: 'Appcast build number', defaultValue: '')
   }
+  */
   options {
     // Only keep the 10 most recent builds
     buildDiscarder(logRotator(numToKeepStr:'10'))
@@ -154,6 +156,7 @@ pipeline {
         }
       }
     }
+    /*
     stage('Params Example') {
       steps {
         echo "Hello ${params.PERSON}"
@@ -164,6 +167,7 @@ pipeline {
         echo "build: ${params.build}"
       }
     }
+    */
     stage('branch name') {
       when {
         expression { (env.BRANCH_NAME == 'dev') }
