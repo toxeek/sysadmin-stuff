@@ -106,13 +106,14 @@ install_localstack() {
 #################
 install_tfenv() {
     echo 
+    [[ $(which tfenv) ]] && echo "[+] tfenv already installed .." && return 0
     echo "[+] installing tfenv .."
     mkdir -p /usr/local/bin 2>&1
     rm -rf /home/${SUDO_USER}/.tfenv
     git clone https://github.com/tfutils/tfenv.git /home/${SUDO_USER}/.tfenv &>/dev/null || exit 125
     ln -s /home/${SUDO_USER}/.tfenv/bin/* /usr/local/bin 2>/dev/null
     ln -s /home/${SUDO_USER}/.tfenv/bin/* /bin 2>/dev/null
-    chown -R ${SUDO_USER} /home/${SUDO_USER}/.tfenv/bin/
+    chown -R ${SUDO_USER} /home/${SUDO_USER}/.tfenv
     # $(which tfenv) uninstall latest 2>/dev/null
     if [[ ! $(which tfenv) ]] ; then
         echo "[+] tfenv installation problems. exiting" && exit 125
